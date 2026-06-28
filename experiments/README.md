@@ -1,0 +1,55 @@
+# Experiment workflow
+
+Colonisation Research Engine treats experiments as first-class records rather than informal notes.
+
+## Scientific workflow
+
+Observation
+
+↓
+
+Question
+
+↓
+
+Hypothesis
+
+↓
+
+Prediction
+
+↓
+
+Experiment
+
+↓
+
+Observation
+
+↓
+
+Conclusion
+
+↓
+
+Mechanic Update
+
+## Required experiment fields
+
+- hypothesis
+- prediction
+- system, body, and facility context
+- build or change tested
+- before state
+- after state
+- observed result
+- conclusion
+- confidence
+- supporting evidence
+
+## Important rules
+
+- Failed experiments are preserved.
+- Null effects are evidence.
+- Repeated tests across patches should be treated as distinct evidence eras.
+- Planner knowledge should only be updated after experiment review, not merely after data entry.
