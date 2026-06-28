@@ -1,0 +1,31 @@
+# Mechanics catalogue
+
+Every mechanic should eventually live in its own document in this directory.
+
+A mechanic document should contain:
+
+- description
+- evidence
+- confidence
+- experiments
+- contradictions
+- patch history
+
+## Why this matters
+
+Mechanics are revisable knowledge objects, not static rules. They must be traceable to evidence, vulnerable to contradiction, and anchored to patch context.
+
+## Suggested mechanic document shape
+
+- `Mechanic ID`
+- `Name`
+- `Status`
+- `Description`
+- `Scope`
+- `Evidence supporting it`
+- `Negative evidence and failed predictions`
+- `Experiments run`
+- `Contradictions`
+- `Last verified version/date`
+- `Confidence score and rationale`
+- `Notes for planner-safe usage`
