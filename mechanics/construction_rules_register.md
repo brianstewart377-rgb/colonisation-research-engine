@@ -145,13 +145,13 @@ This register decomposes the current mechanic catalogue into explicit constructi
 - Contradictions: None currently recorded
 - Unknowns: None currently recorded
 
-## CR-0014 - Large settlements are the best green-CP conversion tool
+## CR-0014 - Large settlements are an efficient green-CP conversion tool
 
 - Status: Extracted
 - Source: `evidence/claim_register.csv`
-- Rule: Large Tier 2 settlements convert one yellow CP into two green CP, making them uniquely efficient green-CP generators.
+- Rule: Large Tier 2 settlements convert one yellow CP into two green CP, making them one of the clearest green-CP efficiency tools in the current source set.
 - Related mechanics: `M-0004`, `M-0009`
-- Planner implications: Use large settlements for temporary or permanent green-CP farming in capital builds.
+- Planner implications: Prefer large settlements when green-CP efficiency matters more than preserving the eventual facility mix.
 - Testing status: Extracted from Mega Guide v2.3.0 and DaftMav-derived tables
 - Contradictions: None currently recorded
 - Unknowns: None currently recorded

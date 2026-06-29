@@ -28,9 +28,9 @@ This register captures market-behavior, commodity-location, and overlap rules ex
 
 - Status: Extracted
 - Source: `evidence/claim_register.csv`
-- Rule: Two dominant economies can coexist without negative supply cannibalization.
+- Rule: Two dominant economies can coexist without negative supply cannibalization, making two-economy mixes the default safe design recommendation.
 - Related mechanics: `M-0010`
-- Planner implications: Default to one or two dominant economies in high-confidence planner outputs.
+- Planner implications: Default to one or two dominant economies in high-confidence planner outputs unless a larger mix is deliberately justified.
 - Testing status: Extracted from Mega Guide v2.3.0
 - Contradictions: None currently recorded
 - Unknowns: None currently recorded

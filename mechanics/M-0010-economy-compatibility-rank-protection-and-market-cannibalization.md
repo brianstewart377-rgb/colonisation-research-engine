@@ -18,13 +18,13 @@ The directional rule set is strong, but tie-breaking and some community spreadsh
 
 - First- and second-ranked economies protect their own supply from being netted out by other economies at the same port.
 - Demand from those top-two economies is still active against non-top-two supply.
-- Two-economy designs are the default high-confidence market pattern.
+- Two-economy designs are the default high-confidence market recommendation, not a proof that every larger mix is automatically bad.
 - Third-and-lower economies require overlap review because compatibility varies by pair and by commodity category.
-- Economy order can matter more than raw boost size when the goal is to keep a desired economy inside the top two.
+- Economy order can matter more than raw boost size when the goal is to keep a desired economy inside the top two, especially in advanced planner-guidance scenarios.
 
 ## Planner behaviour
 
-- Default to one- or two-dominant-economy designs in planner-safe recommendations.
+- Default to one- or two-dominant-economy designs in planner-safe recommendations unless a more complex mix is deliberately justified.
 - Flag three-plus economy stations as requiring Appendix D review.
 - Treat tie cases as uncertain until same-strength ordering is directly verified.
 - Preserve commodity-location constraints such as orbital-only and planetary-only materials.

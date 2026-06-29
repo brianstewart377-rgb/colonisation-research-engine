@@ -182,7 +182,7 @@ This register decomposes the current mechanic catalogue into explicit economy-fa
 
 - Status: Extracted
 - Source: `evidence/claim_register.csv`
-- Rule: The top two economies at a port protect their own supply from being netted out by the demand of the other economies present.
+- Rule: The top two economies at a port protect their own supply from being netted out by the demand of the other economies present, which makes one- or two-dominant-economy designs the safest default planning baseline.
 - Related mechanics: `M-0010`
 - Planner implications: Default to one- or two-economy station designs for reliable commodity output.
 - Testing status: Supported by guide text and appendix overlap tables
@@ -215,9 +215,9 @@ This register decomposes the current mechanic catalogue into explicit economy-fa
 
 - Status: Extracted
 - Source: `evidence/claim_register.csv`
-- Rule: Advanced system design sometimes depends more on pushing an economy into rank position one or two than on maximizing its raw value.
+- Rule: Advanced system design guidance sometimes depends more on pushing an economy into rank position one or two than on maximizing its raw value.
 - Related mechanics: `M-0010`
-- Planner implications: Model rank-order objectives directly instead of optimizing only for raw percentage totals.
+- Planner implications: Model rank-order objectives directly when doing advanced optimization instead of optimizing only for raw percentage totals.
 - Testing status: Extracted from Appendix A strategy guidance
 - Contradictions: None currently recorded
 - Unknowns: `U-0002`

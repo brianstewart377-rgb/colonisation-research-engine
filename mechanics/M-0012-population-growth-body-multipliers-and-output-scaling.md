@@ -21,13 +21,14 @@ The global shape of the rule is strong, while some body-specific multipliers rem
 - Output scales with the square root of facility population.
 - Population is attached to individual facilities, not automatically spread across the whole system.
 - Body class and facility class both materially change asymptotic population and therefore long-run output.
-- Population also affects emissions grade and the effort needed to swing BGS control.
+- Population also appears to affect emissions grade and the effort needed to swing BGS control, though the exact gameplay magnitude remains less settled than the core growth curve.
 
 ## Planner behaviour
 
 - Distinguish first-month output from year-scale mature output.
 - Prefer body-specific population baselines when comparing similar facilities.
 - Treat demolition-based population corrections as unsafe until directly tested.
+- Treat emissions-grade and BGS-resistance effects as real but still coarse-grained in the current planner model.
 
 ## Evidence basis
 

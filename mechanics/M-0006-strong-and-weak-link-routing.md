@@ -2,7 +2,7 @@
 
 ## Summary
 
-Strong and weak links do not seem to be interchangeable. The repository evidence consistently treats strong links as local body-level market-shaping tools and weak links as cross-body spillover that is useful but less dependable for targeted outcome control.
+Strong and weak links should not be treated as interchangeable. The repository evidence consistently supports strong links as the deliberate same-body market-shaping path, while weak links are better treated as cross-body spillover that is useful but less dependable for targeted outcome control.
 
 ## Status
 
@@ -21,16 +21,16 @@ This mechanic is strongly represented in the repository through `FW-0001`, `MG-0
 - A body's Main Port is the highest-tier port on that body; if tied, the first built is selected.
 - Facilities on the same body route strong links to that body's Main Port rather than to every eligible local port.
 - If a body has both a Main Surface Port and a Main Orbital Port, strong-link influence may route through the main surface port into the main orbital port, meaning displayed link arrows may aggregate multiple upstream contributors.
-- Main Ports receive strong and weak links, but the reference-source routing model says they should not themselves generate weak links.
+- `FW-0001` presents Main Ports as receiving strong and weak links but not themselves generating weak links, though this remains a live-verification-sensitive part of the routing model.
 - Weak links are received by the highest-tier port on the other body, or the earliest built if the receiving ports are tied.
-- Adding a second same-body port can change which port receives or emits the relevant weak-link behavior in the illustrated multi-port cases.
+- Adding a second same-body port can change which port receives or emits the relevant weak-link behavior in the illustrated multi-port cases, so that pattern should be treated as a verified warning rather than a universal design rule.
 
 ## Scope
 
 - Body classes: colony bodies with multiple facilities and at least one qualifying port
 - Facility types: ports, hubs, settlements, installations, and other economy-contributing facilities
 - Economy types: any economy affected by strong or weak routing
-- Patch/version: repository reference state derived from `EV-0004` and Wregoe evidence context
+- Patch/version: canonical repository source state derived from `FW-0001`, `MG-0001`, and Wregoe evidence context
 - Known exclusions: visible arrow count alone does not fully reveal the underlying contribution graph
 - Known exclusions: the exact numerical weighting behind routed versus directly displayed influence is still not planner-safe
 
@@ -80,7 +80,7 @@ High. Link weighting, aggregation display, and economy effects are all vulnerabl
 - Same-body support should be treated as the deliberate-control path; cross-body support should be treated as spillover unless live evidence proves otherwise.
 - Main-port priority must be resolved before interpreting either strong or weak links on a body with multiple ports.
 - A visible link count is a routing display, not a complete additive proof of influence.
-- Surface-to-orbital forwarding on the same body should be treated as plausible and useful, but still verified live before an irreversible architecture change.
+- Surface-to-orbital forwarding on the same body should be treated as plausible and potentially useful, but still verified live before an irreversible architecture change.
 
 ## Related mechanics
 

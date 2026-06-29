@@ -44,7 +44,7 @@ This register extracts planner-operational rules from the repository's mechanics
 - Status: Likely
 - Source: `mechanics/M-0006-strong-and-weak-link-routing.md`, `mechanics/M-0003-one-weak-refinery-link-is-insufficient-to-restore-metals.md`
 - Related mechanics: `M-0003`, `M-0006`
-- Rule: For must-have outcomes, prefer same-body strong-link support over remote weak-link spillover.
+- Rule: For must-have outcomes, prefer same-body strong-link support over remote weak-link spillover as the planner's default recommendation.
 - Planner implication: Weak-link-only plans should be labeled experimental unless corroborated.
 - Testing status: Partly supported, still requires broader live verification
 - Contradictions: `C-0004`
@@ -56,7 +56,7 @@ This register extracts planner-operational rules from the repository's mechanics
 - Status: Likely
 - Source: `mechanics/M-0006-strong-and-weak-link-routing.md`
 - Related mechanics: `M-0006`
-- Rule: Do not infer full causal structure from visible Market Links arrow count alone.
+- Rule: Do not infer full causal structure from visible Market Links arrow count alone; treat arrow-count interpretation as a warning-bearing heuristic, not a complete routing proof.
 - Planner implication: Require live link inspection and caution before demolition or architecture changes.
 - Testing status: Reference-derived, awaiting direct routing verification
 - Contradictions: None currently recorded
@@ -130,7 +130,7 @@ This register extracts planner-operational rules from the repository's mechanics
 - Related mechanics: `M-0006`, `M-0009`
 - Rule: Do not interpret same-body or cross-body routing until the planner has resolved which port is the Main Port on each body and whether another port has converted into a supporting-facility role.
 - Planner implication: Port hierarchy is a prerequisite input, not a cosmetic detail.
-- Testing status: Reference-source confirmed, still merits live edge-case verification
+- Testing status: Strong routing recommendation, still merits live edge-case verification
 - Contradictions: None currently recorded
 - Unknowns: Multi-port edge cases and some converted-port weak-link behavior
 
@@ -142,7 +142,7 @@ This register extracts planner-operational rules from the repository's mechanics
 - Related mechanics: `M-0006`, `M-0013`
 - Rule: Visible Market Links arrow count is not enough evidence to justify demolition, replacement, or other irreversible architecture changes.
 - Planner implication: Require live Market Links inspection or a targeted validation step before recommending destructive changes.
-- Testing status: Strongly supported by the canonical reference-source pack
+- Testing status: Strongly supported planner-safety recommendation from the canonical reference-source pack
 - Contradictions: None currently recorded
 - Unknowns: Exact aggregation behavior in every mixed surface-orbital routing pattern
 
@@ -154,6 +154,6 @@ This register extracts planner-operational rules from the repository's mechanics
 - Related mechanics: `M-0004`, `M-0009`
 - Rule: A planner must satisfy explicit prerequisite chains as well as construction-point availability before declaring a build order viable.
 - Planner implication: CP-positive does not automatically mean buildable.
-- Testing status: Confirmed by canonical Mega Guide, DaftMav extracts, and dependency-flowchart corroboration
+- Testing status: Confirmed as planner-safe logic by canonical Mega Guide, DaftMav extracts, and dependency-flowchart corroboration
 - Contradictions: None currently recorded
 - Unknowns: A few branch-specific `large-settlement versus family-level prerequisite` details remain worth spot-checking live

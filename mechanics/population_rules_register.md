@@ -83,9 +83,9 @@ This register captures the population-growth and output rules extracted directly
 
 - Status: Extracted
 - Source: `evidence/claim_register.csv`
-- Rule: Tier 1 planetary ports at suitable bodies can exceed the population profile of a Tier 2 Coriolis.
+- Rule: Tier 1 planetary ports at suitable bodies can exceed the population profile of a Tier 2 Coriolis in the guide's cited comparison cases.
 - Related mechanics: `M-0012`
-- Planner implications: Cheap ground ports can be valid population drivers rather than mere stepping stones.
+- Planner implications: Cheap ground ports can be valid population drivers rather than mere stepping stones, but body choice still matters heavily.
 - Testing status: Extracted from Mega Guide v2.3.0
 - Contradictions: None currently recorded
 - Unknowns: Body-specific coverage remains incomplete
@@ -105,9 +105,9 @@ This register captures the population-growth and output rules extracted directly
 
 - Status: Extracted
 - Source: `evidence/claim_register.csv`
-- Rule: Higher population improves emissions grade and makes BGS control harder to swing.
+- Rule: Higher population appears to improve emissions grade and make BGS control harder to swing.
 - Related mechanics: `M-0012`
-- Planner implications: Population choices matter beyond commodity output alone.
+- Planner implications: Population choices likely matter beyond commodity output alone, even if the exact magnitude is still loosely quantified.
 - Testing status: Extracted from Mega Guide v2.3.0
 - Contradictions: None currently recorded
 - Unknowns: Exact magnitude of the emissions and BGS effects
