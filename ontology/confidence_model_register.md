@@ -11,11 +11,30 @@ Confidence must be tracked separately for:
 - mechanics
 - planner knowledge
 
+Confidence should also be treated separately for:
+
+- claims
+- recommendations
+- projected operational knowledge
+
 This separation is required by:
 
 - `constitution/project_principles.md`
 - `architecture/colonisation_intelligence_platform_architecture.md`
 - `planner/planner_safety.md`
+
+## Semantic rule
+
+Confidence is a trust assessment about an interpreted object in context.
+
+Confidence is not:
+
+- truth itself
+- certainty
+- a substitute for provenance
+- interchangeable across all layers
+
+High-confidence evidence, high-confidence mechanics, and high-confidence recommendations do not mean the same thing.
 
 ## Components
 
@@ -45,6 +64,13 @@ The repository source review defines six weighted components:
 - Source: `constitution/project_principles.md`
 - Rule: Confidence must be explicit wherever interpretation occurs.
 - Planner implication: Planner outputs must expose confidence instead of hiding it.
+
+## CM-0001A - Recommendation confidence must not collapse upstream uncertainty
+
+- Status: Confirmed
+- Source: `architecture/planner_execution_architecture.md`, `architecture/knowledge_projection_design.md`, `planner/decision_support_model.md`
+- Rule: Recommendation confidence should reflect the weakest critical dependency among projected state, mechanics, contradictions, and unknowns rather than being assigned as a cosmetic top-level label.
+- Planner implication: The planner must not produce high-confidence recommendations from low-confidence or strongly caveated upstream inputs.
 
 ## CM-0002 - Contradictions lower confidence rather than disappearing
 
@@ -80,6 +106,13 @@ The repository source review defines six weighted components:
 - Source: `planner/planner_safety.md`, `evidence/colonisation_ai_data_sources_review.md`
 - Rule: Historical evidence is useful, but it must be marked as historical when current state is unknown.
 - Planner implication: Do not present stale state as if it were live.
+
+## CM-0006A - Operational data confidence is not the same as research confidence
+
+- Status: Confirmed
+- Source: `architecture/runtime_boundary_design.md`, `architecture/knowledge_projection_design.md`, `ontology/entities.md`
+- Rule: Generated operational data may inherit confidence from research layers, but it also reflects publication and projection decisions. It should not be presented as if it were raw evidence confidence.
+- Planner implication: The planner should explain both evidence basis and planner-safe publication confidence where relevant.
 
 ## CM-0007 - Community interpretation can be high-value but remains conditional
 

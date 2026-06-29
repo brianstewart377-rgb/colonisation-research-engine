@@ -69,3 +69,38 @@ This register captures the repository's canonical identity and provenance constr
 - Source: `templates/evidence_record_template.md`, `architecture/evidence_vault.md`
 - Rule: Evidence records should carry review status such as `Unreviewed`, `Analyst reviewed`, `Corroborated`, `Disputed`, or `Superseded`.
 - Planner implication: Review maturity should inform downstream trust.
+
+## IP-0010 - Slot identity and facility identity must remain separate
+
+- Status: Confirmed
+- Source: `ontology/entities.md`, `planner/decision_support_model.md`, `schemas/colony_state_schema.md`
+- Rule: Slot capacity, slot occupancy, and facility identity are different layers. A predicted or open slot is not the same thing as a built facility.
+- Planner implication: Capacity must not be mistaken for realized infrastructure.
+
+## IP-0011 - Station type and inherited economy must remain separate
+
+- Status: Confirmed
+- Source: `mechanics/M-0005-colony-type-and-specialised-ports.md`, `mechanics/M-0007-colony-port-economy-inheritance.md`, `ontology/entities.md`
+- Rule: A facility's station type class and its final inherited or exposed economy are related but not identical concepts.
+- Planner implication: A planner that treats station class as direct final economy control is unsafe.
+
+## IP-0012 - Research evidence, operational data, and user data must not share one identity layer
+
+- Status: Confirmed
+- Source: `architecture/runtime_boundary_design.md`, `architecture/knowledge_projection_design.md`, `ontology/entities.md`
+- Rule: Research evidence belongs to the curation layer, operational data belongs to the generated runtime layer, and user data belongs to the application layer.
+- Planner implication: User-owned state must not silently rewrite curated evidence or published planner-safe knowledge.
+
+## IP-0013 - Colony state is not identical to system identity
+
+- Status: Confirmed
+- Source: `ontology/entities.md`, `planner/decision_support_model.md`, `architecture/knowledge_projection_design.md`
+- Rule: System identity is the top-level location key. Colony state is a contextual and time-sensitive arrangement within that system.
+- Planner implication: Recommendations should target colony state under stated objectives, not treat the system name alone as the full planning object.
+
+## IP-0014 - Role labels are not physical identity
+
+- Status: Confirmed
+- Source: `ontology/roles_assets_strategies.md`, `planner/decision_support_model.md`
+- Rule: Role labels such as `Industrial Anchor` or `High Tech Support` are contextual planning assignments, not facility type or body identity keys.
+- Planner implication: The same body can carry different roles under different objectives without changing identity.

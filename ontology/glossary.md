@@ -121,3 +121,83 @@ This glossary records canonical terms used across the Colonisation Research Engi
 - Source: `planner/planner_safety.md`, `experiments/README.md`, `experiments/EXP-0001-a4-complementary-high-tech-role.md`
 - Related mechanics: `M-0003`, `M-0006`, `M-0007`, `M-0008`
 - Planner implication: Suggest validation instead of fake certainty.
+
+## G-0016 - Colony
+
+- Category: Colony state
+- Definition: The current or historical colonisation state being analyzed within a system, including facilities, roles, coverage, links, and constraints.
+- Source: `ontology/entities.md`, `planner/decision_support_model.md`
+- Related mechanics: contextual concept
+- Planner implication: Optimize colony state under an objective, not the system name in isolation.
+
+## G-0017 - Orbital
+
+- Category: Placement / slots
+- Definition: A placement or slot class above a body, usually modeled as lane or capacity rather than as an independent identity root.
+- Source: `ontology/entities.md`, `schemas/colony_state_schema.md`
+- Related mechanics: `M-0005`, `M-0007`
+- Planner implication: Orbital eligibility constrains placement, but `orbital` is not automatically a facility type or a final economy outcome.
+
+## G-0018 - Surface Slot
+
+- Category: Placement / slots
+- Definition: A build-capacity unit on a body surface. A slot is capacity for possible placement, not proof of a built facility.
+- Source: `ontology/entities.md`, `planner/decision_support_model.md`, `schemas/colony_state_schema.md`
+- Related mechanics: contextual concept
+- Planner implication: Never treat slot count or projected occupancy as realized infrastructure.
+
+## G-0019 - Economy Role
+
+- Category: Planning
+- Definition: A planning-oriented economic function such as `Industrial anchor` or `High Tech support`.
+- Source: `ontology/entities.md`, `ontology/roles_assets_strategies.md`, `planner/decision_support_model.md`
+- Related mechanics: contextual concept
+- Planner implication: Economy role is not the same thing as final inherited economy state and should remain confidence-labeled.
+
+## G-0020 - Market
+
+- Category: Economy / planning
+- Definition: The commodity, service, and mission exposure surface visible to players in a system or facility context.
+- Source: `ontology/entities.md`, `planner/decision_support_model.md`
+- Related mechanics: `M-0006`, `M-0007`, `M-0008`
+- Planner implication: Market outcomes should be described as observed or projected; they are not direct synonyms for economy labels.
+
+## G-0021 - Construction Material
+
+- Category: Construction
+- Definition: A commodity that matters directly to colony construction and build continuity.
+- Source: `ontology/entities.md`, `planner/decision_support_model.md`
+- Related mechanics: contextual concept
+- Planner implication: Construction materials are a commodity subset and must remain separate from construction points.
+
+## G-0022 - Body Modifier
+
+- Category: Body context
+- Definition: A body-specific modifier that changes expected facility, market, or economy behavior under current mechanic interpretation.
+- Source: `ontology/entities.md`, `mechanics/M-0008-local-body-base-economies-and-modifiers.md`
+- Related mechanics: `M-0008`
+- Planner implication: Modifiers should adjust ranking and confidence, not create fake deterministic guarantees.
+
+## G-0023 - Research Evidence
+
+- Category: Knowledge system
+- Definition: Evidence captured for curation and interpretation in the research layer.
+- Source: `ontology/entities.md`, `architecture/runtime_boundary_design.md`, `architecture/evidence_vault.md`
+- Related mechanics: all evidence-backed mechanics indirectly
+- Planner implication: Research evidence must be reviewed before it becomes planner-safe knowledge.
+
+## G-0024 - Operational Data
+
+- Category: Knowledge system
+- Definition: Generated runtime-facing data such as projections, denormalized query views, and planner input objects.
+- Source: `ontology/entities.md`, `architecture/knowledge_projection_design.md`, `architecture/runtime_boundary_design.md`
+- Related mechanics: all planner-consumable mechanics indirectly
+- Planner implication: Future planner and API layers should consume operational data rather than raw repository documents.
+
+## G-0025 - User Data
+
+- Category: Application boundary
+- Definition: Mutable user-owned state such as saved plans, private notes, preferences, credentials, or account settings.
+- Source: `ontology/entities.md`, `architecture/runtime_boundary_design.md`
+- Related mechanics: none directly
+- Planner implication: User data may shape objectives and constraints, but must not redefine canonical research truth.
