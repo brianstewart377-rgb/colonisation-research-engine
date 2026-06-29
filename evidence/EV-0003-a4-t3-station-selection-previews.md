@@ -67,7 +67,7 @@ The supplied station-class previews show the same visible categories for large-p
 
 ## Related decisions
 
-- `D-0003` - Reject any claim that Dodec, Orbis, or Ocellus is mechanically superior on current evidence alone
+- `D-0003` - Reject any claim that Dodec is universally superior to Orbis or Ocellus based solely on the currently available evidence
 
 ## Contradicts
 

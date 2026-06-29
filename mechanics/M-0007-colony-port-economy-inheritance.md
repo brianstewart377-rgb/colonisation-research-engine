@@ -85,7 +85,7 @@ High. This mechanic depends on economy inheritance and link math, both of which 
 ## Related decisions
 
 - `D-0002` - Use A4 as the complementary Industrial + High Tech support body
-- `D-0003` - Reject any claim that Dodec, Orbis, or Ocellus is mechanically superior on current evidence alone
+- `D-0003` - Reject any claim that Dodec is universally superior to Orbis or Ocellus based solely on the currently available evidence
 
 ## Open questions
 

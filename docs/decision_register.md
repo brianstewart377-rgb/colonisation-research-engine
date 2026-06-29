@@ -50,17 +50,19 @@ A decision explains why the repository adopted, rejected, or preserved a specifi
 - Confidence: Medium
 - Review status: Analyst reviewed
 
-## D-0003 - Reject any claim that Dodec, Orbis, or Ocellus is mechanically superior on current evidence alone
+## D-0003 - Reject any claim that Dodec is universally superior to Orbis or Ocellus based solely on the currently available evidence
 
 - Status: Accepted
 - Date: 2026-06-29
-- Context: A4 preview evidence compares Orbis, Ocellus, and Dodec-style options, but current repository evidence remains preview-only and does not establish post-build superiority.
+- Context: A4 preview evidence compares Orbis, Ocellus, and Dodec-style options. The available evidence does show visible modifier differences, but it still does not establish universal long-term superiority.
 - Problem statement: The planner needed a repository position on station-class choice so that previews did not get over-promoted into fake certainty.
 - Alternatives considered: Prefer Dodec by default; prefer Orbis by default; treat visible preview bars as enough to justify a superiority claim; leave the repository silent.
-- Decision: Do not encode any planner-safe superiority claim for Dodec, Orbis, or Ocellus until stronger post-build evidence exists.
-- Rationale: Preview evidence supports caution, not class superiority. Both the mechanic layer and contradiction layer already preserve that the current screenshots do not prove a superior final market or economy result.
-- Trade-offs: This prevents premature optimization, but it also means the planner cannot yet give a stronger class recommendation where users may want one.
-- Consequences: Station-class choice should remain context-sensitive and reviewable, and live verification remains the right next step instead of a stronger rule.
+- Decision: Do not encode any planner-safe claim that Dodec is universally superior to Orbis or Ocellus until stronger post-build evidence exists.
+- Confirmed: Dodec has higher population modifiers (`+3 Initial`, `+2 Maximum`) and a `-1 Security` modifier in the currently available preview evidence.
+- Unknown: The magnitude and practical effect of those modifiers on colony growth, missions, markets, and long-term gameplay remain unresolved.
+- Rationale: The repository can safely preserve the visible modifier differences while still rejecting the stronger unsupported leap to universal superiority. The current evidence shows a difference, not a complete gameplay verdict.
+- Trade-offs: This preserves a sharper fact-versus-uncertainty split, but it also means the planner still cannot collapse station choice into a simple default recommendation.
+- Consequences: Station-class choice should remain context-sensitive and reviewable, Dodec's visible modifiers may be cited as real preview differences, and live verification remains the right next step before any broader superiority claim.
 - Evidence references: `EV-0003`
 - Claim references: `CL-0009`, `CL-0010`
 - Mechanic references: `M-0005`, `M-0007`
