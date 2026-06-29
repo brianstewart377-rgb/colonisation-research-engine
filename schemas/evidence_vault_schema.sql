@@ -115,7 +115,7 @@ CREATE INDEX IF NOT EXISTS idx_evidence_item_body ON evidence_item(body_name);
 CREATE INDEX IF NOT EXISTS idx_evidence_item_facility ON evidence_item(facility_name);
 CREATE INDEX IF NOT EXISTS idx_evidence_item_experiment ON evidence_item(experiment_id);
 CREATE INDEX IF NOT EXISTS idx_evidence_item_package ON evidence_item(research_package_id);
-CREATE INDEX IF NOT EXISTS idx_evidence_item_phase ON evidence_item phase;
+CREATE INDEX IF NOT EXISTS idx_evidence_item_phase ON evidence_item(phase);
 CREATE INDEX IF NOT EXISTS idx_observation_evidence ON observation(evidence_id);
 CREATE INDEX IF NOT EXISTS idx_observation_type ON observation(observation_type);
 CREATE INDEX IF NOT EXISTS idx_evidence_link_target ON evidence_link(target_type, target_id);
