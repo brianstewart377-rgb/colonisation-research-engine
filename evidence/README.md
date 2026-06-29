@@ -16,6 +16,8 @@ This directory stores evidence records, source-analysis outputs, and evidence go
   Named real-colony inspection targets extracted from the source review.
 - `build_diary_shortlist.csv`
   High-value public build-diary and project-thread shortlist.
+- `evidence_mechanic_traceability.csv`
+  Evidence-to-mechanic support mapping for the current catalogue.
 - `colonisation_ai_data_sources_review.md`
   Deep source review and ingestion-order analysis.
 

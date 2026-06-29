@@ -16,6 +16,8 @@ This directory defines how future planning tools must consume knowledge safely.
   The dimensions a planner should inspect before choosing new builds.
 - `contextual_strategy_register.md`
   Reusable but non-universal strategy patterns extracted from the repository.
+- `planner_risk_register.md`
+  Canonical planner failure modes and required mitigations.
 
 ## Use rule
 

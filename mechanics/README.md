@@ -40,3 +40,4 @@ For rule-level consumption, use:
 
 - `mechanics/economy_rules_register.md`
 - `mechanics/construction_rules_register.md`
+- `mechanics/mechanic_dependency_register.md`

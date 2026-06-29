@@ -33,6 +33,7 @@ This is the canonical entry point for the current structured knowledge base.
 - `evidence/source_priority_register.csv`
 - `evidence/real_colony_shortlist.csv`
 - `evidence/build_diary_shortlist.csv`
+- `evidence/evidence_mechanic_traceability.csv`
 - `evidence/public_anomaly_shortlist.csv`
 - `docs/manual_research_gaps.md`
 - `docs/anomaly_register.md`
@@ -42,6 +43,7 @@ This is the canonical entry point for the current structured knowledge base.
 - `mechanics/index.md`
 - `mechanics/economy_rules_register.md`
 - `mechanics/construction_rules_register.md`
+- `mechanics/mechanic_dependency_register.md`
 
 Canonical mechanic documents:
 
@@ -60,6 +62,7 @@ Canonical mechanic documents:
 - `planner/knowledge_projection_rules.md`
 - `planner/coverage_dimensions_register.md`
 - `planner/contextual_strategy_register.md`
+- `planner/planner_risk_register.md`
 
 ## Ontology and graph layer
 
