@@ -58,7 +58,7 @@ This register extracts planner-operational rules from the repository's mechanics
 - Related mechanics: `M-0006`
 - Rule: Do not infer full causal structure from visible Market Links arrow count alone; treat arrow-count interpretation as a warning-bearing heuristic, not a complete routing proof.
 - Planner implication: Require live link inspection and caution before demolition or architecture changes.
-- Testing status: Reference-derived, awaiting direct routing verification
+- Testing status: Supported by the canonical reference-source pack, still awaiting direct routing verification
 - Contradictions: None currently recorded
 - Unknowns: Exact aggregation behavior between main surface and orbital ports
 
