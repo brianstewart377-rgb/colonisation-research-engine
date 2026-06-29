@@ -14,7 +14,12 @@ Likely future contents:
 
 Current documentation-first schema artifacts:
 
+- `observation.schema.json`
+- `claim.schema.json`
+- `mechanic.schema.json`
 - `colony_state.schema.json`
+- `planner_recommendation.schema.json`
+- `knowledge_release_manifest.schema.json`
 - `colony_state_schema.md`
 - `colony_state_example.json`
 

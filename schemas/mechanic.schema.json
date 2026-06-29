@@ -1,0 +1,201 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cre.local/schemas/mechanic.schema.json",
+  "title": "CRE Mechanic",
+  "description": "Documentation-first draft schema for canonical mechanics and their confidence, provenance, and planning implications.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "mechanic_id",
+    "title",
+    "status",
+    "summary",
+    "mechanic_statement",
+    "confidence_band"
+  ],
+  "properties": {
+    "mechanic_id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Confirmed",
+        "Likely",
+        "Experimental",
+        "Disputed",
+        "Disproved",
+        "Unknown"
+      ]
+    },
+    "summary": {
+      "type": "string"
+    },
+    "mechanic_statement": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "body_classes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "facility_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "economy_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "known_exclusions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "confidence_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "confidence_band": {
+      "type": "string",
+      "enum": [
+        "High confidence",
+        "Usable with review",
+        "Exploratory only",
+        "Weak evidence"
+      ]
+    },
+    "confidence_rationale": {
+      "type": "string"
+    },
+    "last_verified_version": {
+      "type": "string"
+    },
+    "last_verified_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "patch_sensitivity": {
+      "type": "string",
+      "enum": [
+        "Low",
+        "Medium",
+        "High",
+        "Unknown"
+      ]
+    },
+    "confidence_decay_state": {
+      "type": "string",
+      "enum": [
+        "stable",
+        "watch",
+        "stale",
+        "unknown"
+      ]
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "observation_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "claim_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "contradiction_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "unknown_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "experiment_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "planner_implications": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "testing_status": {
+      "type": "string"
+    },
+    "negative_evidence_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "corroborating_evidence_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "contradiction_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "review": {
+      "$ref": "#/$defs/review"
+    }
+  },
+  "$defs": {
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "review_status": {
+          "type": "string",
+          "enum": [
+            "unreviewed",
+            "analyst_reviewed",
+            "corroborated",
+            "disputed",
+            "superseded"
+          ]
+        },
+        "reviewer": {
+          "type": "string"
+        },
+        "reviewed_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}

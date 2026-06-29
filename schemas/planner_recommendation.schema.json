@@ -1,0 +1,196 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cre.local/schemas/planner_recommendation.schema.json",
+  "title": "CRE Planner Recommendation",
+  "description": "Documentation-first draft schema for planner outputs that follow the repository's objective-first reasoning model.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "plan_id",
+    "goal_summary",
+    "objective_refs",
+    "constraints_summary",
+    "current_coverage_summary",
+    "coverage_gap_targeted",
+    "recommended_role_refs",
+    "candidate_builds",
+    "expected_effects",
+    "recommendation_confidence",
+    "mechanics_used",
+    "evidence_used",
+    "unknowns",
+    "what_would_change"
+  ],
+  "properties": {
+    "plan_id": {
+      "type": "string"
+    },
+    "goal_summary": {
+      "type": "string"
+    },
+    "objective_refs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "constraints_summary": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "current_coverage_summary": {
+      "type": "string"
+    },
+    "coverage_gap_targeted": {
+      "type": "string"
+    },
+    "recommended_role_refs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "recommended_architecture_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "candidate_builds": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/candidateBuild"
+      }
+    },
+    "expected_effects": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "expected_losses_or_opportunity_cost": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "recommendation_confidence": {
+      "type": "string",
+      "enum": [
+        "Confirmed",
+        "Likely",
+        "Experimental",
+        "Unknown"
+      ]
+    },
+    "mechanics_used": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence_used": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "claim_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "unknowns": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "caveats": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "unsupported_requests": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "suggested_validation_experiments": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "what_would_change": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "patch_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "knowledge_version": {
+          "type": "string"
+        },
+        "patch_family": {
+          "type": "string"
+        },
+        "patch_label": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "candidateBuild": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "target_ref",
+        "candidate_facility_type"
+      ],
+      "properties": {
+        "target_ref": {
+          "type": "string"
+        },
+        "candidate_facility_type": {
+          "type": "string"
+        },
+        "candidate_station_type": {
+          "type": "string"
+        },
+        "state_assumption": {
+          "type": "string",
+          "enum": [
+            "preview",
+            "planned",
+            "completed_context",
+            "unknown"
+          ]
+        },
+        "expected_role_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

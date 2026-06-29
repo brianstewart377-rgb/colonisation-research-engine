@@ -90,7 +90,12 @@ Canonical mechanic documents:
 
 ## Schema layer
 
+- `schemas/observation.schema.json`
+- `schemas/claim.schema.json`
+- `schemas/mechanic.schema.json`
 - `schemas/colony_state.schema.json`
+- `schemas/planner_recommendation.schema.json`
+- `schemas/knowledge_release_manifest.schema.json`
 - `schemas/colony_state_schema.md`
 - `schemas/colony_state_example.json`
 

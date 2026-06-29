@@ -1,0 +1,171 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cre.local/schemas/claim.schema.json",
+  "title": "CRE Claim",
+  "description": "Documentation-first draft schema for claims derived from one or more observations and linked to mechanics, contradictions, and unknowns.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "claim_id",
+    "claim_type",
+    "status",
+    "confidence",
+    "title",
+    "claim_text",
+    "primary_basis"
+  ],
+  "properties": {
+    "claim_id": {
+      "type": "string"
+    },
+    "claim_type": {
+      "type": "string",
+      "description": "Examples: mechanic_claim, evidence_claim, preview_claim, planner_state_claim, experimental_prediction, source_governance_claim."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Observed",
+        "Confirmed",
+        "Confirmed_Narrow",
+        "Pending",
+        "Disputed",
+        "Superseded"
+      ]
+    },
+    "confidence": {
+      "$ref": "#/$defs/confidenceBand"
+    },
+    "title": {
+      "type": "string"
+    },
+    "claim_text": {
+      "type": "string"
+    },
+    "primary_basis": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "observation_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "linked_mechanics": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "linked_contradictions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "linked_unknowns": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "provenance_links": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/provenanceLink"
+      }
+    },
+    "patch_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "patch_family": {
+          "type": "string"
+        },
+        "patch_label": {
+          "type": "string"
+        }
+      }
+    },
+    "review": {
+      "$ref": "#/$defs/review"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "$defs": {
+    "confidenceBand": {
+      "type": "string",
+      "enum": [
+        "High",
+        "Medium",
+        "Low",
+        "Unknown"
+      ]
+    },
+    "provenanceLink": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_entity",
+        "relationship"
+      ],
+      "properties": {
+        "source_entity": {
+          "type": "string"
+        },
+        "relationship": {
+          "type": "string",
+          "enum": [
+            "supported_by",
+            "produced_by",
+            "derived_from",
+            "canonicalized_as",
+            "qualified_by",
+            "limited_by",
+            "uses_baseline",
+            "predicted_by",
+            "informs"
+          ]
+        },
+        "basis_note": {
+          "type": "string"
+        }
+      }
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "review_status": {
+          "type": "string",
+          "enum": [
+            "unreviewed",
+            "analyst_reviewed",
+            "corroborated",
+            "disputed",
+            "superseded"
+          ]
+        },
+        "reviewer": {
+          "type": "string"
+        },
+        "reviewed_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}

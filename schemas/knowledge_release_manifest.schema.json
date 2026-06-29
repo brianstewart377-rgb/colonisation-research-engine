@@ -1,0 +1,176 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cre.local/schemas/knowledge_release_manifest.schema.json",
+  "title": "CRE Knowledge Release Manifest",
+  "description": "Documentation-first draft schema for releasing a versioned package of planner-safe knowledge and its supporting boundaries.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "release_id",
+    "knowledge_version",
+    "released_at",
+    "release_scope",
+    "included_mechanics",
+    "included_rules",
+    "included_unknowns",
+    "source_coverage_summary"
+  ],
+  "properties": {
+    "release_id": {
+      "type": "string"
+    },
+    "knowledge_version": {
+      "type": "string"
+    },
+    "released_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "patch_partition": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "patch_family": {
+          "type": "string"
+        },
+        "patch_label": {
+          "type": "string"
+        },
+        "knowledge_window_start": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "knowledge_window_end": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "release_scope": {
+      "type": "string",
+      "description": "Plain-language summary of what this release covers."
+    },
+    "included_mechanics": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/releaseItem"
+      }
+    },
+    "included_rules": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/releaseItem"
+      }
+    },
+    "included_unknowns": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/releaseItem"
+      }
+    },
+    "excluded_or_withheld_items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/withheldItem"
+      }
+    },
+    "source_coverage_summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "processed_source_count"
+      ],
+      "properties": {
+        "processed_source_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "absent_primary_artifacts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "coverage_notes": {
+          "type": "string"
+        }
+      }
+    },
+    "decision_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "risk_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "schema_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "release_notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "$defs": {
+    "releaseItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ref",
+        "status"
+      ],
+      "properties": {
+        "ref": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "confidence": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "withheldItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ref",
+        "reason"
+      ],
+      "properties": {
+        "ref": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "blocking_unknowns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "blocking_contradictions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
