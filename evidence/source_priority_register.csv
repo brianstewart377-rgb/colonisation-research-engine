@@ -1,0 +1,21 @@
+rank,source_name,source_category,trust_rating,recommended_role,why_it_matters,repository_status
+1,Frontier Update 3 patch notes,official_mechanics,High,Mechanics truth,"Best official explanation of strong and weak links and body-based economy behavior",external_reference_only
+2,Frontier System Colonisation Guide,official_mechanics,High,Mechanics truth,"Best official top-level workflow and terminology source",external_reference_only
+3,Jixxed Journal Schemas,journal_contract,High,Event contract,"Best accessible modern schema for colonisation journal events",external_reference_only
+4,Official Player Journal Manual v32,journal_contract,High,Event and file contract,"Official source for local files and legacy event and file structure",external_reference_only
+5,Spansh dumps,bulk_state,High,Primary bulk ingest,"Best confirmed bulk source for systems, bodies, and stations",external_reference_only
+6,EDSM nightly dumps,bulk_state,High,Secondary bulk ingest,"Strong bulk snapshot and reconciliation source",external_reference_only
+7,EDDN,live_transport,High,Streaming ingest,"Best live transport layer for fresh observations",external_reference_only
+8,ED Galaxy Data,archive_layer,High,Historical backfill,"Best public archive layer for EDDN, EDSM, and Spansh captures",external_reference_only
+9,Inara public system and station pages,manual_validation,Medium,Manual and targeted validation,"Best public named-colony validation surface",external_reference_only
+10,Inara architect pages,manual_validation,Medium,Named evidence registry,"Good named-system attribution source",external_reference_only
+11,EDMarketConnector,tooling_reference,High,Contributor tooling reference,"Best practical reference for what local clients export",external_reference_only
+12,DaftMav Colonization Construction v3,community_reference,Medium,Heuristic reference,"Major community planning artefact",external_reference_only
+13,SrvSurvey colonization wiki,community_reference,Medium,Workflow reference,"Strong operational view of hauling and project tracking",external_reference_only
+14,BGS-Tally colonisation tracking,community_reference,Medium,Workflow reference,"Strong planner model combining EDSM, Spansh, Raven, and carrier state",external_reference_only
+15,Raven Colonial public system and build pages,community_reference,Medium,Manual-review source,"Best public planner surface for named build plans, inferred system state, and visible data gaps",external_reference_only
+16,CMDR Mechan’s Colonization Mega Guide,community_reference,Medium,Research reference,"Deep community interpretation and case studies",metadata_only_in_repo
+17,Frontier Dodec update notes,official_mechanics,High,Mechanics delta,"Critical later-mechanics patch source",external_reference_only
+18,Inara commander logbooks,build_diary,Medium,Analyst-reviewed diary evidence,"Best public build-diary source for named systems, facilities, and progress updates",external_reference_only
+19,EDSM public platform,ecosystem_platform,High,Live lookup and reconciliation,"Important ecosystem source used by multiple tools",external_reference_only
+20,Frontier public project and update threads,build_diary,Medium,Analyst-reviewed project evidence,"Best public group-build source for milestone systems and ongoing build sequencing",external_reference_only
