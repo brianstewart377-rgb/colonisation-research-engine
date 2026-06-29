@@ -94,6 +94,7 @@ The manifest should record:
 Assemble a machine-usable release bundle using the structure defined in:
 
 - `docs/release_bundle_layout.md`
+- `docs/release_bundle_assembly.md`
 
 The bundle should include:
 
@@ -111,6 +112,11 @@ Validation should check:
 - withheld items have reasons
 - included items have consistent status and confidence labels
 - source coverage notes are present when primary artifacts remain absent
+
+Exact commands:
+
+- build: `python3 tools/build_release_bundle.py --output exports`
+- validate: `python3 tools/build_release_bundle.py --output exports --validate-only`
 
 ## Stage 8 - Publish and cite
 

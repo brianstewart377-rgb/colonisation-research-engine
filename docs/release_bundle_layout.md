@@ -27,11 +27,15 @@ cre-knowledge-release/
     planner_rules.csv
     economy_rules.csv
     construction_rules.csv
+    planner_risks.csv
+    governance_decisions.csv
     unknowns.csv
     contradictions.csv
     observations.csv
     claims.csv
+    claim_provenance_links.csv
     evidence_traceability.csv
+    live_verification_matrix.csv
     graph_nodes.csv
     graph_edges.csv
   docs/
@@ -69,6 +73,10 @@ Recommended exports:
   Economy-facing rules.
 - `construction_rules.csv`
   Construction-facing rules.
+- `planner_risks.csv`
+  Planner failure modes and mitigations.
+- `governance_decisions.csv`
+  Open governance gates that still affect release policy.
 - `unknowns.csv`
   Release-visible unresolved questions.
 - `contradictions.csv`
@@ -77,8 +85,12 @@ Recommended exports:
   Included structured observations.
 - `claims.csv`
   Included structured claims.
+- `claim_provenance_links.csv`
+  Explicit claim provenance edges.
 - `evidence_traceability.csv`
   Evidence-to-mechanic mapping.
+- `live_verification_matrix.csv`
+  Current machine-readable live-verification queue.
 - `graph_nodes.csv`
   Graph nodes for the included release.
 - `graph_edges.csv`
@@ -119,12 +131,19 @@ The current repository can already supply most bundle inputs from:
 - `mechanics/construction_rules_register.md`
 - `docs/unknowns_register.md`
 - `docs/contradiction_register.md`
+- `planner/planner_risk_register.md`
+- `docs/governance_decision_register.md`
 - `evidence/observation_register.csv`
 - `evidence/claim_register.csv`
+- `evidence/claim_provenance_links.csv`
 - `evidence/evidence_mechanic_traceability.csv`
+- `experiments/live_verification_matrix.csv`
 - `ontology/knowledge_graph_nodes.csv`
 - `ontology/knowledge_graph_edges.csv`
 
-## Next step
+## Current builder
 
-The next useful implementation step after this layout is a bundle-building script or workflow that maps repository files into this structure deterministically.
+The repository now includes a deterministic bundle builder:
+
+- `tools/build_release_bundle.py`
+- `docs/release_bundle_assembly.md`
