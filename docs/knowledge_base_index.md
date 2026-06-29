@@ -33,7 +33,9 @@ This is the canonical entry point for the current structured knowledge base.
 - `evidence/source_priority_register.csv`
 - `evidence/real_colony_shortlist.csv`
 - `evidence/build_diary_shortlist.csv`
+- `evidence/public_anomaly_shortlist.csv`
 - `docs/manual_research_gaps.md`
+- `docs/anomaly_register.md`
 
 ## Mechanics and rule layers
 
