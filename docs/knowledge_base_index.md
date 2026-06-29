@@ -65,6 +65,9 @@ Canonical mechanic documents:
 - `planner/coverage_dimensions_register.md`
 - `planner/contextual_strategy_register.md`
 - `planner/planner_risk_register.md`
+- `planner/role_register.md`
+- `planner/architecture_pattern_register.md`
+- `planner/recommendation_schema_register.md`
 
 ## Ontology and graph layer
 
