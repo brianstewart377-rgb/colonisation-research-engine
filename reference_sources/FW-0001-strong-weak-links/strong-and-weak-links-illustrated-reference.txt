@@ -1,0 +1,55 @@
+Elite Dangerous Colonisation
+Understanding Strong and Weak Links
+Illustrated practical reference based on the Frontier Forums discussion
+What changed in this edition:   The supplied forum screenshots are now represented by cropped, legible source diagrams throughout the document. Browser chrome and unrelated private tabs have been excluded.
+Original discussion: Colonisation: Understanding Strong and Weak Links - Frontier Forums
+Source screenshots supplied 23 June 2026
+1. The one-minute model
+Strong links are local relationships. A facility or eligible port affects the important market on the same planetary body. Weak links are cross-body, system-wide spillover. They can support an economy elsewhere, but the thread treats them as a much less direct way to control a specific market.
+Link | Where it forms | Use it for
+Strong | Between assets associated with the same body; surface and orbital relationships are routed through the body's main ports. | Deliberately concentrating an economy at a target market.
+Weak | Between assets on different bodies in the same system; received by main ports on those bodies. | System-wide background support, not a dependable single source for a must-have material.
+Aggregated | Where a Main Surface Port sits between facilities and the Main Orbital Port. | Explaining why a visible link count can change while influence is still being routed.
+Figure 1. Basic source diagram: local strong links within each body; weak links connecting assets on different bodies.
+2. Asset types, main ports, and body influence
+The thread separates assets into two broad types: facilities (settlements, installations, hubs) and ports (outposts and larger). Each may or may not carry an economy type.
+A body's Main Port is the highest-tier port on that body. Where multiple ports are tied, the first built is selected.
+Facilities on the same body form strong economic links with a Main Port.
+A planet or moon can have both a Main Surface Port and a Main Orbital Port. The source states that the Main Surface Port strongly links to the Main Orbital Port.
+Main Ports receive strong and weak links, but the source says they do not themselves generate weak links.
+Local body features can boost strong links for certain economy types, so a port's default colony economy may be overridden by its body or orbiting body.
+Figure 2. Source comparison: the same basic orbital build can resolve differently depending on the local body influence.
+3. Strong links: how surface and orbital markets connect
+Strong links only form between assets associated with the same planetary body. They do not extend from one body to another.
+Where a body has only surface or only orbital ports, facilities are directed toward the relevant most important port on that body.
+Where both surface and orbital ports exist, surface facilities strongly link to the important surface port, and orbital structures strongly link to the important orbital port.
+The source describes an additional strong relationship from the important surface port to the important orbital port. This can make the surface port an intermediary rather than a dead end.
+Planning implication:   When you care about a particular orbital market, inspect the in-game Market Links display rather than assuming every local facility will be listed as a separate direct line to that orbital.
+Figure 3. Source diagram: a surface port can receive the ground links and then strongly connect onward to the orbital port.
+4. Weak links: cross-body support and its limits
+Weak links are only formed between different bodies. Assets that share one planetary body do not form weak links with one another.
+Facilities with an economy type generate weak links to other bodies in the same system, but the receiving endpoint is a Main Port on the other body.
+Where a body has several ports, the highest-tier port - or the earliest built where tiers match - receives the weak links.
+The source's limiting example shows that a body with only one port may have no port-originated weak-link path; adding another port can cause a lower-tier or newer port to be the one generating the weak links.
+Figure 4. Source diagram: weak links run across bodies, while strong links remain local to each body.
+Figure 5. Source diagram: initial configuration with no strong or weak links in the illustrated three-body setup.
+Figure 6. Source diagram: adding a second port opens the illustrated weak-link routes from the lower-tier / later port.
+5. The complex example: why link count alone misleads
+The thread's larger worked example combines local facilities, a surface main port, an orbital main port, another planetary body, and cross-body weak links. Its point is that the displayed graph is a routing map, not simply a scorecard of how many arrows you can see.
+Figure 7. Source diagram: a combined strong/weak-link example with routing through surface and orbital ports.
+6. Adding up strong links
+The source explicitly warns: the number of visible strong links is not a direct measure of total influence. Multiple facility inputs can pass through one link; an Ocellus showing three strong links is not automatically “better” than one showing two.
+Figure 8. Source diagram: multiple strong links do not, by themselves, prove greater influence.
+7. A safe in-game planning workflow
+Start with the market and the material you need. Identify the economy you are trying to make visible there.
+Map the target market to a local body. For a required output, prefer a deliberate strong local source over remote weak spillover.
+Check which port is the Main Surface Port and which is the Main Orbital Port before committing a build.
+Use the live construction preview and Market Links panel as the authority for the exact strong/weak effect.
+After completion, verify the market and economy mix. Treat planners, diagrams, and spreadsheets as useful hypotheses rather than proof.
+Practical rule:   Do not make an irreversible demolition or replacement purely because a model predicts an economy percentage. Confirm the exact market-link effect in-game first.
+8. Source and confidence
+Primary source: Greatestrap42, “Colonisation: Understanding Strong and Weak Links,” Frontier Forums. The original diagrams in this document were cropped from the screenshots supplied with this request; browser UI and personal browser context were not included.
+Label | Meaning in this document
+Source statement | Directly transcribed or closely paraphrased from the displayed forum text and diagrams.
+Planning implication | A practical interpretation of the source mechanism. Validate it with the game's construction preview and Market Links view.
+Not an official formula | The thread is community research. It is useful evidence, but it should not override live in-game observations.

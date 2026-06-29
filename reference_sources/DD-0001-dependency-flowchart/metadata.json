@@ -1,0 +1,10 @@
+{
+  "source_id": "DD-0001",
+  "title": "Colonisation Dependency Flowchart",
+  "version": "v0",
+  "type": "diagram",
+  "author_or_origin": "Community dependency flowchart image uploaded by Brian",
+  "source_tier": "Tier 2 - community diagram reference",
+  "primary_file": "dependency-flowchart-v0.webp.base64.txt",
+  "notes": "Stored as base64 text to preserve binary content in text-only upload path. Decode to restore WEBP."
+}
