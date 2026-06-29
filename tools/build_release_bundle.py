@@ -155,6 +155,135 @@ def clean_backticks(value: str) -> str:
     return value.replace("`", "")
 
 
+def split_reference_field(value: str) -> list[str]:
+    cleaned = clean_backticks(value).strip()
+    if not cleaned or cleaned.lower() == "none":
+        return []
+    parts = re.split(r"[;,]\s*|\s{2,}", cleaned)
+    return [part.strip() for part in parts if part.strip()]
+
+
+def extract_id_from_filename(path: Path, pattern: str) -> str | None:
+    match = re.match(pattern, path.name)
+    return match.group(1) if match else None
+
+
+def load_known_ids() -> dict[str, set[str]]:
+    evidence_ids = {
+        extracted
+        for path in (REPO_ROOT / "evidence").glob("EV-*.md")
+        for extracted in [extract_id_from_filename(path, r"^(EV-\d{4})")]
+        if extracted
+    }
+    experiment_ids = {
+        extracted
+        for path in (REPO_ROOT / "experiments").glob("EXP-*.md")
+        for extracted in [extract_id_from_filename(path, r"^(EXP-\d{4})")]
+        if extracted
+    }
+    mechanic_ids = {row["mechanic_id"] for row in parse_mechanics_index(REPO_ROOT / "mechanics" / "index.md")}
+    planner_rule_ids = {row["id"] for row in parse_sectioned_register(REPO_ROOT / "planner" / "planner_rules_register.md", ["category", "status", "source", "related_mechanics", "rule", "planner_implication"])}
+
+    claim_ids: set[str] = set()
+    with open(REPO_ROOT / "evidence" / "claim_register.csv", "r", encoding="utf-8", newline="") as f:
+        for row in csv.DictReader(f):
+            claim_id = (row.get("claim_id") or "").strip()
+            if claim_id:
+                claim_ids.add(claim_id)
+
+    return {
+        "evidence": evidence_ids,
+        "experiment": experiment_ids,
+        "mechanic": mechanic_ids,
+        "planner_rule": planner_rule_ids,
+        "claim": claim_ids,
+    }
+
+
+def validate_reference_membership(record_id: str, field_name: str, refs: list[str], known_ids: set[str], path: Path) -> None:
+    missing = [ref for ref in refs if ref not in known_ids]
+    if missing:
+        raise ValueError(
+            f"Unknown references in {path} for {record_id} field {field_name}: {', '.join(missing)}"
+        )
+
+
+def validate_decision_sections(path: Path, sections: list[dict[str, str]]) -> None:
+    allowed_status = {"Proposed", "Accepted", "Implemented", "Superseded", "Rejected"}
+    allowed_confidence = {"High", "Medium", "Low"}
+    allowed_review_status = {"Draft", "Analyst reviewed", "Governance confirmed", "Needs live review", "Superseded"}
+    known = load_known_ids()
+    decision_ids = {section["id"] for section in sections}
+
+    for section in sections:
+        decision_id = section["id"]
+        status = section.get("status", "")
+        if status not in allowed_status:
+            raise ValueError(f"Invalid decision status in {path} for {decision_id}: {status}")
+
+        date = section.get("date", "")
+        if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", date):
+            raise ValueError(f"Invalid decision date in {path} for {decision_id}: {date}")
+
+        confidence = section.get("confidence", "")
+        if confidence not in allowed_confidence:
+            raise ValueError(f"Invalid confidence in {path} for {decision_id}: {confidence}")
+
+        review_status = section.get("review_status", "")
+        if review_status not in allowed_review_status:
+            raise ValueError(f"Invalid review status in {path} for {decision_id}: {review_status}")
+
+        validate_reference_membership(
+            decision_id,
+            "evidence_references",
+            split_reference_field(section.get("evidence_references", "")),
+            known["evidence"],
+            path,
+        )
+        validate_reference_membership(
+            decision_id,
+            "claim_references",
+            split_reference_field(section.get("claim_references", "")),
+            known["claim"],
+            path,
+        )
+        validate_reference_membership(
+            decision_id,
+            "mechanic_references",
+            split_reference_field(section.get("mechanic_references", "")),
+            known["mechanic"],
+            path,
+        )
+        validate_reference_membership(
+            decision_id,
+            "planner_rule_references",
+            split_reference_field(section.get("planner_rule_references", "")),
+            known["planner_rule"],
+            path,
+        )
+        validate_reference_membership(
+            decision_id,
+            "experiment_references",
+            split_reference_field(section.get("experiment_references", "")),
+            known["experiment"],
+            path,
+        )
+        validate_reference_membership(
+            decision_id,
+            "supersedes",
+            split_reference_field(section.get("supersedes", "")),
+            decision_ids,
+            path,
+        )
+        validate_reference_membership(
+            decision_id,
+            "superseded_by",
+            split_reference_field(section.get("superseded_by", "")),
+            decision_ids,
+            path,
+        )
+
+
 def build_mechanics_csv(output_dir: Path) -> int:
     rows = parse_mechanics_index(REPO_ROOT / "mechanics" / "index.md")
     return write_csv(
@@ -207,6 +336,7 @@ def build_planner_rules_csv(output_dir: Path) -> int:
             "testing_status",
             "contradictions",
             "unknowns",
+            "related_decisions",
             "source",
         ],
         required_fields=["category", "status", "source", "related_mechanics", "rule", "planner_implication"],
@@ -316,6 +446,54 @@ def build_governance_decisions_csv(output_dir: Path) -> int:
     )
 
 
+def build_decisions_csv(output_dir: Path) -> int:
+    source_path = REPO_ROOT / "docs" / "decision_register.md"
+    required_fields = [
+        "status",
+        "date",
+        "context",
+        "problem_statement",
+        "alternatives_considered",
+        "decision",
+        "rationale",
+        "trade_offs",
+        "consequences",
+        "confidence",
+        "review_status",
+    ]
+    sections = parse_sectioned_register(source_path, required_fields)
+    validate_decision_sections(source_path, sections)
+    rows: list[dict[str, str]] = []
+    fieldnames = [
+        "decision_id",
+        "title",
+        "status",
+        "date",
+        "context",
+        "problem_statement",
+        "alternatives_considered",
+        "decision",
+        "rationale",
+        "trade_offs",
+        "consequences",
+        "evidence_references",
+        "claim_references",
+        "mechanic_references",
+        "planner_rule_references",
+        "experiment_references",
+        "supersedes",
+        "superseded_by",
+        "confidence",
+        "review_status",
+    ]
+    for section in sections:
+        row = {field: section.get(field, "") for field in fieldnames}
+        row["decision_id"] = section["id"]
+        row["title"] = section["title"]
+        rows.append(row)
+    return write_csv(output_dir / "decisions.csv", fieldnames, rows)
+
+
 def build_unknowns_csv(output_dir: Path) -> int:
     return build_register_csv(
         output_dir=output_dir,
@@ -407,6 +585,7 @@ EXPORT_SPECS: list[ExportSpec] = [
     ExportSpec("economy_rules.csv", "csv", "mechanics/economy_rules_register.md", build_economy_rules_csv),
     ExportSpec("construction_rules.csv", "csv", "mechanics/construction_rules_register.md", build_construction_rules_csv),
     ExportSpec("planner_risks.csv", "csv", "planner/planner_risk_register.md", build_planner_risks_csv),
+    ExportSpec("decisions.csv", "csv", "docs/decision_register.md", build_decisions_csv),
     ExportSpec("governance_decisions.csv", "csv", "docs/governance_decision_register.md", build_governance_decisions_csv),
     ExportSpec("unknowns.csv", "csv", "docs/unknowns_register.md", build_unknowns_csv),
     ExportSpec("contradictions.csv", "csv", "docs/contradiction_register.md", build_contradictions_csv),

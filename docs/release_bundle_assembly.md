@@ -34,6 +34,7 @@ The builder currently assembles:
 - `economy_rules.csv`
 - `construction_rules.csv`
 - `planner_risks.csv`
+- `decisions.csv`
 - `governance_decisions.csv`
 - `unknowns.csv`
 - `contradictions.csv`

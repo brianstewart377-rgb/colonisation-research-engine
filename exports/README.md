@@ -21,6 +21,7 @@ Validation-only:
 - `construction_rules.csv`
 - `planner_risks.csv`
 - `governance_decisions.csv`
+- `decisions.csv`
 - `unknowns.csv`
 - `contradictions.csv`
 - `observations.csv`

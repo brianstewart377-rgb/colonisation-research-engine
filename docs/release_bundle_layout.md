@@ -18,6 +18,7 @@ cre-knowledge-release/
   schemas/
     observation.schema.json
     claim.schema.json
+    decision.schema.json
     mechanic.schema.json
     colony_state.schema.json
     planner_recommendation.schema.json
@@ -29,6 +30,7 @@ cre-knowledge-release/
     construction_rules.csv
     planner_risks.csv
     governance_decisions.csv
+    decisions.csv
     unknowns.csv
     contradictions.csv
     observations.csv
@@ -77,6 +79,8 @@ Recommended exports:
   Planner failure modes and mitigations.
 - `governance_decisions.csv`
   Open governance gates that still affect release policy.
+- `decisions.csv`
+  Accepted, rejected, implemented, or superseded engineering decisions with linked evidence and planner context.
 - `unknowns.csv`
   Release-visible unresolved questions.
 - `contradictions.csv`
@@ -133,6 +137,7 @@ The current repository can already supply most bundle inputs from:
 - `docs/contradiction_register.md`
 - `planner/planner_risk_register.md`
 - `docs/governance_decision_register.md`
+- `docs/decision_register.md`
 - `evidence/observation_register.csv`
 - `evidence/claim_register.csv`
 - `evidence/claim_provenance_links.csv`

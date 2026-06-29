@@ -3,6 +3,7 @@ manifest.json,json,Top-level machine-readable release manifest,schemas/knowledge
 release_notes.md,markdown,Human-readable summary of release contents and changes,docs/knowledge_release_workflow.md,draft_design
 schemas/observation.schema.json,json-schema,Observation contract,schemas/observation.schema.json,ready_for_bundle
 schemas/claim.schema.json,json-schema,Claim contract,schemas/claim.schema.json,ready_for_bundle
+schemas/decision.schema.json,json-schema,Decision contract,schemas/decision.schema.json,ready_for_bundle
 schemas/mechanic.schema.json,json-schema,Mechanic contract,schemas/mechanic.schema.json,ready_for_bundle
 schemas/colony_state.schema.json,json-schema,Colony state contract,schemas/colony_state.schema.json,ready_for_bundle
 schemas/planner_recommendation.schema.json,json-schema,Planner recommendation contract,schemas/planner_recommendation.schema.json,ready_for_bundle
@@ -11,6 +12,7 @@ exports/mechanics.csv,csv,Canonical mechanics export,mechanics/index.md,planned_
 exports/planner_rules.csv,csv,Planner rules export,planner/planner_rules_register.md,planned_export
 exports/economy_rules.csv,csv,Economy rules export,mechanics/economy_rules_register.md,planned_export
 exports/construction_rules.csv,csv,Construction rules export,mechanics/construction_rules_register.md,planned_export
+exports/decisions.csv,csv,Engineering decision export,docs/decision_register.md,planned_export
 exports/unknowns.csv,csv,Unresolved release-visible unknowns,docs/unknowns_register.md,planned_export
 exports/contradictions.csv,csv,Release-visible contradiction cases,docs/contradiction_register.md,planned_export
 exports/observations.csv,csv,Structured observation export,evidence/observation_register.csv,source_ready
