@@ -1,6 +1,6 @@
 {
   "export_manifest_version": "0.2.0-draft",
-  "generated_at": "2026-06-29T18:40:31Z",
+  "generated_at": "2026-06-29T18:43:50Z",
   "status": "assembled",
   "purpose": "Deterministically assembled release-oriented exports derived from canonical repository registers.",
   "exports": [
@@ -74,7 +74,7 @@
       "path": "exports/evidence_traceability.csv",
       "format": "csv",
       "source": "evidence/evidence_mechanic_traceability.csv",
-      "record_count": 19
+      "record_count": 24
     },
     {
       "path": "exports/live_verification_matrix.csv",
@@ -86,13 +86,13 @@
       "path": "exports/graph_nodes.csv",
       "format": "csv",
       "source": "ontology/knowledge_graph_nodes.csv",
-      "record_count": 202
+      "record_count": 239
     },
     {
       "path": "exports/graph_edges.csv",
       "format": "csv",
       "source": "ontology/knowledge_graph_edges.csv",
-      "record_count": 243
+      "record_count": 294
     }
   ],
   "notes": [
