@@ -68,7 +68,7 @@ The repository begins with:
 
 ## Knowledge base entry point
 
-Use `docs/knowledge_base_index.md` as the main index for the current structured knowledge base, counts, canonical registers, and navigation into mechanics, evidence, planner rules, ontology, contradictions, and live-verification work.
+Use `docs/knowledge_base_index.md` as the main index for the current structured knowledge base, counts, canonical registers, and navigation into mechanics, evidence, decisions, planner rules, ontology, contradictions, and live-verification work.
 
 ## Repository layout
 

@@ -50,6 +50,10 @@ A source-backed artifact or linkage used to support or challenge an observation,
 
 A durable review object created when new evidence challenges an existing observation, mechanic, or planner knowledge projection.
 
+## Decision
+
+A first-class engineering or research choice explaining why the repository accepted, implemented, rejected, or superseded a contextual approach.
+
 ## Planner Recommendation
 
 A build or planning output produced from verified knowledge. Recommendations must include confidence and evidence-backed caveats.

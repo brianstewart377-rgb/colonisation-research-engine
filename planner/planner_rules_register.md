@@ -37,6 +37,7 @@ This register extracts planner-operational rules from the repository's mechanics
 - Testing status: Supported by repository live evidence
 - Contradictions: None currently recorded
 - Unknowns: Final percentage-to-commodity mapping remains open
+- Related decisions: `D-0002`, `D-0003`
 
 ## PR-0004 - Prefer local strong links for targeted market shaping
 
@@ -73,6 +74,7 @@ This register extracts planner-operational rules from the repository's mechanics
 - Testing status: Supported by Wregoe/Raven interpretation evidence
 - Contradictions: `C-0003`
 - Unknowns: Additional planner-model edge cases
+- Related decisions: `D-0004`
 
 ## PR-0007 - Preserve negative evidence and contradictions
 
@@ -85,6 +87,7 @@ This register extracts planner-operational rules from the repository's mechanics
 - Testing status: Governance-confirmed
 - Contradictions: None currently recorded
 - Unknowns: None
+- Related decisions: `D-0005`
 
 ## PR-0008 - Label every recommendation by confidence band
 
@@ -109,6 +112,7 @@ This register extracts planner-operational rules from the repository's mechanics
 - Testing status: Documentation-confirmed
 - Contradictions: None currently recorded
 - Unknowns: None
+- Related decisions: `D-0001`, `D-0002`
 
 ## PR-0010 - Suggest experiments when confidence is weak
 

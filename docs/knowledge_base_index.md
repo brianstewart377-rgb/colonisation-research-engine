@@ -43,6 +43,7 @@ This is the canonical entry point for the current structured knowledge base.
 - `docs/anomaly_register.md`
 - `docs/unknowns_register.md`
 - `docs/governance_decision_register.md`
+- `docs/decision_register.md`
 - `docs/implementation_backlog.md`
 - `docs/review_workflow_backlog.md`
 
@@ -92,6 +93,7 @@ Canonical mechanic documents:
 
 - `schemas/observation.schema.json`
 - `schemas/claim.schema.json`
+- `schemas/decision.schema.json`
 - `schemas/mechanic.schema.json`
 - `schemas/contradiction.schema.json`
 - `schemas/unknown.schema.json`
@@ -121,6 +123,7 @@ Canonical mechanic documents:
 - `exports/construction_rules.csv`
 - `exports/planner_risks.csv`
 - `exports/governance_decisions.csv`
+- `exports/decisions.csv`
 - `exports/unknowns.csv`
 - `exports/contradictions.csv`
 - `exports/observations.csv`

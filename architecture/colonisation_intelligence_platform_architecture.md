@@ -6,7 +6,7 @@ Date: `2026-06-28`
 
 The Colonisation Intelligence Platform is an evidence system for Elite Dangerous colonisation, not a chatbot with opinions. Its job is to ingest public and private evidence, preserve contradictory observations, model colonisation mechanics as revisable knowledge, run experiments against those mechanics, and expose only planner-safe knowledge to planning workflows.
 
-The platform separates four layers that should never be collapsed into one another: raw source data, parsed observations, inferred mechanics, and verified planner knowledge. This separation is what allows the platform to store failed predictions, disputed assumptions, patch drift, and contradictory evidence without poisoning the planner.
+The platform separates five layers that should never be collapsed into one another: raw source data, parsed observations, inferred mechanics, decision records, and verified planner knowledge. This separation is what allows the platform to store failed predictions, disputed assumptions, patch drift, contradictory evidence, and contextual engineering choices without poisoning the planner.
 
 The MVP does not require model fine-tuning, screenshot ingestion in the production app, or unavailable APIs. It can start with official mechanics documents, Spansh and EDSM system data, manual experiment entry, and a basic build-plan generator that uses verified mechanics plus current system facts.
 
@@ -83,7 +83,8 @@ The platform needs both a relational store and a graph-style relationship model.
 | `mechanic` | Candidate or verified mechanic | `mechanic_id`, `name`, `description`, `status`, `scope`, `first_seen_version`, `last_verified_version`, `last_verified_at` |
 | `mechanic_assertion` | Formal statement of a mechanic | `mechanic_assertion_id`, `mechanic_id`, `assertion_text`, `subject_scope`, `expected_effect` |
 | `experiment` | First-class test record | `experiment_id`, `hypothesis`, `prediction`, `context`, `change_tested`, `before_state`, `after_state`, `observed_result`, `conclusion`, `confidence` |
-| `evidence_link` | Join table between evidence and mechanics/experiments | `evidence_link_id`, `from_entity`, `to_entity`, `relationship_type` |
+| `decision_record` | First-class engineering or research decision | `decision_id`, `title`, `status`, `context`, `problem_statement`, `decision`, `rationale`, `confidence`, `review_status` |
+| `evidence_link` | Join table between evidence and mechanics/experiments/decisions | `evidence_link_id`, `from_entity`, `to_entity`, `relationship_type` |
 | `confidence_record` | Time-series confidence record | `confidence_record_id`, `entity_type`, `entity_id`, `score`, `band`, `reason`, `measured_at` |
 | `contradiction_case` | Review object for conflicting evidence | `contradiction_case_id`, `target_type`, `target_id`, `opened_at`, `severity`, `status`, `summary` |
 | `planner_knowledge_view` | Published planner-safe projection | `knowledge_id`, `subject_type`, `subject_id`, `knowledge_type`, `value`, `planner_confidence`, `generated_at` |

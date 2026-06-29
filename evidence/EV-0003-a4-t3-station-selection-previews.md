@@ -65,6 +65,10 @@ The supplied station-class previews show the same visible categories for large-p
 - Future mechanic candidate: Station class effect on colony statistics may be limited or absent in Architect preview.
 - Planner safety rule: Do not infer mechanical differences from station layout names alone.
 
+## Related decisions
+
+- `D-0003` - Reject any claim that Dodec, Orbis, or Ocellus is mechanically superior on current evidence alone
+
 ## Contradicts
 
 - Any unsupported claim that Apollo and Artemis Orbis layouts have different mechanical effects.

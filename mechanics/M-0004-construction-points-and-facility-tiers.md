@@ -73,6 +73,10 @@ Medium. Construction-point logic is a core mechanic and could change through Fro
 - `EXP-0000` - Wregoe Methodology Seed
 - `LV-0005` - Main Port Routing and Link Aggregation
 
+## Related decisions
+
+- `D-0004` - Reject automatic carry-forward of refinery-heavy placeholder expansions in Wregoe
+
 ## Open questions
 
 - Are there additional port exceptions beyond the initial Primary Port case?

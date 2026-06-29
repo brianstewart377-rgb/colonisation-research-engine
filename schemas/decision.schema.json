@@ -1,0 +1,139 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cre/schemas/decision.schema.json",
+  "title": "Decision",
+  "type": "object",
+  "required": [
+    "decision_id",
+    "title",
+    "status",
+    "date",
+    "context",
+    "problem_statement",
+    "alternatives_considered",
+    "decision",
+    "rationale",
+    "trade_offs",
+    "consequences",
+    "confidence",
+    "review_status"
+  ],
+  "properties": {
+    "decision_id": {
+      "type": "string",
+      "pattern": "^D-\\d{4}$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": ["Proposed", "Accepted", "Implemented", "Superseded", "Rejected"]
+    },
+    "date": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "context": {
+      "type": "string",
+      "minLength": 1
+    },
+    "problem_statement": {
+      "type": "string",
+      "minLength": 1
+    },
+    "alternatives_considered": {
+      "type": "string",
+      "minLength": 1
+    },
+    "decision": {
+      "type": "string",
+      "minLength": 1
+    },
+    "rationale": {
+      "type": "string",
+      "minLength": 1
+    },
+    "trade_offs": {
+      "type": "string",
+      "minLength": 1
+    },
+    "consequences": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidence_references": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^EV-\\d{4}$"
+      },
+      "uniqueItems": true,
+      "default": []
+    },
+    "claim_references": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^CL-\\d{4}$"
+      },
+      "uniqueItems": true,
+      "default": []
+    },
+    "mechanic_references": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^M-\\d{4}$"
+      },
+      "uniqueItems": true,
+      "default": []
+    },
+    "planner_rule_references": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^PR-\\d{4}$"
+      },
+      "uniqueItems": true,
+      "default": []
+    },
+    "experiment_references": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^EXP-\\d{4}$"
+      },
+      "uniqueItems": true,
+      "default": []
+    },
+    "supersedes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^D-\\d{4}$"
+      },
+      "uniqueItems": true,
+      "default": []
+    },
+    "superseded_by": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^D-\\d{4}$"
+      },
+      "uniqueItems": true,
+      "default": []
+    },
+    "confidence": {
+      "type": "string",
+      "enum": ["High", "Medium", "Low"]
+    },
+    "review_status": {
+      "type": "string",
+      "enum": ["Draft", "Analyst reviewed", "Governance confirmed", "Needs live review", "Superseded"]
+    }
+  },
+  "additionalProperties": false
+}

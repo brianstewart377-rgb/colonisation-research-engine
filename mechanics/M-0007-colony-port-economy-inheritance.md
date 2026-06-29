@@ -82,6 +82,11 @@ High. This mechanic depends on economy inheritance and link math, both of which 
 - `LV-0001` - A4 High Tech Threshold and Commodity Coverage
 - `LV-0002` - Post-Build Station Class Market Differences
 
+## Related decisions
+
+- `D-0002` - Use A4 as the complementary Industrial + High Tech support body
+- `D-0003` - Reject any claim that Dodec, Orbis, or Ocellus is mechanically superior on current evidence alone
+
 ## Open questions
 
 - How are inherited economy percentages translated into final commodity exposure?

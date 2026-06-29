@@ -113,6 +113,10 @@ This does not yet prove which commodities were newly added versus already presen
 - Future strategy candidate: Industrial Anchor + High Tech Support Body
 - Future mechanic candidate: High Tech strong links and commodity coverage
 
+## Related decisions
+
+- `D-0002` - Use A4 as the complementary Industrial + High Tech support body
+
 ## Contradicts
 
 None currently recorded.

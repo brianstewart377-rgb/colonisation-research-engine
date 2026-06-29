@@ -57,6 +57,11 @@ These screenshots support a review question rather than a final mechanic claim:
 
 If Raven indicates A4/A5 markets already have the desired material/economy coverage from currently built facilities, do the additional proposed refinery-heavy builds remain necessary, or are they only legacy planning placeholders?
 
+## Related decisions
+
+- `D-0001` - Use A5 as the Wregoe Industrial + Extraction anchor
+- `D-0004` - Reject automatic carry-forward of refinery-heavy placeholder expansions in Wregoe
+
 ## Caveats
 
 - This record registers the Raven planning screenshots but does not itself prove in-game market output.

@@ -5,6 +5,7 @@ This directory is reserved for future schema documents and structured formats.
 Likely future contents:
 
 - observation schema
+- decision schema
 - mechanic schema
 - experiment schema
 - contradiction schema
@@ -16,6 +17,7 @@ Current documentation-first schema artifacts:
 
 - `observation.schema.json`
 - `claim.schema.json`
+- `decision.schema.json`
 - `mechanic.schema.json`
 - `contradiction.schema.json`
 - `unknown.schema.json`

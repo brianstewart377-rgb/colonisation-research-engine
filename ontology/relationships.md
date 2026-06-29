@@ -24,6 +24,7 @@ This document outlines the relationship model that should form the basis of the 
 - `Observation ABOUTS System`
 - `Observation ABOUTS Body`
 - `Observation ABOUTS Facility`
+- `Evidence INFORMS Decision`
 
 ## Mechanic relationships
 
@@ -43,6 +44,13 @@ This document outlines the relationship model that should form the basis of the 
 - `Experiment OBSERVES Body`
 - `Experiment OBSERVES Facility`
 - `Experiment PRODUCES Observation`
+- `Decision CITES Evidence`
+- `Decision CITES Mechanic`
+- `Decision CITES PlannerRule`
+- `Decision CITES Experiment`
+- `Decision AFFECTS System`
+- `Decision AFFECTS Body`
+- `Decision AFFECTS Facility`
 
 ## Trust and planning relationships
 

@@ -74,6 +74,10 @@ Medium. Port taxonomy may remain stable while downstream economy weighting chang
 - `EXP-0001` - A4 Complementary High Tech Role
 - `LV-0002` - Post-Build Station Class Market Differences
 
+## Related decisions
+
+- `D-0003` - Reject any claim that Dodec, Orbis, or Ocellus is mechanically superior on current evidence alone
+
 ## Open questions
 
 - Which specialised port classes are fully exempt from local-body economy inheritance, and which only partially resist it?
