@@ -35,8 +35,8 @@ CL-0011,OBS-0013,predicted_by,Experiment prediction
 CL-0011,EXP-0001,derived_from,Active unresolved experiment
 CL-0011,U-0001,limited_by,Commodity mapping still unresolved
 CL-0011,U-0002,limited_by,Rank versus percentage still unresolved
-CL-0012,docs/source_coverage_register.md,supported_by,Coverage register records absent primary artifacts
-CL-0012,EV-0004,qualified_by,Reference pack exists only as metadata in repo
+CL-0012,docs/source_coverage_register.md,supported_by,Coverage register records committed canonical reference sources
+CL-0012,EV-0004,qualified_by,Reference pack is committed as canonical source-family provenance in repo
 CL-0012,R-0009,informs,Prevents fabricated direct extraction claims
 CL-0013,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 27 / Before You Start: CP-Cost Increases For Tier 2 And Tier 3 Ports
 CL-0014,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 27 / Before You Start: CP-Cost Increases For Tier 2 And Tier 3 Ports

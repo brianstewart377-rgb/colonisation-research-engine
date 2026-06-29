@@ -12,7 +12,7 @@ Likely
 
 Current working confidence: 80%.
 
-This mechanic is well supported by repository reference-derived material and is compatible with current A4 preview evidence, but the underlying reference artifacts are not present locally for direct re-extraction.
+This mechanic is directly supported by the committed canonical source pack, especially `MG-0001`, and remains compatible with current A4 preview evidence.
 
 ## Mechanic statement
 
@@ -27,7 +27,7 @@ This mechanic is well supported by repository reference-derived material and is 
   - colony-type examples: Civilian space outpost, Commercial space outpost, Coriolis, Orbis, Ocellus, Civilian planetary outpost, Tier 3 Planetary Port
   - specialised ports: any non-colony-type port with inherent economy behavior
 - Economy types: colony, inherited economy mixes, inherent port economies
-- Patch/version: repository reference state derived from the Mega Guide draft captured in `EV-0004`
+- Patch/version: canonical repository source state derived from `MG-0001`
 - Known exclusions: post-build live market output is still more authoritative than preview labels
 
 ## Planner behaviour
@@ -45,6 +45,7 @@ This mechanic is well supported by repository reference-derived material and is 
 
 ## Evidence basis
 
+- `reference_sources/MG-0001-megaguide-v2-3/elite-dangerous-colonization-mega-guide-v2-3.txt`
 - `EV-0003` - A4 T3 Station Selection Preview Evidence
 - `EV-0004` - Colonisation Reference Documents Pack
 - prior repository draft `M-0002-colony-type-and-specialised-ports.md`

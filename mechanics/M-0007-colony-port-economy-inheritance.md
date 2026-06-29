@@ -12,7 +12,7 @@ Likely
 
 Current working confidence: 83%.
 
-The repository contains both strong planner-safety evidence and reference-derived support for this mechanic. It is not yet fully confirmed at formula level, but it is robust enough to block incorrect planner behavior.
+The repository contains both strong planner-safety evidence and direct canonical-source support for this mechanic, especially through `MG-0001`. It is not yet fully confirmed at formula level, but it is robust enough to block incorrect planner behavior.
 
 ## Mechanic statement
 
@@ -50,6 +50,7 @@ The repository contains both strong planner-safety evidence and reference-derive
 ## Evidence basis
 
 - `M-0002` - Station Economy Is Inherited, Not Manually Chosen
+- `reference_sources/MG-0001-megaguide-v2-3/elite-dangerous-colonization-mega-guide-v2-3.txt`
 - `EV-0001` - Rocha Liberty Post High Tech Build Evidence
 - `EV-0003` - A4 T3 Station Selection Preview Evidence
 - `EV-0004` - Colonisation Reference Documents Pack

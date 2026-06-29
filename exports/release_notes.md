@@ -15,7 +15,7 @@ This is a prototype release-oriented export snapshot, not a final public knowled
 
 ## Important limitations
 
-- absent primary artifacts remain absent and are not silently reconstructed
+- original binaries are not required for traceability as long as the committed canonical derivatives in `reference_sources/` remain intact and documented
 - graph exports are copied from the current repository graph layer, not from a separate release-only graph build
 - planner-safe publication policy is still partially governed by open decisions in `docs/governance_decision_register.md`
 

@@ -6,7 +6,7 @@ This prototype export bundle does not attempt to publish every repository object
 
 - the item is still heavily constrained by unresolved unknowns
 - the item is useful as research context but not yet safe as a planner default
-- the item depends too strongly on absent primary artifacts
+- the item still depends too strongly on unresolved live verification even when canonical source derivatives are present
 - the item is a contextual strategy pattern rather than a universal rule
 
 ## Current examples

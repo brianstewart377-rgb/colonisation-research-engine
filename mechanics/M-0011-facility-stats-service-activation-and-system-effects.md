@@ -20,7 +20,7 @@ The service thresholds are firmer than the deeper systemic meaning of Wealth and
 - T2 and T3 ports grant Tech Level 35 immediately; T1 space outposts cannot host shipyards at all.
 - Development affects commodity volume and appears to soft-cap around 20.
 - Low security enables Interstellar Factors.
-- Individual facilities have distinct Security, Tech, Wealth, Standard of Living, Development, Pop, and Max Pop effects according to the DaftMav-derived tables.
+- Individual facilities have distinct Security, Tech, Wealth, Standard of Living, Development, Pop, and Max Pop effects according to the canonical `DM-0001` facility-stat extracts.
 - Wealth and Standard of Living remain only partially understood.
 
 ## Planner behaviour
@@ -35,6 +35,8 @@ The service thresholds are firmer than the deeper systemic meaning of Wealth and
 - `evidence/claim_register.csv`
 - `mechanics/population_rules_register.md`
 - `mechanics/market_rules_register.md`
+- `reference_sources/MG-0001-megaguide-v2-3/elite-dangerous-colonization-mega-guide-v2-3.txt`
+- `reference_sources/DM-0001-daftmav-construction-details/DaftMav_Stats-only.csv`
 
 ## Related mechanics
 

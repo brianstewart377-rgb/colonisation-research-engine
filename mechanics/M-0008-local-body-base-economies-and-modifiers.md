@@ -12,11 +12,11 @@ Likely
 
 Current working confidence: 79%.
 
-The rule set is well preserved in repository reference-derived material, but the original guide artifact is not present locally. This is best treated as a structured hypothesis layer with strong planner usefulness and clear live-verification needs.
+The rule set is directly preserved in the committed canonical source pack through `MG-0001`, with compatible supporting structure from `DM-0001`. This is best treated as a structured hypothesis layer with strong planner usefulness and clear live-verification needs.
 
 ## Mechanic statement
 
-The repository's reference-derived rule set says colony-type ports inherit economy tendencies from local body type and then apply local body modifiers.
+The canonical repository source set says colony-type ports inherit economy tendencies from local body type and then apply local body modifiers.
 
 ### Base inheritable economies
 
@@ -51,7 +51,7 @@ The repository draft also records a non-stacking claim:
 - Body classes: stars, planets, moons, and ring-bearing bodies used for colony placement
 - Facility types: colony-type ports whose economy is inherited rather than inherently fixed
 - Economy types: Agriculture, Tourism, High Tech, Military, Industrial, Extraction, Refinery, Terraforming
-- Patch/version: repository reference state derived from `EV-0004`
+- Patch/version: canonical repository source state derived from `MG-0001`
 - Known exclusions: final market output still depends on link effects and post-build verification
 
 ## Planner behaviour
@@ -71,6 +71,8 @@ The repository draft also records a non-stacking claim:
 
 ## Evidence basis
 
+- `reference_sources/MG-0001-megaguide-v2-3/elite-dangerous-colonization-mega-guide-v2-3.txt`
+- `reference_sources/DM-0001-daftmav-construction-details/DaftMav_Colonization.csv`
 - `EV-0004` - Colonisation Reference Documents Pack
 - prior repository draft `M-0005-local-body-base-economies-and-modifiers.md`
 - `M-0001` - Water Worlds Have No Surface Slots
@@ -83,7 +85,7 @@ The repository draft also records a non-stacking claim:
 
 ## Contradictions
 
-None currently recorded, but several rows remain under live-verification pressure because the original source artifact is absent from the repository.
+None currently recorded, but several rows remain under live-verification pressure because the stacking and Terraforming behaviors are not yet fully live-confirmed.
 
 ## Patch sensitivity
 

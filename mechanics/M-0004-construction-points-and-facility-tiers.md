@@ -12,7 +12,7 @@ Likely
 
 Current working confidence: 82%.
 
-This mechanic is strongly represented in repository reference-derived material, but the underlying Mega Guide artifact is not present in the working tree. It is good enough for planner warnings and analyst modeling, but not yet strong enough to treat as fully confirmed without direct source re-ingestion or live corroboration.
+This mechanic is directly represented in the committed canonical source pack through `MG-0001`, with supporting repository evidence from Wregoe review material. It is good enough for planner warnings and analyst modeling, but still benefits from live corroboration on edge-case exceptions.
 
 ## Mechanic statement
 
@@ -26,7 +26,7 @@ This mechanic is strongly represented in repository reference-derived material, 
 - Body classes: all body classes that can host the relevant facility type
 - Facility types: ports and supporting facilities with tiered construction behavior
 - Economy types: not economy-specific
-- Patch/version: repository reference state derived from Mega Guide v2.3-era interpretation
+- Patch/version: canonical repository source state derived from `MG-0001`
 - Known exclusions: live buildability in Architect remains authoritative if it disagrees with projected tier logic
 
 ## Planner behaviour
@@ -45,6 +45,7 @@ This mechanic is strongly represented in repository reference-derived material, 
 
 ## Evidence basis
 
+- `reference_sources/MG-0001-megaguide-v2-3/elite-dangerous-colonization-mega-guide-v2-3.txt`
 - `EV-0004` - Colonisation Reference Documents Pack
 - prior repository draft `M-0001-construction-points-and-facility-tiers.md`
 - Wregoe notes preserved in the earlier draft regarding Raven negative CP totals versus live buildability
