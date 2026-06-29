@@ -14,6 +14,9 @@ This register records the source material processed during the direct colonisati
 |---|---|---:|---|
 | `Elite Dangerous Colonization Mega Guide v2.3.0` | Recovered public `docx` + `txt` export | Targeted | Used as the primary extraction source for construction, economy inheritance, link routing, stats, population, bugs, Appendix C, and Appendix D. |
 | `AetherWave Colonisation Reference Tables` | HTML page quoting DaftMav-derived data | 100% | Used as the structured substitute for the absent local DaftMav spreadsheet artifact. |
+| `AetherWave Colonisation: Advanced Strategies` | User-uploaded PDF | 100% | Used as secondary corroboration for prerequisites, installation surcharges, attribute maxima, CP efficiency, and bug notes. |
+| `AetherWave Colonisation: Construction Process` | User-uploaded PDF | 100% | Used as secondary corroboration for SCS workflow, hauling pressure, progress tracking, and team-support guidance. |
+| `System Colonisation | Elite Dangerous Wiki | Fandom` | User-uploaded PDF | Targeted | Used as secondary corroboration for terminology, release-history, and high-level colonisation scope. |
 | `EV-0001-rocha-liberty-post-high-tech-build.md` | Evidence record | 100% | Rechecked as the current live Wregoe-style post-build evidence anchor. |
 | `EV-0002-wregoe-raven-proposed-build-review.md` | Evidence record | 100% | Rechecked for CP, placeholder, and weak-link caveats. |
 | `EV-0003-a4-t3-station-selection-previews.md` | Evidence record | 100% | Rechecked for station-class and preview-equality caveats. |
@@ -58,13 +61,31 @@ This register records the source material processed during the direct colonisati
 | `EV-0003-a4-t3-station-selection-previews.md` | 100% | Preview-equality caveat and station-class uncertainty |
 | `EV-0004-reference-documents-pack.md` | 100% | Artifact provenance, missing-source tracking, and recovery context |
 
+## User-uploaded graphics checked during the pass
+
+| Asset family | Coverage | Notes |
+|---|---:|---|
+| `Strong Graphic.png` and `Strong and Weak Graphic Diag *.png` | 100% inventory, targeted visual review | Present as supporting routing diagrams; useful for future diagram-to-rule mapping and manual visual cross-checks. |
+| `Colonisation Linking Infographic 1.jpg` | 100% inventory, targeted visual review | Present as supporting routing graphic for future visual evidence extraction. |
+
 ## Still not directly recovered as local primary artifacts
 
 | Named artifact | Direct status | Current usable coverage |
 |---|---|---|
-| `Elite Dangerous Colonisation Strong and Weak Links Illustrated Reference` | Not directly recovered as a standalone local artifact | Substantive link-routing content recovered through the Mega Guide strong/weak-link sections |
-| `Colonization Construction Details (By DaftMav).xlsx` | Not directly recovered as a standalone local spreadsheet file | Structured table coverage recovered through the AetherWave DaftMav-derived reference tables |
-| `Dependency flowchart image` | Not directly recovered as a standalone local artifact | Prerequisite and dependency content recovered through Mega Guide and DaftMav-derived prerequisite tables |
+| `Elite Dangerous Colonisation Strong and Weak Links Illustrated Reference` | Not directly recovered as a standalone local artifact | Substantive link-routing content recovered through the Mega Guide strong/weak-link sections plus uploaded routing graphics |
+| `Colonization Construction Details (By DaftMav).xlsx` | Not directly recovered as a standalone local spreadsheet file in the selected folder | Structured table coverage recovered through the AetherWave DaftMav-derived reference tables |
+| `Dependency flowchart image` | Not directly recovered as the originally named standalone local artifact | Prerequisite and dependency content recovered through Mega Guide and DaftMav-derived prerequisite tables |
+
+## Upload-materialization note
+
+Some files were named by the upload system in the session context but were not actually present inside `/workspace/.uploads` when listed programmatically.
+
+This register therefore distinguishes between:
+
+- files successfully materialized and directly inspectable in the selected folder; and
+- files named in session metadata but still absent on disk.
+
+Absent-on-disk files were not counted as direct local coverage for this pass.
 
 ## Extraction note
 
