@@ -29,3 +29,9 @@ Mechanics are revisable knowledge objects, not static rules. They must be tracea
 - `Last verified version/date`
 - `Confidence score and rationale`
 - `Notes for planner-safe usage`
+
+## Canonical navigation
+
+Use `mechanics/index.md` as the canonical mechanic register.
+
+The repository may contain older draft mechanic files or renumbered records as the catalogue is normalised over time. The index is the authoritative mapping for current mechanic IDs.
