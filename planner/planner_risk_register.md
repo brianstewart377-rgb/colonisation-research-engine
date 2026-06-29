@@ -73,3 +73,35 @@ This register captures recurring failure modes the planner must guard against.
 - Failure mode: Future tooling assumes the repository already contains direct extraction from the absent Mega Guide, spreadsheet, and flowchart artifacts.
 - Why dangerous: It overstates knowledge completeness and may fabricate provenance.
 - Required mitigation: Keep absence explicit and block page-level claims against non-present files.
+
+## R-0010 - Agricultural advice that ignores the zero-output planetary agri bug
+
+- Severity: High
+- Source: `docs/contradiction_register.md`, `evidence/claim_register.csv`
+- Failure mode: The planner recommends planetary agricultural ports as if they were always reliable agricultural producers.
+- Why dangerous: Some of those ports can bug out and produce no agricultural goods.
+- Required mitigation: Prefer orbital agriculture in high-confidence recommendations and warn explicitly when a ground agriculture design is chosen.
+
+## R-0011 - Nested-port passthrough bug treated as stable design doctrine
+
+- Severity: Critical
+- Source: `docs/contradiction_register.md`, `evidence/claim_register.csv`
+- Failure mode: The planner treats planetary-to-orbital inherited-economy passthrough as a safe permanent mechanic.
+- Why dangerous: The guide itself warns this behavior is likely a bug and could be fixed.
+- Required mitigation: Label any recommendation that depends on nested-port passthrough as experimental and reversible.
+
+## R-0012 - Population-pruning demolition advice based on anecdote
+
+- Severity: Critical
+- Source: `experiments/live_verification_register.md`, `evidence/claim_register.csv`
+- Failure mode: The planner recommends demolition to reduce population or reset output without strong direct evidence that demolition actually lowers population.
+- Why dangerous: It can create irreversible loss without delivering the intended population change.
+- Required mitigation: Block population-pruning demolition advice until `LV-0009` is resolved.
+
+## R-0013 - Pad-size advice that trusts advertised settlement metadata
+
+- Severity: High
+- Source: `docs/contradiction_register.md`, `evidence/claim_register.csv`
+- Failure mode: The planner recommends a facility to a large hauler because the variant advertises the required pad size.
+- Why dangerous: Some variants appear to expose different real landing access than their advertised pad size suggests.
+- Required mitigation: Preserve pad-size uncertainty warnings and request variant-level confirmation when large-hauler access matters.

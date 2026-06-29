@@ -109,3 +109,48 @@ This register consolidates the most important unresolved knowledge gaps already 
 - Related mechanics: all
 - Related live verification: governance decision rather than live test
 - Planner implication: Publication policy should remain explicit and versioned.
+
+## U-0013 - Strong-link modifier exact numeric application
+
+- Category: Economy / routing
+- Source: `evidence/claim_register.csv`
+- Unknown: The guide says strong-link boosts and penalties are roughly ±0.4 and additive, but the exact current implementation still needs direct confirmation.
+- Related mechanics: `M-0006`, `M-0010`
+- Related live verification: `LV-0006`
+- Planner implication: Numeric link projections should remain labeled approximate.
+
+## U-0014 - Same-strength economy rank ordering
+
+- Category: Economy ranking
+- Source: `evidence/claim_register.csv`
+- Unknown: Whether same-strength economy ties are always broken alphabetically in live builds.
+- Related mechanics: `M-0010`
+- Related live verification: `LV-0007`
+- Planner implication: Tie cases need warning labels and fallback analysis rather than deterministic certainty.
+
+## U-0015 - Body-specific population multipliers beyond current sample rows
+
+- Category: Population
+- Source: `evidence/claim_register.csv`
+- Unknown: Many local-body and facility combinations in the population table still have incomplete or TBD multiplier coverage.
+- Related mechanics: `M-0012`
+- Related live verification: `LV-0008`
+- Planner implication: Long-run output forecasts remain stronger for well-sampled body classes than for obscure ones.
+
+## U-0016 - Demolition impact on population
+
+- Category: Population / demolition
+- Source: `evidence/claim_register.csv`
+- Unknown: Whether demolishing facilities properly reduces the population attached to the removed facilities.
+- Related mechanics: `M-0012`, `M-0013`
+- Related live verification: `LV-0009`
+- Planner implication: Population pruning strategies should remain experimental.
+
+## U-0017 - Actual landing pad availability by settlement variant
+
+- Category: Facility metadata
+- Source: `evidence/claim_register.csv`
+- Unknown: Which settlement variants diverge from their advertised landing pad sizes and how often.
+- Related mechanics: `M-0009`, `M-0013`
+- Related live verification: `LV-0010`
+- Planner implication: Hauling recommendations must preserve a pad-size uncertainty warning on affected variants.

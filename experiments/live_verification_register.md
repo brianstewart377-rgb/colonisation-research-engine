@@ -76,3 +76,78 @@ This register captures unresolved items that should become real in-game experime
 - Testing status: Needs live verification
 - Contradictions: None currently recorded
 - Unknowns: Tie cases, mixed surface-orbital hierarchies, display rules versus actual effect rules
+
+## LV-0006 - Strong-link modifier exact values and additive stacking
+
+- Category: Routing / modifiers
+- Title: Are strong-link boosts and penalties applied as additive ±0.4 changes with a 0.1 floor?
+- Description: Validate the guide's numeric claim for boosted and penalized strong-link values across several body conditions.
+- Source: `evidence/claim_register.csv`
+- Exact location: Mega Guide `Strong Links`
+- Confidence: Medium that the rule is approximately correct; low that the exact live numbers are fully nailed down
+- Category tags: `routing`, `link_modifiers`, `economy`
+- Related mechanics: `M-0006`, `M-0010`
+- Planner implications: Needed before publishing numeric link-strength calculators as planner-safe output
+- Testing status: Needs live verification
+- Contradictions: None currently recorded
+- Unknowns: `U-0013`
+
+## LV-0007 - Same-strength economy tie ordering
+
+- Category: Economy ranking
+- Title: Do same-strength economy ties always resolve alphabetically?
+- Description: Build or inspect tied economy cases and verify whether rank order follows alphabetical ordering consistently.
+- Source: `evidence/claim_register.csv`
+- Exact location: Mega Guide `Which Economies Are Compatible With Each Other?`
+- Confidence: High that the uncertainty exists
+- Category tags: `economy`, `ranking`, `ties`
+- Related mechanics: `M-0010`
+- Planner implications: Affects whether the planner can make hard statements in tie cases
+- Testing status: Needs live verification
+- Contradictions: None currently recorded
+- Unknowns: `U-0014`
+
+## LV-0008 - Body-specific population multipliers
+
+- Category: Population
+- Title: What are the missing population multipliers for under-sampled body and facility combinations?
+- Description: Extend the population table with additional live observations for body classes that still show TBD values.
+- Source: `evidence/claim_register.csv`
+- Exact location: Mega Guide `What Does Population Affect, And How Do I Grow It?`
+- Confidence: High that the gap is real
+- Category tags: `population`, `body_type`, `output`
+- Related mechanics: `M-0012`
+- Planner implications: Needed for better long-run output forecasts
+- Testing status: Needs live verification
+- Contradictions: None currently recorded
+- Unknowns: `U-0015`
+
+## LV-0009 - Demolition and population decay
+
+- Category: Population / demolition
+- Title: Does demolishing a facility reduce the population associated with it?
+- Description: Test the anecdotal guide claim that demolition may leave population behind instead of removing it.
+- Source: `evidence/claim_register.csv`
+- Exact location: Mega Guide `What Does Population Affect, And How Do I Grow It?`
+- Confidence: Medium
+- Category tags: `population`, `demolition`, `state_change`
+- Related mechanics: `M-0012`, `M-0013`
+- Planner implications: Important before recommending population-correction demolitions
+- Testing status: Needs live verification
+- Contradictions: None currently recorded
+- Unknowns: `U-0016`
+
+## LV-0010 - Settlement pad-size divergence by variant
+
+- Category: Facility metadata
+- Title: Which settlement variants misreport their landing pad sizes?
+- Description: Compare architect previews and in-game landing availability for settlement variants reported to diverge from their advertised pad sizes.
+- Source: `evidence/claim_register.csv`
+- Exact location: AetherWave `Important Construction Notes`
+- Confidence: Medium-high that the caveat is real
+- Category tags: `landing_pads`, `settlements`, `hauling`
+- Related mechanics: `M-0009`, `M-0013`
+- Planner implications: Needed before pad-restricted hauling advice can be treated as reliable
+- Testing status: Needs live verification
+- Contradictions: None currently recorded
+- Unknowns: `U-0017`

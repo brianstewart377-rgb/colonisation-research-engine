@@ -53,3 +53,42 @@ This register records durable contradictions and unresolved conflicts discovered
 - Testing status: Needs broader live verification across additional cases
 - Contradictions: General weak-link optimism versus narrow negative evidence
 - Unknowns: Threshold, ranking, and station-context conditions required for weak links to become sufficient
+
+## C-0005 - Planetary agriculture intent versus bugged zero-output ports
+
+- Category: Bugged live behavior versus intended economy output
+- Description: The guide treats agricultural planetary ports as legitimate agricultural facilities, but also warns that some of them can bug out and produce no agricultural goods at all.
+- Source: `evidence/claim_register.csv`
+- Exact location: Mega Guide `Case Study #2: Building An “Ideal” Agriculture System`; `Bugs, Known Issues, And Possible Workarounds`
+- Confidence: High that the caveat exists
+- Related mechanics: `M-0010`, `M-0013`
+- Planner implications: Agriculture recommendations should currently prefer orbital implementations where reliability matters.
+- Testing status: Needs live verification
+- Contradictions: Intended agricultural role versus bugged zero-output live cases
+- Unknowns: Whether the bug affects all variants or only some ports and systems
+
+## C-0006 - Planetary-to-orbital inherited-economy passthrough looks stronger than intended
+
+- Category: Suspected bug versus expected routing behavior
+- Description: The guide says planetary ports currently appear to pass the planet's inherent economy upward to orbital ports, and explicitly warns this is likely a bug.
+- Source: `evidence/claim_register.csv`
+- Exact location: Mega Guide `Special Case: Port-to-Port Strong Links`
+- Confidence: Medium-high
+- Related mechanics: `M-0006`, `M-0009`, `M-0013`
+- Planner implications: Do not build a long-lived system around this behavior unless you are willing to absorb a future fix.
+- Testing status: Needs live verification
+- Contradictions: Current observed routing strength versus expected clean routing logic
+- Unknowns: Scope of affected body and port combinations
+
+## C-0007 - Advertised landing pads versus actual landing access
+
+- Category: UI metadata conflict
+- Description: The AetherWave reference notes that many settlements advertise pad sizes that do not match what they actually provide in game.
+- Source: `evidence/claim_register.csv`
+- Exact location: AetherWave `Important Construction Notes`
+- Confidence: Medium-high
+- Related mechanics: `M-0009`, `M-0013`
+- Planner implications: Facility metadata should not be treated as final truth for hauling access.
+- Testing status: Needs live verification
+- Contradictions: Advertised pad data versus actual landing availability
+- Unknowns: Exact per-variant divergence map

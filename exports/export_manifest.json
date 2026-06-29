@@ -1,6 +1,6 @@
 {
   "export_manifest_version": "0.2.0-draft",
-  "generated_at": "2026-06-29T15:16:55Z",
+  "generated_at": "2026-06-29T16:23:43Z",
   "status": "assembled",
   "purpose": "Deterministically assembled release-oriented exports derived from canonical repository registers.",
   "exports": [
@@ -8,7 +8,7 @@
       "path": "exports/mechanics.csv",
       "format": "csv",
       "source": "mechanics/index.md",
-      "record_count": 8
+      "record_count": 13
     },
     {
       "path": "exports/planner_rules.csv",
@@ -20,19 +20,19 @@
       "path": "exports/economy_rules.csv",
       "format": "csv",
       "source": "mechanics/economy_rules_register.md",
-      "record_count": 10
+      "record_count": 20
     },
     {
       "path": "exports/construction_rules.csv",
       "format": "csv",
       "source": "mechanics/construction_rules_register.md",
-      "record_count": 8
+      "record_count": 23
     },
     {
       "path": "exports/planner_risks.csv",
       "format": "csv",
       "source": "planner/planner_risk_register.md",
-      "record_count": 9
+      "record_count": 13
     },
     {
       "path": "exports/governance_decisions.csv",
@@ -44,13 +44,13 @@
       "path": "exports/unknowns.csv",
       "format": "csv",
       "source": "docs/unknowns_register.md",
-      "record_count": 12
+      "record_count": 17
     },
     {
       "path": "exports/contradictions.csv",
       "format": "csv",
       "source": "docs/contradiction_register.md",
-      "record_count": 4
+      "record_count": 7
     },
     {
       "path": "exports/observations.csv",
@@ -62,13 +62,13 @@
       "path": "exports/claims.csv",
       "format": "csv",
       "source": "evidence/claim_register.csv",
-      "record_count": 12
+      "record_count": 318
     },
     {
       "path": "exports/claim_provenance_links.csv",
       "format": "csv",
       "source": "evidence/claim_provenance_links.csv",
-      "record_count": 39
+      "record_count": 345
     },
     {
       "path": "exports/evidence_traceability.csv",
@@ -80,7 +80,7 @@
       "path": "exports/live_verification_matrix.csv",
       "format": "csv",
       "source": "experiments/live_verification_matrix.csv",
-      "record_count": 5
+      "record_count": 10
     },
     {
       "path": "exports/graph_nodes.csv",

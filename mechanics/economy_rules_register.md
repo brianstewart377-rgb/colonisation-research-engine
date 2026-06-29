@@ -111,3 +111,113 @@ This register decomposes the current mechanic catalogue into explicit economy-fa
 - Testing status: Confirmed as an uncertainty rule; final market comparison still unresolved
 - Contradictions: `C-0002`
 - Unknowns: Real post-build divergence
+
+## ER-0011 - Specialised ports have fixed baseline economy strength
+
+- Status: Extracted
+- Source: `evidence/claim_register.csv`
+- Rule: Specialised ports use fixed baseline economic strength values rather than inheriting body-driven colony economies.
+- Related mechanics: `M-0005`, `M-0007`, `M-0009`
+- Planner implications: Compare specialised ports as fixed-economy anchors before layering strong and weak links on top.
+- Testing status: Extracted from Mega Guide v2.3.0; still worth spot-checking live on edge cases
+- Contradictions: None currently recorded
+- Unknowns: Whether every specialised subtype still matches the guide after recent patches
+
+## ER-0012 - Specialised ports ignore local-body inheritable economies
+
+- Status: Extracted
+- Source: `evidence/claim_register.csv`
+- Rule: Specialised ports are not affected by the local body's base inheritable economy.
+- Related mechanics: `M-0005`, `M-0007`, `M-0009`
+- Planner implications: Do not pick a body for a specialised port expecting body inheritance to rescue an otherwise bad economy baseline.
+- Testing status: Extracted from Mega Guide v2.3.0
+- Contradictions: None currently recorded
+- Unknowns: Whether any post-build UI still misleadingly implies body inheritance
+
+## ER-0013 - Specialised ports ignore local-body inheritable modifiers
+
+- Status: Extracted
+- Source: `evidence/claim_register.csv`
+- Rule: Specialised ports are not affected by inheritable-economy modifiers such as rings, organics, or geologicals.
+- Related mechanics: `M-0005`, `M-0008`, `M-0009`
+- Planner implications: Keep ring, biological, and geological analysis out of specialised-port body projections unless live evidence says otherwise.
+- Testing status: Extracted from Mega Guide v2.3.0
+- Contradictions: None currently recorded
+- Unknowns: Whether any UI summary conflates inheritable modifiers with link modifiers
+
+## ER-0014 - Colony-type ports recompute from body plus inheritable modifiers
+
+- Status: Extracted
+- Source: `evidence/claim_register.csv`
+- Rule: Colony-type ports acquire economies from the combination of local-body base inheritable economy and applicable inheritable modifiers.
+- Related mechanics: `M-0007`, `M-0008`
+- Planner implications: Treat colony-type port planning as body-first and link-second rather than station-class-first.
+- Testing status: Extracted from Mega Guide v2.3.0
+- Contradictions: None currently recorded
+- Unknowns: Exact post-build weighting when several economies tie
+
+## ER-0015 - Inheritable modifiers do not stack with each other
+
+- Status: Needs verification
+- Source: `evidence/claim_register.csv`
+- Rule: The guide states that inheritable-economy modifiers do not stack with base body economies and do not stack with one another.
+- Related mechanics: `M-0008`
+- Planner implications: Do not double-count rings, organics, and geologicals in inherited-economy projections.
+- Testing status: Needs live verification
+- Contradictions: None currently recorded
+- Unknowns: `U-0007`, `U-0013`
+
+## ER-0016 - Contraband cannot be obtained through body inheritance
+
+- Status: Extracted
+- Source: `evidence/claim_register.csv`
+- Rule: No local body provides Contraband as an inheritable economy; contraband must come from strong/weak links or a specialised criminal outpost.
+- Related mechanics: `M-0005`, `M-0006`, `M-0008`
+- Planner implications: Reserve orbital planning space if contraband is a required outcome.
+- Testing status: Extracted from Mega Guide v2.3.0
+- Contradictions: None currently recorded
+- Unknowns: Whether any future patch adds new direct contraband sources
+
+## ER-0017 - Two dominant economies are the safe planning baseline
+
+- Status: Extracted
+- Source: `evidence/claim_register.csv`
+- Rule: The top two economies at a port protect their own supply from being netted out by the demand of the other economies present.
+- Related mechanics: `M-0010`
+- Planner implications: Default to one- or two-economy station designs for reliable commodity output.
+- Testing status: Supported by guide text and appendix overlap tables
+- Contradictions: None currently recorded
+- Unknowns: `U-0001`, `U-0002`
+
+## ER-0018 - Third and lower economies still create cannibalization pressure
+
+- Status: Extracted
+- Source: `evidence/claim_register.csv`
+- Rule: Demand from the top two economies and both supply and demand from lower-ranked economies continue to net against the rest of the market mix.
+- Related mechanics: `M-0010`
+- Planner implications: Treat any third-or-lower economy as an intentional tradeoff, not a harmless bonus.
+- Testing status: Supported by guide text and appendix overlap tables
+- Contradictions: None currently recorded
+- Unknowns: `U-0001`, `U-0002`
+
+## ER-0019 - Same-strength rank order is probably alphabetical but not proven
+
+- Status: Needs verification
+- Source: `evidence/claim_register.csv`
+- Rule: The guide believes same-strength economy ordering is alphabetical, but marks that rule as still to be confirmed.
+- Related mechanics: `M-0010`
+- Planner implications: Tie cases need a warning flag instead of a hard recommendation.
+- Testing status: Needs live verification
+- Contradictions: None currently recorded
+- Unknowns: `U-0014`
+
+## ER-0020 - Economy order can matter more than absolute boost
+
+- Status: Extracted
+- Source: `evidence/claim_register.csv`
+- Rule: Advanced system design sometimes depends more on pushing an economy into rank position one or two than on maximizing its raw value.
+- Related mechanics: `M-0010`
+- Planner implications: Model rank-order objectives directly instead of optimizing only for raw percentage totals.
+- Testing status: Extracted from Appendix A strategy guidance
+- Contradictions: None currently recorded
+- Unknowns: `U-0002`
