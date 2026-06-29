@@ -1,0 +1,189 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cre.local/schemas/contradiction.schema.json",
+  "title": "CRE Contradiction",
+  "description": "Documentation-first draft schema for durable contradiction objects that block or downgrade planner-safe publication until reviewed.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contradiction_id",
+    "category",
+    "status",
+    "title",
+    "description",
+    "confidence",
+    "source_refs",
+    "planner_implications"
+  ],
+  "properties": {
+    "contradiction_id": {
+      "type": "string",
+      "pattern": "^C-\\d{4}$"
+    },
+    "category": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Open",
+        "Under Review",
+        "Planner Downgraded",
+        "Resolved",
+        "Superseded"
+      ]
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "Critical",
+        "High",
+        "Medium",
+        "Low"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "exact_location": {
+      "type": "string"
+    },
+    "source_refs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "claim_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "related_mechanics": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "unknown_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "planner_implications": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "testing_status": {
+      "type": "string"
+    },
+    "resolution_rule": {
+      "type": "string"
+    },
+    "provenance_links": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/provenanceLink"
+      }
+    },
+    "confidence": {
+      "$ref": "#/$defs/confidenceBand"
+    },
+    "patch_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "patch_family": {
+          "type": "string"
+        },
+        "patch_label": {
+          "type": "string"
+        }
+      }
+    },
+    "review": {
+      "$ref": "#/$defs/review"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "$defs": {
+    "confidenceBand": {
+      "type": "string",
+      "enum": [
+        "High",
+        "Medium-high",
+        "Medium",
+        "Low",
+        "Unknown"
+      ]
+    },
+    "provenanceLink": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_entity",
+        "relationship"
+      ],
+      "properties": {
+        "source_entity": {
+          "type": "string"
+        },
+        "relationship": {
+          "type": "string",
+          "enum": [
+            "supported_by",
+            "qualified_by",
+            "limited_by",
+            "derived_from",
+            "blocks",
+            "downgrades",
+            "resolves"
+          ]
+        },
+        "basis_note": {
+          "type": "string"
+        }
+      }
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "review_status": {
+          "type": "string",
+          "enum": [
+            "unreviewed",
+            "analyst_reviewed",
+            "planner_blocking",
+            "resolved",
+            "superseded"
+          ]
+        },
+        "reviewer": {
+          "type": "string"
+        },
+        "reviewed_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}

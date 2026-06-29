@@ -17,7 +17,11 @@ Current documentation-first schema artifacts:
 - `observation.schema.json`
 - `claim.schema.json`
 - `mechanic.schema.json`
+- `contradiction.schema.json`
+- `unknown.schema.json`
+- `experiment_result.schema.json`
 - `colony_state.schema.json`
+- `knowledge_projection.schema.json`
 - `planner_recommendation.schema.json`
 - `knowledge_release_manifest.schema.json`
 - `colony_state_schema.md`
