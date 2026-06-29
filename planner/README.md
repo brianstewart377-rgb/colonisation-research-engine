@@ -12,6 +12,10 @@ This directory defines how future planning tools must consume knowledge safely.
   Canonical extracted planner rules.
 - `knowledge_projection_rules.md`
   Rules for turning research knowledge into planner-safe projections.
+- `coverage_dimensions_register.md`
+  The dimensions a planner should inspect before choosing new builds.
+- `contextual_strategy_register.md`
+  Reusable but non-universal strategy patterns extracted from the repository.
 
 ## Use rule
 
