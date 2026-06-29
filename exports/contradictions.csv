@@ -1,0 +1,5 @@
+contradiction_id,category,summary,related_mechanics,testing_status,planner_implication
+C-0001,source_conflict,Steam mirror wording conflicts with official claim-radius wording,none_directly,No live test needed,Prefer official wording over mirrored or reposted text
+C-0002,community_assumption_vs_evidence,Station-class superiority remains unproven in current preview evidence,"M-0005;M-0007",Needs live verification,Do not recommend a station class as automatically superior without post-build evidence
+C-0003,model_interpretation_conflict,Raven proposed-build deficits can conflict with live immediate buildability,M-0004,More live comparison examples would improve confidence,Separate current buildability from full-plan projection
+C-0004,heuristic_conflict,Weak-link optimism conflicts with the narrow Wregoe weak-Refinery failure case,"M-0003;M-0006",Needs broader live verification,Weak-link recommendations must be labeled experimental unless corroborated

@@ -1,0 +1,9 @@
+mechanic_id,title,status,primary_category,source_basis,related_evidence,related_experiments
+M-0001,Water Worlds Have No Surface Slots,Confirmed,body_constraints,Live Wregoe planning evidence,EV-0002,EXP-0000
+M-0002,Station Economy Is Inherited Not Manually Chosen,Confirmed,economy_planner_safety,Live Wregoe planning evidence,"EV-0002;EV-0003","EXP-0000;EXP-0001"
+M-0003,One Weak Refinery Link Is Insufficient To Restore Metals,Confirmed,economy_negative_evidence,Narrow live Wregoe test case,EV-0002,EXP-0000
+M-0004,Construction Points and Facility Tiers,Likely,construction,Reference-derived mechanic extracted from repository evidence,EV-0004,LV-0005
+M-0005,Colony-Type and Specialised Ports,Likely,port_taxonomy,Reference-derived mechanic extracted from repository evidence,"EV-0003;EV-0004",LV-0002
+M-0006,Strong and Weak Link Routing,Likely,market_links_routing,Reference-derived mechanic supported by Wregoe context,"EV-0001;EV-0004","LV-0003;LV-0005"
+M-0007,Colony Port Economy Inheritance,Likely,economy,Reference-derived mechanic supported by Wregoe context,"EV-0001;EV-0003;EV-0004","LV-0001;LV-0002"
+M-0008,Local Body Base Economies and Modifiers,Likely,economy_body_effects,Reference-derived mechanic,EV-0004,"LV-0001;LV-0004"

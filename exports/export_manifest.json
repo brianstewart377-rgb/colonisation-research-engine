@@ -1,0 +1,36 @@
+{
+  "export_manifest_version": "0.1.0-draft",
+  "generated_at": "2026-06-29T19:00:00Z",
+  "status": "prototype",
+  "purpose": "Prototype release-oriented exports derived from canonical repository registers.",
+  "exports": [
+    {
+      "path": "exports/mechanics.csv",
+      "format": "csv",
+      "source": "mechanics/index.md",
+      "record_count": 8
+    },
+    {
+      "path": "exports/planner_rules.csv",
+      "format": "csv",
+      "source": "planner/planner_rules_register.md",
+      "record_count": 10
+    },
+    {
+      "path": "exports/unknowns.csv",
+      "format": "csv",
+      "source": "docs/unknowns_register.md",
+      "record_count": 12
+    },
+    {
+      "path": "exports/contradictions.csv",
+      "format": "csv",
+      "source": "docs/contradiction_register.md",
+      "record_count": 4
+    }
+  ],
+  "notes": [
+    "These are prototype exports, not a final released bundle.",
+    "Canonical source-of-truth files remain the repository registers and indexes."
+  ]
+}

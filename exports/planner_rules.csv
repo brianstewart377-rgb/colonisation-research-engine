@@ -1,0 +1,11 @@
+rule_id,status,category,rule,related_mechanics,contradictions,unknowns
+PR-0001,Confirmed,decision_model,Start from player objective constraints current coverage and gaps before recommending facilities,contextual_rule,,
+PR-0002,Confirmed,safety,Unsupported facility types and impossible body build combinations must be blocked rather than merely soft-warned,M-0001,,
+PR-0003,Confirmed,safety_economy,Do not tell the user to set a colony-type station to a chosen economy,"M-0002;M-0007",,U-0001
+PR-0004,Likely,economy_strategy,Prefer same-body strong-link support over remote weak-link spillover for must-have outcomes,"M-0003;M-0006",C-0004,U-0005
+PR-0005,Likely,economy_analysis,Do not infer full causal structure from visible Market Links arrow count alone,M-0006,,U-0006
+PR-0006,Likely,construction_safety,A negative projected construction-point total that includes unbuilt facilities is not enough to declare the next selected build invalid,M-0004,C-0003,U-0009
+PR-0007,Confirmed,research_safety,Raw contradiction and failed predictions must remain visible instead of being flattened into a single confident answer,all_mechanics,,
+PR-0008,Confirmed,safety,Every recommendation must be labeled Confirmed Likely Experimental or Unknown,all_mechanics,,
+PR-0009,Confirmed,decision_model,A locally good architecture must not be promoted into a universal rule without context,contextual_strategy_rule,,
+PR-0010,Confirmed,research_workflow,When confidence is insufficient recommend a validation experiment or observation step instead of pretending certainty,all_unresolved_mechanics,,

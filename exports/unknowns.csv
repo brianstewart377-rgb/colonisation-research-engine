@@ -1,0 +1,13 @@
+unknown_id,category,summary,related_mechanics,related_live_verification,planner_implication
+U-0001,economy,How inherited economy percentages transform into final commodity availability,"M-0002;M-0007","LV-0001;LV-0002",Commodity predictions must remain confidence-labeled
+U-0002,economy,Whether top-two economy rank matters more than absolute percentage for commodity appearance,"M-0003;M-0006;M-0007","LV-0001;LV-0003",Avoid overfitting to displayed percentages alone
+U-0003,port_behavior,Whether station classes diverge meaningfully after completion even when previews look equivalent,"M-0005;M-0007",LV-0002,Station-class optimization remains provisional
+U-0004,port_behavior,Which specialised port classes are fully exempt from local-body economy inheritance and which only partially resist it,"M-0005;M-0007",LV-0002,Port taxonomy should remain cautious until class-specific confirmation exists
+U-0005,market_links,How much weak-link support is required before a targeted commodity outcome becomes reliable,"M-0003;M-0006",LV-0003,Weak-link-only recommendations should remain experimental
+U-0006,market_links,Whether visible Market Links aggregate upstream contributions through main ports rather than showing direct one-to-one causality,M-0006,LV-0005,Link-screen interpretation remains provisional
+U-0007,body_economics,Whether rings organics geological activity and similar modifiers stack with base body economies or with each other,M-0008,LV-0004,Avoid silent double-counting in economy models
+U-0008,body_economics,Whether Terraforming acts only as a modifier-style influence or can dominate final port behavior in some contexts,M-0008,,Terraforming assumptions should remain weak until directly evidenced
+U-0009,construction,Whether every negative construction-point state is explained by proposal-state conflation or whether deeper edge cases exist,M-0004,,Avoid universalizing the Raven interpretation without more examples
+U-0010,construction,Whether there are additional port exceptions beyond the initial Primary Port case and whether all initial-port classes behave identically,M-0004,,Initial-port logic should remain explicit and caveated
+U-0011,evidence_architecture,What the best representation is when public evidence confirms facility existence but not exact orbital or body linkage,cross_cutting,,Identity and body assignment may remain partly unresolved in public-only workflows
+U-0012,knowledge_governance,What precise confidence threshold is sufficient before a mechanic is published into planner-safe knowledge,all,,Publication policy should remain explicit and versioned

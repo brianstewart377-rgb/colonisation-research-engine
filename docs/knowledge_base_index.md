@@ -106,6 +106,15 @@ Canonical mechanic documents:
 - `docs/release_bundle_layout.md`
 - `docs/release_bundle_file_catalog.csv`
 
+## Export layer
+
+- `exports/README.md`
+- `exports/export_manifest.json`
+- `exports/mechanics.csv`
+- `exports/planner_rules.csv`
+- `exports/unknowns.csv`
+- `exports/contradictions.csv`
+
 ## Experiment layer
 
 - `experiments/EXP-0000-wregoe-methodology-seed.md`
