@@ -42,6 +42,9 @@ This is the canonical entry point for the current structured knowledge base.
 - `docs/manual_research_gaps.md`
 - `docs/anomaly_register.md`
 - `docs/unknowns_register.md`
+- `docs/governance_decision_register.md`
+- `docs/implementation_backlog.md`
+- `docs/review_workflow_backlog.md`
 
 ## Mechanics and rule layers
 
