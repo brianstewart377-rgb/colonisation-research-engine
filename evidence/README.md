@@ -20,6 +20,12 @@ This directory stores evidence records, source-analysis outputs, and evidence go
   Evidence-to-mechanic support mapping for the current catalogue.
 - `observation_register.csv`
   Structured observations extracted from core evidence and experiment records.
+- `claim_register.csv`
+  Structured claims sitting between observations and canonical mechanics or planner-safe knowledge.
+- `claim_provenance_links.csv`
+  Explicit provenance edges for current structured claims.
+- `claim_model.md`
+  The repository claim layer and field model.
 - `colonisation_ai_data_sources_review.md`
   Deep source review and ingestion-order analysis.
 

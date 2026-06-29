@@ -35,6 +35,9 @@ This is the canonical entry point for the current structured knowledge base.
 - `evidence/build_diary_shortlist.csv`
 - `evidence/evidence_mechanic_traceability.csv`
 - `evidence/observation_register.csv`
+- `evidence/claim_register.csv`
+- `evidence/claim_provenance_links.csv`
+- `evidence/claim_model.md`
 - `evidence/public_anomaly_shortlist.csv`
 - `docs/manual_research_gaps.md`
 - `docs/anomaly_register.md`
