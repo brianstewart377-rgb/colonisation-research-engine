@@ -103,3 +103,11 @@ This backlog converts the repository's architecture, manual gaps, schema work, a
 - Goal: Provide a structured ingestion path for actual experiment results once Brian performs the live tests.
 - Why now: The verification queue and protocols are now ready, but result capture is not yet formalized.
 - Depends on: `IB-0001`, future test runs
+
+## IB-0013 - CRE Digital Twin
+
+- Priority: `P2`
+- Source: `architecture/cre_digital_twin.md`, `schemas/colony_state_schema.md`, `planner/decision_support_model.md`
+- Goal: Design and later implement a single-system Digital Twin that exposes body hierarchy, slots, facilities, lifecycle state, construction progress, economy roles, market links, commodities, evidence links, experiment links, planner decisions, history, confidence, warnings, and unknowns as one planner-safe engineering surface.
+- Why now: The repository now has enough evidence, planner, contradiction, unknown, and colony-state structure to define the future feature clearly without building it yet.
+- Depends on: `IB-0001`, `IB-0003`, `IB-0006`, `IB-0012`, `schemas/colony_state.schema.json`
