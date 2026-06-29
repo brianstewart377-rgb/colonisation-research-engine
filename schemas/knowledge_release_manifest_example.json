@@ -1,0 +1,121 @@
+{
+  "release_id": "cre-knowledge-0.6.0-draft-2026-06-29",
+  "knowledge_version": "CRE Knowledge v0.6.0-draft",
+  "released_at": "2026-06-29T18:00:00Z",
+  "patch_partition": {
+    "patch_family": "post-colonisation",
+    "patch_label": "repository-draft-context"
+  },
+  "release_scope": "First structured knowledge release including canonical mechanics, planner rules, explicit unknowns, and release-visible source coverage boundaries.",
+  "included_mechanics": [
+    {
+      "ref": "M-0001",
+      "status": "Confirmed",
+      "confidence": "High",
+      "notes": "Hard body-feasibility constraint"
+    },
+    {
+      "ref": "M-0002",
+      "status": "Confirmed",
+      "confidence": "High",
+      "notes": "Planner-safety-critical mechanic"
+    },
+    {
+      "ref": "M-0003",
+      "status": "Confirmed_Narrow",
+      "confidence": "High",
+      "notes": "Included with narrow-scope warning"
+    },
+    {
+      "ref": "M-0004",
+      "status": "Likely",
+      "confidence": "Medium",
+      "notes": "Reference-derived and still patch-sensitive"
+    }
+  ],
+  "included_rules": [
+    {
+      "ref": "PR-0002",
+      "status": "Confirmed",
+      "confidence": "High",
+      "notes": "Impossible builds must be blocked"
+    },
+    {
+      "ref": "PR-0003",
+      "status": "Confirmed",
+      "confidence": "High",
+      "notes": "No fake choose-economy outputs"
+    },
+    {
+      "ref": "PR-0004",
+      "status": "Likely",
+      "confidence": "Medium",
+      "notes": "Weak-link caveat remains visible"
+    }
+  ],
+  "included_unknowns": [
+    {
+      "ref": "U-0001",
+      "status": "Open",
+      "confidence": "High",
+      "notes": "Important release-visible limitation on commodity prediction"
+    },
+    {
+      "ref": "U-0003",
+      "status": "Open",
+      "confidence": "Medium",
+      "notes": "Station-class divergence remains unresolved"
+    }
+  ],
+  "excluded_or_withheld_items": [
+    {
+      "ref": "M-0008",
+      "reason": "Included in working repository but withheld from planner-safe release until modifier stacking and body-row corroboration improve",
+      "blocking_unknowns": [
+        "U-0007",
+        "U-0008"
+      ]
+    },
+    {
+      "ref": "CS-0001",
+      "reason": "Still a contextual strategy pattern and not yet released as a generic planner-safe default",
+      "blocking_unknowns": [
+        "U-0001",
+        "U-0002"
+      ]
+    }
+  ],
+  "source_coverage_summary": {
+    "processed_source_count": 38,
+    "absent_primary_artifacts": [
+      "Elite Dangerous Colonization Mega Guide v2.3.0",
+      "Colonization Construction Details (By DaftMav).xlsx",
+      "Elite Dangerous Colonisation Strong and Weak Links Illustrated Reference",
+      "Dependency flowchart image"
+    ],
+    "coverage_notes": "This release includes only repository-local direct extraction plus explicit indirect references to absent primary artifacts."
+  },
+  "decision_refs": [
+    "GD-0001",
+    "GD-0002",
+    "GD-0003"
+  ],
+  "risk_refs": [
+    "R-0003",
+    "R-0004",
+    "R-0009"
+  ],
+  "schema_refs": [
+    "observation.schema.json",
+    "claim.schema.json",
+    "mechanic.schema.json",
+    "colony_state.schema.json",
+    "planner_recommendation.schema.json",
+    "knowledge_release_manifest.schema.json"
+  ],
+  "release_notes": [
+    "This is a draft example release manifest, not a final public release.",
+    "Unknowns remain first-class release objects.",
+    "Absent primary artifacts remain explicitly disclosed."
+  ]
+}

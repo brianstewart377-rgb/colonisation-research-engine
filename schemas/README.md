@@ -22,5 +22,6 @@ Current documentation-first schema artifacts:
 - `knowledge_release_manifest.schema.json`
 - `colony_state_schema.md`
 - `colony_state_example.json`
+- `knowledge_release_manifest_example.json`
 
 These are draft contracts for future implementation work, not production database code.

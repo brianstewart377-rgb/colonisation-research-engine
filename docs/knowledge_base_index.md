@@ -98,6 +98,13 @@ Canonical mechanic documents:
 - `schemas/knowledge_release_manifest.schema.json`
 - `schemas/colony_state_schema.md`
 - `schemas/colony_state_example.json`
+- `schemas/knowledge_release_manifest_example.json`
+
+## Release layer
+
+- `docs/knowledge_release_workflow.md`
+- `docs/release_bundle_layout.md`
+- `docs/release_bundle_file_catalog.csv`
 
 ## Experiment layer
 
