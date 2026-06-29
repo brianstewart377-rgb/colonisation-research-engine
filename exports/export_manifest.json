@@ -1,6 +1,6 @@
 {
   "export_manifest_version": "0.2.0-draft",
-  "generated_at": "2026-06-29T16:37:03Z",
+  "generated_at": "2026-06-29T18:31:05Z",
   "status": "assembled",
   "purpose": "Deterministically assembled release-oriented exports derived from canonical repository registers.",
   "exports": [
@@ -62,13 +62,13 @@
       "path": "exports/claims.csv",
       "format": "csv",
       "source": "evidence/claim_register.csv",
-      "record_count": 318
+      "record_count": 345
     },
     {
       "path": "exports/claim_provenance_links.csv",
       "format": "csv",
       "source": "evidence/claim_provenance_links.csv",
-      "record_count": 345
+      "record_count": 372
     },
     {
       "path": "exports/evidence_traceability.csv",

@@ -53,45 +53,30 @@ Initial extraction should focus on:
 
 ## Current status
 
-Originally registered as source evidence with the expectation of direct local access to the Mega Guide, DaftMav spreadsheet, Strong/Weak illustrated reference, and dependency flowchart image.
+Originally registered as a reference-document pack record when the repository only had indirect references to the main colonisation source documents.
 
-### 2026-06-29 extraction update
+### Canonical-source update
 
-During the later direct-extraction pass, the originally referenced `/mnt/data` copies were no longer present.
+The repository now contains a committed local `reference_sources/` corpus that serves as the canonical extraction base for this pack:
 
-Direct extraction therefore proceeded from:
+- `reference_sources/MG-0001-megaguide-v2-3/`
+- `reference_sources/FW-0001-strong-weak-links/`
+- `reference_sources/DM-0001-daftmav-construction-details/`
+- `reference_sources/DD-0001-dependency-flowchart/`
 
-- recovered public copies of the Mega Guide;
-- recovered DaftMav-derived reference tables;
-- repository-local evidence already in this directory;
-- user-uploaded secondary PDFs and routing graphics that were actually present in `/workspace/.uploads`.
+These committed derivatives supersede earlier reliance on transient `/mnt/data` paths, recovered public copies, or partially materialized uploads.
 
-### Files actually present in `/workspace/.uploads` during the pass
+### How this evidence record should be used now
 
-The following uploaded items were confirmed present and readable:
+- Use `EV-0004` to explain provenance, source hierarchy, and why these source families matter.
+- Use `reference_sources/` as the actual direct extraction base for page, section, file, and sheet-level claim work.
+- Continue to treat live in-game evidence as higher authority than these references when conflicts arise.
 
-- `631ba045-3366-4fe0-8322-a320166fa5cb_Colonisation_ Economy and Expansion _ AetherWave Research Portal.pdf`
-- `097d94a8-b373-485b-9b76-885677eeaa7c_Colonisation_ Advanced Strategies _ AetherWave Research Portal.pdf`
-- `d42e5790-820c-42c4-af47-494900e81212_Colonisation_ Building Your Colony _ AetherWave Research Portal.pdf`
-- `cd596385-d3b5-4cb1-9175-df2456fbbb4f_Colonisation_ Construction Process _ AetherWave Research Portal.pdf`
-- `cb056bcd-0425-4ab9-8999-a20170cb08d2_System Colonisation _ Elite Dangerous Wiki _ Fandom.pdf`
-- `1793dec9-81d5-470e-8bd4-1d7c4df4858a_Strong Graphic.png`
-- `7898eff8-45bf-4e31-94a3-0aece981739f_Strong and Weak Graphic Diag B.png`
-- `177b682e-5d30-43f9-a736-fc2a2e861cc2_Strong and Weak Graphic Diag H1.png`
-- `cee6281f-d631-4c17-9501-f7d779b6d706_Strong and Weak Graphic Diag F1.png`
-- `6d391ece-4a35-4846-8316-ead5d4d4540a_Strong and Weak Graphic Diag E.png`
-- `319fc635-3ec8-4cf0-88b5-21fb8a8e200d_Strong and Weak Graphic Diag D-3.png`
-- `aa2a469a-2c1c-4ef3-a247-c76360ac4ee2_Strong and Weak Graphic Diag C.png`
-- `47bcbd7d-f5da-4dd9-adbb-5511922350f1_Strong and Weak Graphic Diag A.png`
-- `894df128-7f77-4aea-aad4-5acea3ff2844_Colonisation Linking Infographic 1.jpg`
+### Source-family mapping
 
-### Uploaded items named by the host but not materialized on disk
-
-The following files were named in the upload notice for the session, but were not present in `/workspace/.uploads` when checked programmatically:
-
-- `Elite Dangerous Colonization Mega Guide.docx`
-- `Copy of Colonization Construction v3 (By DaftMav)(2).xlsx`
-- `Colonisation_ Understanding Strong And Weak Links _ Frontier Forums.pdf`
-- `OASIS Guide for Bootstrapping a Bubble.docx`
-
-These should not be treated as direct local sources for this pass unless they are re-uploaded successfully in a later session.
+| Source ID | Meaning | Current repository form |
+|---|---|---|
+| `MG-0001` | Mega Guide | committed text derivative |
+| `FW-0001` | Strong/Weak illustrated reference | committed text derivative |
+| `DM-0001` | DaftMav construction details | committed CSV sheet extracts |
+| `DD-0001` | Dependency flowchart | committed encoded diagram bundle |

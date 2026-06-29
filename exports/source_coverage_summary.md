@@ -1,19 +1,18 @@
 # Source Coverage Summary
 
-This export bundle is based on direct processing of repository-local source material, recovered public primary copies, and user-uploaded secondary corroboration that was actually present in the selected folder during the extraction pass.
+This export bundle is based on the repository's committed canonical `reference_sources/` corpus plus repository-local evidence records.
 
 ## Current state
 
-- repository-local and recovered source documents processed: `44`
-- direct extraction completed from local evidence, mechanics, planner, uploaded corroboration, and recovered public primary copies
-- indirect-only representation still applies to several major primary artifacts that were named in prior evidence records but were still not present as standalone local files in the selected folder
+- canonical reference sources processed: `4`
+- evidence records rechecked during rerun: `4`
+- direct extraction now anchored to committed local source IDs `MG-0001`, `FW-0001`, `DM-0001`, and `DD-0001`
 
-## Absent primary artifacts
+## Current source-state note
 
-- `Colonization Construction Details (By DaftMav).xlsx`
-- `Elite Dangerous Colonisation Strong and Weak Links Illustrated Reference`
-- dependency flowchart image
+- The original binary workbook, original DOCX, and original diagram image are not required for claim traceability as long as the committed canonical derivatives in `reference_sources/` remain intact and documented.
+- `DD-0001` is now directly represented in the claim layer as corroborating prerequisite-edge evidence from the decoded dependency flowchart bundle.
 
 ## Consequence
 
-This export bundle may cite indirect or recovered-copy support from those artifacts through existing repository notes, uploaded corroboration, and recovered public copies, but it cannot honestly claim fresh direct extraction from standalone local files that are not present in the selected folder.
+This export bundle can now honestly claim direct extraction from committed local canonical derivatives inside `reference_sources/`, rather than from transient upload paths or recovered public copies.
