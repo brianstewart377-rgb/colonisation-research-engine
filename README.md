@@ -66,6 +66,10 @@ The repository begins with:
 - platform architecture
 - knowledge roadmap
 
+## Knowledge base entry point
+
+Use `docs/knowledge_base_index.md` as the main index for the current structured knowledge base, counts, canonical registers, and navigation into mechanics, evidence, planner rules, ontology, contradictions, and live-verification work.
+
 ## Repository layout
 
 - `constitution/` – project principles and research governance
