@@ -24,6 +24,10 @@ This directory defines how future planning tools must consume knowledge safely.
   Reusable architecture patterns and their prerequisites.
 - `recommendation_schema_register.md`
   Required fields for planner recommendations.
+- `objective_register.md`
+  Canonical objective types for planner reasoning.
+- `asset_category_register.md`
+  Canonical asset categories used in coverage analysis.
 
 ## Use rule
 

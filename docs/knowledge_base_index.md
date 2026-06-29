@@ -68,6 +68,8 @@ Canonical mechanic documents:
 - `planner/role_register.md`
 - `planner/architecture_pattern_register.md`
 - `planner/recommendation_schema_register.md`
+- `planner/objective_register.md`
+- `planner/asset_category_register.md`
 
 ## Ontology and graph layer
 
