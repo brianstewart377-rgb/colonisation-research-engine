@@ -70,9 +70,9 @@ This register captures recurring failure modes the planner must guard against.
 
 - Severity: Medium
 - Source: `docs/source_coverage_register.md`, `docs/manual_research_gaps.md`
-- Failure mode: Future tooling assumes the repository already contains direct extraction from the absent Mega Guide, spreadsheet, and flowchart artifacts.
-- Why dangerous: It overstates knowledge completeness and may fabricate provenance.
-- Required mitigation: Keep absence explicit and block page-level claims against non-present files.
+- Failure mode: Future tooling assumes page-level extraction came from transient upload paths or original binaries and ignores the repository's committed canonical derivatives under `reference_sources/`.
+- Why dangerous: It can either understate real extraction coverage or fabricate the wrong provenance path.
+- Required mitigation: Treat `reference_sources/` as the canonical direct-extraction base and keep original-binary versus committed-derivative distinction explicit.
 
 ## R-0010 - Agricultural advice that ignores the zero-output planetary agri bug
 
@@ -105,3 +105,19 @@ This register captures recurring failure modes the planner must guard against.
 - Failure mode: The planner recommends a facility to a large hauler because the variant advertises the required pad size.
 - Why dangerous: Some variants appear to expose different real landing access than their advertised pad size suggests.
 - Required mitigation: Preserve pad-size uncertainty warnings and request variant-level confirmation when large-hauler access matters.
+
+## R-0014 - Arrow-count routing overconfidence
+
+- Severity: Critical
+- Source: `docs/contradiction_register.md`, `mechanics/M-0006-strong-and-weak-link-routing.md`, `planner/planner_rules_register.md`
+- Failure mode: The planner treats visible Market Links arrow count as a direct additive proof of influence and recommends demolition or replacement based on that assumption.
+- Why dangerous: Routed influence can be aggregated or forwarded in ways the visible topology does not reveal.
+- Required mitigation: Block irreversible recommendations that rely only on arrow count and require live link inspection or targeted validation.
+
+## R-0015 - Dependency-family flattening
+
+- Severity: High
+- Source: `docs/contradiction_register.md`, `mechanics/M-0009-facility-prerequisites-port-conversion-and-escalation.md`, `experiments/live_verification_register.md`
+- Failure mode: The planner flattens every prerequisite into a generic family rule and ignores cases where the large or upgraded branch may be the actual requirement.
+- Why dangerous: It can recommend build orders that look CP-valid but still fail live prerequisite checks.
+- Required mitigation: Preserve branch-sensitive prerequisite caveats and treat unresolved chains as conditional until `LV-0012` is resolved.

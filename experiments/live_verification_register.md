@@ -151,3 +151,33 @@ This register captures unresolved items that should become real in-game experime
 - Testing status: Needs live verification
 - Contradictions: None currently recorded
 - Unknowns: `U-0017`
+
+## LV-0011 - Multi-port weak-link generation and forwarding
+
+- Category: Routing / multi-port edge cases
+- Title: When do lower-tier or later-built ports generate or forward weak links in multi-port bodies?
+- Description: Test mixed same-body port layouts to determine when a lower-tier or later-built port becomes the relevant weak-link generator or forwarding intermediary instead of the obvious main-port endpoint.
+- Source: `reference_sources/FW-0001-strong-weak-links/strong-and-weak-links-illustrated-reference.txt`
+- Exact location: FW-0001 `4. Weak links: cross-body support and its limits`
+- Confidence: Medium
+- Category tags: `routing`, `weak_links`, `main_port`, `multi_port`
+- Related mechanics: `M-0006`, `M-0009`
+- Planner implications: Important before the planner can make hard statements about multi-port routing outcomes.
+- Testing status: Needs live verification
+- Contradictions: `C-0008`
+- Unknowns: `U-0018`, `U-0020`
+
+## LV-0012 - Large-branch prerequisite strictness
+
+- Category: Construction dependencies
+- Title: Which dependency chains require the large or upgraded branch rather than any family member?
+- Description: Validate the flowchart-implied branch strictness for hubs and downstream facilities whose prerequisite wording may be looser in tables than in the dependency diagram.
+- Source: `reference_sources/DM-0001-daftmav-construction-details/DaftMav_Colonization.csv`, `reference_sources/DD-0001-dependency-flowchart/dependency-flowchart-v0.webp.base64.txt`
+- Exact location: DM-0001 dependency rows and DD-0001 dependency edges
+- Confidence: Medium
+- Category tags: `dependencies`, `construction`, `hubs`, `settlements`
+- Related mechanics: `M-0009`
+- Planner implications: Needed before the planner can treat every family-level prerequisite as fully interchangeable.
+- Testing status: Needs live verification
+- Contradictions: `C-0009`
+- Unknowns: `U-0019`

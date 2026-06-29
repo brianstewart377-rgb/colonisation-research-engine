@@ -1,6 +1,6 @@
 {
   "export_manifest_version": "0.2.0-draft",
-  "generated_at": "2026-06-29T18:36:08Z",
+  "generated_at": "2026-06-29T18:40:31Z",
   "status": "assembled",
   "purpose": "Deterministically assembled release-oriented exports derived from canonical repository registers.",
   "exports": [
@@ -32,7 +32,7 @@
       "path": "exports/planner_risks.csv",
       "format": "csv",
       "source": "planner/planner_risk_register.md",
-      "record_count": 13
+      "record_count": 15
     },
     {
       "path": "exports/governance_decisions.csv",
@@ -44,13 +44,13 @@
       "path": "exports/unknowns.csv",
       "format": "csv",
       "source": "docs/unknowns_register.md",
-      "record_count": 17
+      "record_count": 20
     },
     {
       "path": "exports/contradictions.csv",
       "format": "csv",
       "source": "docs/contradiction_register.md",
-      "record_count": 7
+      "record_count": 9
     },
     {
       "path": "exports/observations.csv",
@@ -80,7 +80,7 @@
       "path": "exports/live_verification_matrix.csv",
       "format": "csv",
       "source": "experiments/live_verification_matrix.csv",
-      "record_count": 10
+      "record_count": 12
     },
     {
       "path": "exports/graph_nodes.csv",

@@ -92,3 +92,29 @@ This register records durable contradictions and unresolved conflicts discovered
 - Testing status: Needs live verification
 - Contradictions: Advertised pad data versus actual landing availability
 - Unknowns: Exact per-variant divergence map
+
+## C-0008 - Visible Market Links topology versus actual routed influence
+
+- Category: UI display conflict
+- Description: The canonical strong/weak reference says visible link count is a routing display and not a direct measure of total influence, but common planning intuition still treats arrow count as proof of additive market strength.
+- Source: `reference_sources/FW-0001-strong-weak-links/strong-and-weak-links-illustrated-reference.txt`, `mechanics/M-0006-strong-and-weak-link-routing.md`
+- Exact location: FW-0001 `5. The complex example: why link count alone misleads` and `6. Adding up strong links`
+- Confidence: High that the interpretive conflict exists
+- Related mechanics: `M-0006`, `M-0013`
+- Planner implications: The planner must not justify demolition or replacement solely from visible arrow count.
+- Testing status: Needs live verification
+- Contradictions: UI-topology intuition versus routed-influence interpretation
+- Unknowns: Which mixed surface-orbital and multi-port cases most strongly diverge
+
+## C-0009 - Family-level prerequisites versus large-branch dependency readings
+
+- Category: Dependency interpretation conflict
+- Description: Text and table sources agree on the existence of prerequisite chains, but the dependency flowchart implies that some hub branches depend on the large upgraded settlement branch rather than any member of the broader facility family.
+- Source: `reference_sources/DM-0001-daftmav-construction-details/DaftMav_Colonization.csv`, `reference_sources/DD-0001-dependency-flowchart/dependency-flowchart-v0.webp.base64.txt`, `mechanics/M-0009-facility-prerequisites-port-conversion-and-escalation.md`
+- Exact location: DM-0001 facility dependency rows and DD-0001 dependency edges
+- Confidence: Medium
+- Related mechanics: `M-0009`
+- Planner implications: Some prerequisite recommendations should remain branch-sensitive until the exact live requirement is confirmed.
+- Testing status: Needs live verification
+- Contradictions: Family-level dependency wording versus large-branch dependency interpretation
+- Unknowns: Which hub chains are strict large-branch dependencies in live construction

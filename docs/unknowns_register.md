@@ -154,3 +154,30 @@ This register consolidates the most important unresolved knowledge gaps already 
 - Related mechanics: `M-0009`, `M-0013`
 - Related live verification: `LV-0010`
 - Planner implication: Hauling recommendations must preserve a pad-size uncertainty warning on affected variants.
+
+## U-0018 - Main-port weak-link generation exceptions
+
+- Category: Market links
+- Source: `reference_sources/FW-0001-strong-weak-links/strong-and-weak-links-illustrated-reference.txt`, `mechanics/M-0006-strong-and-weak-link-routing.md`
+- Unknown: Under what exact conditions a body with multiple ports causes a lower-tier or later-built port to become the weak-link generator instead of the main port behaving as the obvious endpoint.
+- Related mechanics: `M-0006`, `M-0009`
+- Related live verification: `LV-0011`
+- Planner implication: Multi-port routing advice should remain cautious until weak-link generation exceptions are better mapped.
+
+## U-0019 - Large-branch versus family-level prerequisite strictness
+
+- Category: Construction dependencies
+- Source: `reference_sources/DM-0001-daftmav-construction-details/DaftMav_Colonization.csv`, `reference_sources/DD-0001-dependency-flowchart/dependency-flowchart-v0.webp.base64.txt`, `mechanics/M-0009-facility-prerequisites-port-conversion-and-escalation.md`
+- Unknown: Which dependency chains merely require any member of a facility family and which actually require the large or upgraded branch shown in the flowchart.
+- Related mechanics: `M-0009`
+- Related live verification: `LV-0012`
+- Planner implication: Build-order recommendations should preserve branch-sensitive caveats where strict dependency level is not fully settled.
+
+## U-0020 - Main Surface Port to Main Orbital Port forwarding scope
+
+- Category: Market links
+- Source: `reference_sources/FW-0001-strong-weak-links/strong-and-weak-links-illustrated-reference.txt`, `mechanics/M-0006-strong-and-weak-link-routing.md`
+- Unknown: Whether surface-to-orbital forwarding is universal for mixed-body port layouts or whether it depends on specific port combinations and construction order.
+- Related mechanics: `M-0006`, `M-0009`
+- Related live verification: `LV-0005`, `LV-0011`
+- Planner implication: Mixed surface-orbital routing should remain explicitly confidence-labeled.
