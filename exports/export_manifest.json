@@ -45,6 +45,36 @@
       "format": "csv",
       "source": "evidence/evidence_mechanic_traceability.csv",
       "record_count": 19
+    },
+    {
+      "path": "exports/graph_nodes.csv",
+      "format": "csv",
+      "source": "ontology/knowledge_graph_nodes.csv",
+      "record_count": 202
+    },
+    {
+      "path": "exports/graph_edges.csv",
+      "format": "csv",
+      "source": "ontology/knowledge_graph_edges.csv",
+      "record_count": 243
+    },
+    {
+      "path": "exports/release_notes.md",
+      "format": "markdown",
+      "source": "exports/release_notes.md",
+      "record_count": 0
+    },
+    {
+      "path": "exports/source_coverage_summary.md",
+      "format": "markdown",
+      "source": "docs/source_coverage_register.md",
+      "record_count": 0
+    },
+    {
+      "path": "exports/withheld_items.md",
+      "format": "markdown",
+      "source": "exports/withheld_items.md",
+      "record_count": 0
     }
   ],
   "notes": [

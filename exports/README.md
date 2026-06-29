@@ -14,7 +14,12 @@ They are working export prototypes that align with the release-bundle layout def
 - `observations.csv`
 - `claims.csv`
 - `evidence_traceability.csv`
+- `graph_nodes.csv`
+- `graph_edges.csv`
 - `export_manifest.json`
+- `release_notes.md`
+- `source_coverage_summary.md`
+- `withheld_items.md`
 
 ## Source rule
 

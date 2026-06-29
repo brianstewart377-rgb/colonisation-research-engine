@@ -117,6 +117,11 @@ Canonical mechanic documents:
 - `exports/observations.csv`
 - `exports/claims.csv`
 - `exports/evidence_traceability.csv`
+- `exports/graph_nodes.csv`
+- `exports/graph_edges.csv`
+- `exports/release_notes.md`
+- `exports/source_coverage_summary.md`
+- `exports/withheld_items.md`
 
 ## Experiment layer
 
