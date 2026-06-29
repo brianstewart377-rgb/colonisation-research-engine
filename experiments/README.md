@@ -53,3 +53,12 @@ Mechanic Update
 - Null effects are evidence.
 - Repeated tests across patches should be treated as distinct evidence eras.
 - Planner knowledge should only be updated after experiment review, not merely after data entry.
+
+## Live verification assets
+
+- `live_verification_register.md`
+  Canonical queue of unresolved items that need live testing.
+- `live_verification_matrix.csv`
+  Machine-readable summary of the current live-verification queue.
+- `verification_protocols.md`
+  Concrete protocols for running the current live-verification items.
