@@ -1,69 +1,72 @@
 # Source Coverage Register
 
-This register records the repository-local source material processed for Phase 2 knowledge extraction.
+This register records the source material processed during the direct colonisation knowledge-extraction pass.
 
 ## Coverage method
 
-- `100%` means the file was fully reviewed for knowledge extraction or repository-structure implications.
-- `Indirect only` means the underlying source artifact is not present in the repository and is only represented by metadata or downstream interpretation.
-- `Not present` means the source is named in repository evidence but the actual artifact is absent from the working tree.
+- `100%` means the named page range, section, table, or evidence record was directly reviewed and mined for mechanical content.
+- `Targeted` means the source was opened and reviewed only for specific mechanically useful sections.
+- `Indirect only` means the underlying source artifact was still not recovered directly and is represented only through downstream interpretation.
 
-## Repository-local sources processed
+## Directly processed source documents
 
-| Source path | Type | Coverage | Notes |
+| Source | Format | Coverage | Notes |
 |---|---|---:|---|
-| `README.md` | Repository overview | 100% | Defines project purpose, scope, and layout. |
-| `constitution/project_principles.md` | Governance | 100% | Core evidence-first principles and research commitments. |
-| `architecture/README.md` | Architecture index | 100% | Sets boundary for architecture documents. |
-| `architecture/colonisation_intelligence_platform_architecture.md` | Architecture | 100% | Core layer model, confidence model, contradiction handling, and data entities. |
-| `architecture/evidence_vault.md` | Architecture | 100% | Evidence lifecycle and evidence/observation separation. |
-| `docs/community_discussions.md` | Governance | 100% | Discussion-vs-issue split and research-conversation model. |
-| `docs/knowledge_versioning.md` | Governance | 100% | Knowledge-versioning rules. |
-| `docs/project_roadmap.md` | Roadmap | 100% | Phase structure and repository maturity path. |
-| `evidence/colonisation_ai_data_sources_review.md` | Source review | 100% | Main source hierarchy, confidence model, ingestion order, and external-source gap analysis. |
-| `evidence/source_catalog.md` | Source catalog | 100% | Source families and handling rules. |
-| `evidence/EV-0001-rocha-liberty-post-high-tech-build.md` | Evidence record | 100% | Post-build A4 High Tech observations. |
-| `evidence/EV-0002-wregoe-raven-proposed-build-review.md` | Evidence record | 100% | Raven proposed-build interpretation and placeholder-name rules. |
-| `evidence/EV-0003-a4-t3-station-selection-previews.md` | Evidence record | 100% | Station-class and layout-preview comparison evidence. |
-| `evidence/EV-0004-reference-documents-pack.md` | Evidence record | 100% | Metadata for absent reference-pack artifacts and evidence hierarchy. |
-| `experiments/README.md` | Process doc | 100% | Scientific workflow and required experiment fields. |
-| `experiments/EXP-0000-wregoe-methodology-seed.md` | Experiment | 100% | Seed methodology, negative evidence, and first three mechanics. |
-| `experiments/EXP-0001-a4-complementary-high-tech-role.md` | Experiment | 100% | Active A4 High Tech experiment definition. |
-| `mechanics/README.md` | Mechanic catalogue guidance | 100% | Canonical mechanic-document expectations. |
-| `mechanics/M-0001-water-worlds-have-no-surface-slots.md` | Mechanic | 100% | Confirmed Wregoe body-slot constraint. |
-| `mechanics/M-0002-station-economy-is-inherited.md` | Mechanic | 100% | Confirmed planner-safety rule on economy inheritance. |
-| `mechanics/M-0003-one-weak-refinery-link-is-insufficient-to-restore-metals.md` | Mechanic | 100% | Confirmed narrow negative-evidence mechanic. |
-| `mechanics/M-0001-construction-points-and-facility-tiers.md` | Mechanic draft | 100% | Reviewed and marked for ID normalization into canonical catalogue. |
-| `mechanics/M-0002-colony-type-and-specialised-ports.md` | Mechanic draft | 100% | Reviewed and marked for ID normalization into canonical catalogue. |
-| `mechanics/M-0003-strong-and-weak-link-routing.md` | Mechanic draft | 100% | Reviewed and marked for ID normalization into canonical catalogue. |
-| `mechanics/M-0004-colony-port-economy-inheritance.md` | Mechanic draft | 100% | Reviewed and marked for canonical renumbering. |
-| `mechanics/M-0005-local-body-base-economies-and-modifiers.md` | Mechanic draft | 100% | Reviewed and marked for canonical renumbering. |
-| `ontology/entities.md` | Ontology | 100% | Core entities. |
-| `ontology/relationships.md` | Ontology | 100% | Core graph edges and relationship rules. |
-| `ontology/roles_assets_strategies.md` | Ontology / planning | 100% | Role, asset, strategy, and coverage vocabulary. |
-| `planner/decision_support_model.md` | Planner model | 100% | Objective-first reasoning and contextual strategy rules. |
-| `planner/planner_safety.md` | Planner safety | 100% | Mandatory recommendation constraints. |
-| `schemas/README.md` | Schema index | 100% | Future schema scope. |
-| `schemas/evidence_vault_schema.sql` | Schema | 100% | Evidence-vault implementation schema, used mainly for evidence-layer context. |
-| `templates/evidence_record_template.md` | Template | 100% | Evidence-field expectations and provenance conventions. |
-| `templates/experiment_template.md` | Template | 100% | Experiment-field expectations. |
-| `templates/mechanic_template.md` | Template | 100% | Canonical mechanic-document structure. |
-| `tools/README.md` | Tooling scope | 100% | Confirms tooling-vs-repository boundary. |
-| `tools/evidence_vault/README.md` | Tooling doc | 100% | Evidence registration workflow and managed-storage assumptions. |
+| `Elite Dangerous Colonization Mega Guide v2.3.0` | Recovered public `docx` + `txt` export | Targeted | Used as the primary extraction source for construction, economy inheritance, link routing, stats, population, bugs, Appendix C, and Appendix D. |
+| `AetherWave Colonisation Reference Tables` | HTML page quoting DaftMav-derived data | 100% | Used as the structured substitute for the absent local DaftMav spreadsheet artifact. |
+| `EV-0001-rocha-liberty-post-high-tech-build.md` | Evidence record | 100% | Rechecked as the current live Wregoe-style post-build evidence anchor. |
+| `EV-0002-wregoe-raven-proposed-build-review.md` | Evidence record | 100% | Rechecked for CP, placeholder, and weak-link caveats. |
+| `EV-0003-a4-t3-station-selection-previews.md` | Evidence record | 100% | Rechecked for station-class and preview-equality caveats. |
+| `EV-0004-reference-documents-pack.md` | Evidence record | 100% | Rechecked for artifact provenance and absence status. |
 
-## Referenced source artifacts not present locally
+## Mega Guide page and section coverage
 
-These artifacts are named in repository evidence but are not present as local files in the working tree.
+| Pages | Section | Coverage | Extraction outcome |
+|---:|---|---:|---|
+| `25-33` | `How To Architect A System? Construction Points, And A Tool You Will Love` through `The Value Of Space Versus Ground Slots` | 100% | Extracted CP rules, build sequencing, high-tier port escalation, slot-value rules, and commodity-location caveats. |
+| `36-41` | `Station Interiors` | 100% | Extracted interior-update timing and economy tie-break caveats. |
+| `47-51` | `How Do Colony-Type Ports Gain Economies? Base Inheritable Economy + Modifiers` | 100% | Extracted port-family taxonomy, body inheritance tables, body modifiers, and body-preference guidance. |
+| `52-59` | `What Are Strong & Weak Links?` through `Special Case: When Ports Convert To Being Supporting Facilities` | 100% | Extracted strong/weak-link rules, modifier material, main-port routing, and converted-port caveats. |
+| `60-63` | `What Do Security, Wealth, SoL, Tech Level, Dev Level, And Population Do?` | 100% | Extracted known stat effects, service thresholds, and unknown zones. |
+| `68-80` | `Which Economies Are Compatible With Each Other?` and `What Does Population Affect, And How Do I Grow It?` | 100% | Extracted top-two protection, pair-overlap material, population formulas, output scaling, and score/payment rules. |
+| `84-87` | `Case Study #1` and `Case Study #2` | 100% | Extracted planner-useful body recommendations and agriculture/refinery caveats. |
+| `92` | `Bugs, Known Issues, And Possible Workarounds` | 100% | Extracted bug/workaround items into claims, contradictions, and planner risks. |
+| `95-97` | `Appendix A: Advanced Strategies` | 100% | Extracted advanced sequencing, nesting, and rank-order tactics. |
+| `99` | `Appendix C: Detailed By-Facility System Scores` | 100% | Extracted all by-facility score values. |
+| `100-105` | `Appendix D: Detailed Overlap Of Economy Pairs` | 100% | Extracted all 35 economy-pair overlap entries from the appendix tables. |
 
-| Named artifact | Repository reference | Working-tree status | Usable coverage |
-|---|---|---|---|
-| `Elite Dangerous Colonization Mega Guide v2.3.0` | `evidence/EV-0004-reference-documents-pack.md` | Not present | Indirect only via existing repository mechanics and source-review notes |
-| `Colonization Construction Details (By DaftMav).xlsx` | `evidence/EV-0004-reference-documents-pack.md` | Not present | Indirect only via source-review notes and existing mechanic drafts |
-| `Elite Dangerous Colonisation Strong and Weak Links Illustrated Reference` | `evidence/EV-0004-reference-documents-pack.md` | Not present | Indirect only via existing mechanic drafts and EV-0004 metadata |
-| Earlier Frontier forum DOCX import | `evidence/EV-0004-reference-documents-pack.md` | Not present | Not usable beyond EV-0004 note that the parser could not read it |
-| Dependency flowchart image | `evidence/EV-0004-reference-documents-pack.md` | Not present | Indirect only via EV-0004 note and source-review references |
+## DaftMav-derived table coverage
 
-## Extraction limitation
+| Section / sheet surrogate | Coverage | Extraction outcome |
+|---|---:|---|
+| `Orbital Station Information` | 100% | Extracted all orbital station tier, cost, reward, pad, and commodity totals. |
+| `Orbital Outpost Information` | 100% | Extracted all orbital outpost specifications. |
+| `System Effects by Installation Type` | 100% | Extracted all listed system-stat effect rows. |
+| `Orbital Installation Information` | 100% | Extracted all installation prerequisites, costs, rewards, and economy influence rows. |
+| `Surface Port Information` | 100% | Extracted all surface-port specification rows. |
+| `Surface Settlement Information` | 100% | Extracted all settlement size, prerequisite, reward, pad, and commodity rows. |
+| `Surface Hub Information` | 100% | Extracted all hub prerequisite and stat rows. |
+| `Resource Requirements for Major Materials` | 100% | Extracted steel, CMM Composite, aluminium, titanium, and surface-material priority notes plus exact 2x/3x scaling rules. |
+| `Important Construction Notes` | 100% | Extracted first-installation surcharge, landing-pad caveat, CP strategy note, and variant bug notes. |
 
-Phase 2 can fully consolidate repository-local knowledge.
-It cannot honestly claim direct extraction from the absent reference-pack artifacts until those files are checked into the repository or reattached as evidence inputs.
+## Existing evidence rechecked during this pass
+
+| Evidence record | Coverage | Mechanically relevant sections reviewed |
+|---|---:|---|
+| `EV-0001-rocha-liberty-post-high-tech-build.md` | 100% | Post-build facilities, links, economies, and commodity observations |
+| `EV-0002-wregoe-raven-proposed-build-review.md` | 100% | Current-vs-projected CP interpretation and placeholder-name caution |
+| `EV-0003-a4-t3-station-selection-previews.md` | 100% | Preview-equality caveat and station-class uncertainty |
+| `EV-0004-reference-documents-pack.md` | 100% | Artifact provenance, missing-source tracking, and recovery context |
+
+## Still not directly recovered as local primary artifacts
+
+| Named artifact | Direct status | Current usable coverage |
+|---|---|---|
+| `Elite Dangerous Colonisation Strong and Weak Links Illustrated Reference` | Not directly recovered as a standalone local artifact | Substantive link-routing content recovered through the Mega Guide strong/weak-link sections |
+| `Colonization Construction Details (By DaftMav).xlsx` | Not directly recovered as a standalone local spreadsheet file | Structured table coverage recovered through the AetherWave DaftMav-derived reference tables |
+| `Dependency flowchart image` | Not directly recovered as a standalone local artifact | Prerequisite and dependency content recovered through Mega Guide and DaftMav-derived prerequisite tables |
+
+## Extraction note
+
+This pass now contains direct source extraction from recovered public copies and structured mirrors.
+It is no longer limited to indirect repository-only interpretation, but it still distinguishes between directly recovered artifacts and still-missing standalone originals.
