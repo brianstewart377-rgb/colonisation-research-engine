@@ -105,5 +105,5 @@ High. Body-economy and modifier interactions are prime candidates for post-patch
 
 ## Open questions
 
-- Which rows in the body table have direct in-repository live corroboration versus only reference-derived support?
+- Which rows in the body table have direct in-repository live corroboration versus only canonical-source support?
 - Does Terraforming appear only as a modifier-style effect, or can it dominate final port behavior in some contexts?

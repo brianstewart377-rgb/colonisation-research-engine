@@ -108,7 +108,7 @@ This register captures market-behavior, commodity-location, and overlap rules ex
 - Rule: Steel is required for all installations and often represents roughly 25-30% of total mass.
 - Related mechanics: `M-0010`
 - Planner implications: Steel coverage should be one of the first material checks in any construction-oriented planner.
-- Testing status: Extracted from DaftMav-derived reference tables
+- Testing status: Extracted from canonical `DM-0001` source material
 - Contradictions: None currently recorded
 - Unknowns: None currently recorded
 
@@ -119,7 +119,7 @@ This register captures market-behavior, commodity-location, and overlap rules ex
 - Rule: CMM Composite, Aluminium, and Titanium are all called out as major construction materials with substantial share of facility mass requirements.
 - Related mechanics: `M-0010`
 - Planner implications: Material-completeness scoring should not stop at steel.
-- Testing status: Extracted from DaftMav-derived reference tables
+- Testing status: Extracted from canonical `DM-0001` source material
 - Contradictions: None currently recorded
 - Unknowns: None currently recorded
 

@@ -1,6 +1,6 @@
 {
   "export_manifest_version": "0.2.0-draft",
-  "generated_at": "2026-06-29T19:04:15Z",
+  "generated_at": "2026-06-29T19:07:03Z",
   "status": "assembled",
   "purpose": "Deterministically assembled release-oriented exports derived from canonical repository registers.",
   "exports": [

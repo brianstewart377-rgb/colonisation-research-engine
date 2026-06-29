@@ -152,7 +152,7 @@ This register decomposes the current mechanic catalogue into explicit constructi
 - Rule: Large Tier 2 settlements convert one yellow CP into two green CP, making them one of the clearest green-CP efficiency tools in the current source set.
 - Related mechanics: `M-0004`, `M-0009`
 - Planner implications: Prefer large settlements when green-CP efficiency matters more than preserving the eventual facility mix.
-- Testing status: Extracted from Mega Guide v2.3.0 and DaftMav-derived tables
+- Testing status: Extracted from canonical `MG-0001` and `DM-0001` source material
 - Contradictions: None currently recorded
 - Unknowns: None currently recorded
 
@@ -163,7 +163,7 @@ This register decomposes the current mechanic catalogue into explicit constructi
 - Rule: The first installation carries a resource surcharge of +16% for Tier 1, +32% for Tier 2, and +20% for Tier 3.
 - Related mechanics: `M-0009`
 - Planner implications: Add primary-installation surcharges into first-wave logistics instead of using standard facility totals.
-- Testing status: Extracted from DaftMav-derived reference tables
+- Testing status: Extracted from canonical `DM-0001` source material
 - Contradictions: None currently recorded
 - Unknowns: None currently recorded
 
@@ -174,7 +174,7 @@ This register decomposes the current mechanic catalogue into explicit constructi
 - Rule: Medium settlements require exactly 2x the resources of small settlements of the same type.
 - Related mechanics: `M-0009`
 - Planner implications: Resource planning for medium settlements can be safely estimated from small-settlement baselines.
-- Testing status: Extracted from DaftMav-derived reference tables
+- Testing status: Extracted from canonical `DM-0001` source material
 - Contradictions: None currently recorded
 - Unknowns: None currently recorded
 
@@ -185,7 +185,7 @@ This register decomposes the current mechanic catalogue into explicit constructi
 - Rule: Large settlements require exactly 3x the resources of small settlements of the same type.
 - Related mechanics: `M-0009`
 - Planner implications: Large-settlement hauling estimates can be derived directly from small-settlement baselines.
-- Testing status: Extracted from DaftMav-derived reference tables
+- Testing status: Extracted from canonical `DM-0001` source material
 - Contradictions: None currently recorded
 - Unknowns: None currently recorded
 
@@ -196,7 +196,7 @@ This register decomposes the current mechanic catalogue into explicit constructi
 - Rule: Military Installations require a Military Settlement as a prerequisite.
 - Related mechanics: `M-0009`
 - Planner implications: Military space infrastructure is a two-step chain, not a direct pick.
-- Testing status: Extracted from DaftMav-derived reference tables
+- Testing status: Extracted from canonical `DM-0001` source material
 - Contradictions: None currently recorded
 - Unknowns: None currently recorded
 
@@ -207,7 +207,7 @@ This register decomposes the current mechanic catalogue into explicit constructi
 - Rule: Security Stations require a Relay Station as a prerequisite.
 - Related mechanics: `M-0009`
 - Planner implications: Security-focused orbital chains need an earlier communications step.
-- Testing status: Extracted from DaftMav-derived reference tables
+- Testing status: Extracted from canonical `DM-0001` source material
 - Contradictions: None currently recorded
 - Unknowns: None currently recorded
 
@@ -218,7 +218,7 @@ This register decomposes the current mechanic catalogue into explicit constructi
 - Rule: Research Stations require a Bio Research Settlement as a prerequisite.
 - Related mechanics: `M-0009`
 - Planner implications: High Tech orbital research routes need matching ground science support.
-- Testing status: Extracted from DaftMav-derived reference tables
+- Testing status: Extracted from canonical `DM-0001` source material
 - Contradictions: None currently recorded
 - Unknowns: None currently recorded
 
@@ -229,7 +229,7 @@ This register decomposes the current mechanic catalogue into explicit constructi
 - Rule: Tourist Installations require a Tourism Settlement as a prerequisite.
 - Related mechanics: `M-0009`
 - Planner implications: Tourism orbital chains start with a ground-tourism dependency.
-- Testing status: Extracted from DaftMav-derived reference tables
+- Testing status: Extracted from canonical `DM-0001` source material
 - Contradictions: None currently recorded
 - Unknowns: None currently recorded
 
@@ -240,7 +240,7 @@ This register decomposes the current mechanic catalogue into explicit constructi
 - Rule: Tourism settlements require a Satellite Installation as a prerequisite.
 - Related mechanics: `M-0009`
 - Planner implications: Tourism chains consume both an orbital support slot and a ground slot before hubs or higher tourism effects.
-- Testing status: Extracted from DaftMav-derived reference tables
+- Testing status: Extracted from canonical `DM-0001` source material
 - Contradictions: None currently recorded
 - Unknowns: None currently recorded
 
@@ -251,6 +251,6 @@ This register decomposes the current mechanic catalogue into explicit constructi
 - Rule: Surface hubs do not share a universal prerequisite; each hub class uses a specific settlement or installation requirement.
 - Related mechanics: `M-0009`
 - Planner implications: Hub planning must be dependency-aware at the individual facility class level.
-- Testing status: Extracted from DaftMav-derived reference tables
+- Testing status: Extracted from canonical `DM-0001` source material
 - Contradictions: None currently recorded
 - Unknowns: None currently recorded

@@ -88,10 +88,10 @@ This register converts the repository's identified source gaps into a durable ma
 - Why it matters: Secondary references can become silently stale.
 - Suggested response: Keep patch-era context attached to mechanics and confidence.
 
-## MRG-0011 - Reference-pack artifacts are absent from the repository
+## MRG-0011 - Original binaries are not committed alongside the canonical source pack
 
 - Severity: Critical
 - Source: `docs/source_coverage_register.md`, `evidence/EV-0004-reference-documents-pack.md`
-- Problem: The underlying Mega Guide, DaftMav spreadsheet, strong/weak links reference, and dependency flowchart files are not present in the working tree.
-- Why it matters: Repository extraction cannot honestly claim direct full extraction from them yet.
-- Suggested response: Reattach or commit those source artifacts, then run a direct extraction pass.
+- Problem: The repository now contains committed canonical derivatives in `reference_sources/`, but not every original binary source artifact is committed alongside them.
+- Why it matters: Provenance is now workable for extraction, but binary-level archival completeness is still weaker than canonical-derivative completeness.
+- Suggested response: Keep `reference_sources/` as the operational source base and optionally add original binaries later if archival completeness becomes important.

@@ -51,7 +51,7 @@ This register captures unresolved items that should become real in-game experime
 
 - Category: Body economics
 - Title: Do body modifiers truly fail to stack with base body economies and with each other?
-- Description: Directly test the non-stacking rule currently preserved only through reference-derived material.
+- Description: Directly test the non-stacking rule currently preserved only through the committed canonical source pack.
 - Source: `mechanics/M-0008-local-body-base-economies-and-modifiers.md`
 - Exact location: M-0008 `Mechanic statement`
 - Confidence: Medium that the rule is worth preserving; low that it is fully confirmed locally
