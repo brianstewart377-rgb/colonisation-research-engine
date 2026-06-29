@@ -18,6 +18,8 @@ This directory stores evidence records, source-analysis outputs, and evidence go
   High-value public build-diary and project-thread shortlist.
 - `evidence_mechanic_traceability.csv`
   Evidence-to-mechanic support mapping for the current catalogue.
+- `observation_register.csv`
+  Structured observations extracted from core evidence and experiment records.
 - `colonisation_ai_data_sources_review.md`
   Deep source review and ingestion-order analysis.
 
