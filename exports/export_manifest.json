@@ -1,6 +1,6 @@
 {
   "export_manifest_version": "0.2.0-draft",
-  "generated_at": "2026-06-29T18:31:05Z",
+  "generated_at": "2026-06-29T18:36:08Z",
   "status": "assembled",
   "purpose": "Deterministically assembled release-oriented exports derived from canonical repository registers.",
   "exports": [
@@ -14,7 +14,7 @@
       "path": "exports/planner_rules.csv",
       "format": "csv",
       "source": "planner/planner_rules_register.md",
-      "record_count": 10
+      "record_count": 13
     },
     {
       "path": "exports/economy_rules.csv",

@@ -121,3 +121,39 @@ This register extracts planner-operational rules from the repository's mechanics
 - Testing status: Governance-confirmed
 - Contradictions: None currently recorded
 - Unknowns: None
+
+## PR-0011 - Resolve main-port priority before reading link topology
+
+- Category: Routing safety
+- Status: Extracted
+- Source: `mechanics/M-0006-strong-and-weak-link-routing.md`, `mechanics/M-0009-facility-prerequisites-port-conversion-and-escalation.md`
+- Related mechanics: `M-0006`, `M-0009`
+- Rule: Do not interpret same-body or cross-body routing until the planner has resolved which port is the Main Port on each body and whether another port has converted into a supporting-facility role.
+- Planner implication: Port hierarchy is a prerequisite input, not a cosmetic detail.
+- Testing status: Reference-source confirmed, still merits live edge-case verification
+- Contradictions: None currently recorded
+- Unknowns: Multi-port edge cases and some converted-port weak-link behavior
+
+## PR-0012 - Do not recommend irreversible changes from arrow count alone
+
+- Category: Routing safety
+- Status: Extracted
+- Source: `mechanics/M-0006-strong-and-weak-link-routing.md`, `mechanics/M-0013-system-scores-payments-and-high-risk-caveats.md`
+- Related mechanics: `M-0006`, `M-0013`
+- Rule: Visible Market Links arrow count is not enough evidence to justify demolition, replacement, or other irreversible architecture changes.
+- Planner implication: Require live Market Links inspection or a targeted validation step before recommending destructive changes.
+- Testing status: Strongly supported by the canonical reference-source pack
+- Contradictions: None currently recorded
+- Unknowns: Exact aggregation behavior in every mixed surface-orbital routing pattern
+
+## PR-0013 - Dependency trees constrain build sequencing alongside CP math
+
+- Category: Construction safety
+- Status: Extracted
+- Source: `mechanics/M-0009-facility-prerequisites-port-conversion-and-escalation.md`
+- Related mechanics: `M-0004`, `M-0009`
+- Rule: A planner must satisfy explicit prerequisite chains as well as construction-point availability before declaring a build order viable.
+- Planner implication: CP-positive does not automatically mean buildable.
+- Testing status: Confirmed by canonical Mega Guide, DaftMav extracts, and dependency-flowchart corroboration
+- Contradictions: None currently recorded
+- Unknowns: A few branch-specific `large-settlement versus family-level prerequisite` details remain worth spot-checking live

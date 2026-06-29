@@ -12,7 +12,7 @@ Extracted
 
 Current working confidence: 88%.
 
-The core rules are consistent across the recovered Mega Guide v2.3.0 and the DaftMav-derived reference tables.
+The core rules are consistent across `MG-0001`, `DM-0001`, and the corroborating `DD-0001` dependency-flowchart bundle.
 
 ## Mechanic statement
 
@@ -22,18 +22,36 @@ The core rules are consistent across the recovered Mega Guide v2.3.0 and the Daf
 - Several facility classes have explicit prerequisites, including orbital installations, tourism settlements, and multiple hub families.
 - When multiple ports exist on one local body, lower-tier or later-built ports can convert into supporting facilities and follow routing rules instead of behaving as ordinary independent ports.
 
+## Explicit prerequisite edges
+
+- Tourism Settlements require a Satellite installation.
+- Tourist Installations require a Tourism Settlement.
+- Military Installations require a Military Settlement.
+- Security Stations require a Relay Station.
+- Research Stations require a Research Bio Settlement.
+- Exploration Hubs require a Communication Station.
+- Outpost Hubs require a Space Farm.
+- Industrial Hubs require a Mining Outpost.
+- Military Hubs require a Military Installation.
+- The dependency flowchart also indicates that some hub branches are specifically tied to the large-settlement branch rather than any settlement in that family.
+
 ## Planner behaviour
 
 - Separate material-cost calculations from CP-gating calculations.
 - Sequence capital builds around high-tier port escalation before optimizing aesthetic or secondary facilities.
 - Represent prerequisites explicitly as build-chain constraints.
 - Warn when a same-body extra port will convert into a supporting-facility role.
+- Distinguish between `any member of a facility family is enough` and `the large or upgraded branch is specifically required`.
 
 ## Evidence basis
 
 - `evidence/claim_register.csv`
 - `mechanics/construction_rules_register.md`
 - `mechanics/market_rules_register.md`
+- `reference_sources/MG-0001-megaguide-v2-3/elite-dangerous-colonization-mega-guide-v2-3.txt`
+- `reference_sources/DM-0001-daftmav-construction-details/DaftMav_Colonization.csv`
+- `reference_sources/DM-0001-daftmav-construction-details/DaftMav_Stats-only.csv`
+- `reference_sources/DD-0001-dependency-flowchart/dependency-flowchart-v0.webp.base64.txt`
 
 ## Related mechanics
 
@@ -51,3 +69,4 @@ The core rules are consistent across the recovered Mega Guide v2.3.0 and the Daf
 
 - How many same-body port exceptions exist beyond the guide's documented routing cases?
 - Which settlement variants most often diverge from their advertised landing pad metadata?
+- Which dependency edges are `family-level prerequisites` versus `large-upgrade-specific prerequisites` in every current live build branch?

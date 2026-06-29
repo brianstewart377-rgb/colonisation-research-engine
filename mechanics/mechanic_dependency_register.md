@@ -73,3 +73,34 @@ Dependencies here are logical knowledge dependencies, not claims that the game e
   - dependent domains: construction, body-role planning, strategy
 - Meaning: Body constraints can pre-empt all later planning choices.
 - Planner implication: Body feasibility checks must occur before higher-level strategy reasoning.
+
+## MD-0008 - Main-port resolution is a prerequisite for safe routing interpretation
+
+- Status: Extracted
+- Source: `mechanics/M-0006-strong-and-weak-link-routing.md`
+- Dependency:
+  - prerequisite mechanic: `M-0005`
+  - prerequisite mechanic: `M-0009`
+  - dependent mechanic: `M-0006`
+- Meaning: Safe routing interpretation depends on knowing which same-body port is main and whether additional ports will convert into supporting-facility roles.
+- Planner implication: Resolve port hierarchy and conversion state before reading strong or weak links.
+
+## MD-0009 - Dependency-chain modeling constrains capital-build sequencing
+
+- Status: Extracted
+- Source: `mechanics/M-0009-facility-prerequisites-port-conversion-and-escalation.md`
+- Dependency:
+  - prerequisite mechanic: `M-0004`
+  - dependent mechanic: `M-0009`
+- Meaning: Construction-point sequencing is not enough by itself; explicit facility prerequisites further constrain what can be built next.
+- Planner implication: Build ordering must satisfy both CP math and dependency-tree edges.
+
+## MD-0010 - Routing-display caveats depend on the broader link-routing model
+
+- Status: Extracted
+- Source: `mechanics/M-0006-strong-and-weak-link-routing.md`, `mechanics/M-0013-system-scores-payments-and-high-risk-caveats.md`
+- Dependency:
+  - prerequisite mechanic: `M-0006`
+  - dependent mechanic: `M-0013`
+- Meaning: The warning against trusting visible arrow counts is a caveat layered on top of the broader routing model, not a separate replacement model.
+- Planner implication: Route first, then caveat the display; do not let UI topology masquerade as full economic proof.

@@ -20,18 +20,22 @@ The score values themselves are strong; the caveat layer remains patch-sensitive
 - Weekly architect credits are driven by system score and modified by Happiness.
 - Appendix C provides deterministic score values by facility class.
 - The recovered sources also preserve multiple planner-relevant caveats and bugs, including agricultural zero-output cases, settlement pad-size divergence, and suspected nested-port passthrough behavior.
+- Routing displays are not a complete causal proof of influence, so visible-arrow-count reasoning is itself a planner-relevant caveat.
+- Model-only demolition or replacement decisions remain unsafe when they depend on inferred routed influence rather than live Market Links confirmation.
 
 ## Planner behaviour
 
 - Use Appendix C score values for payout estimates instead of hand-wavy heuristics.
 - Keep bug-sensitive recommendations explicitly marked as experimental or caveated.
 - Elevate demolition, nested-port exploit reliance, and agriculture reliability to high-risk planner warnings.
+- Elevate `arrow-count-only` routing interpretations to a planner warning rather than a recommendation basis.
 
 ## Evidence basis
 
 - `evidence/claim_register.csv`
 - `docs/contradiction_register.md`
 - `planner/planner_risk_register.md`
+- `reference_sources/FW-0001-strong-weak-links/strong-and-weak-links-illustrated-reference.txt`
 
 ## Related mechanics
 
@@ -49,3 +53,4 @@ The score values themselves are strong; the caveat layer remains patch-sensitive
 
 - Which current bugs are variant-specific and which are systemic?
 - How much live drift should be tolerated before a caveat is reclassified as a contradiction or a retired issue?
+- When should a routing-display warning be upgraded from `caution` to `hard block` for planner output?
