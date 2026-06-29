@@ -11,6 +11,9 @@ They are working export prototypes that align with the release-bundle layout def
 - `planner_rules.csv`
 - `unknowns.csv`
 - `contradictions.csv`
+- `observations.csv`
+- `claims.csv`
+- `evidence_traceability.csv`
 - `export_manifest.json`
 
 ## Source rule

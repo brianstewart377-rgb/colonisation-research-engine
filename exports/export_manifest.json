@@ -27,6 +27,24 @@
       "format": "csv",
       "source": "docs/contradiction_register.md",
       "record_count": 4
+    },
+    {
+      "path": "exports/observations.csv",
+      "format": "csv",
+      "source": "evidence/observation_register.csv",
+      "record_count": 13
+    },
+    {
+      "path": "exports/claims.csv",
+      "format": "csv",
+      "source": "evidence/claim_register.csv",
+      "record_count": 12
+    },
+    {
+      "path": "exports/evidence_traceability.csv",
+      "format": "csv",
+      "source": "evidence/evidence_mechanic_traceability.csv",
+      "record_count": 19
     }
   ],
   "notes": [

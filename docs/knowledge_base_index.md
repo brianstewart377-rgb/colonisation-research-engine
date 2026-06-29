@@ -114,6 +114,9 @@ Canonical mechanic documents:
 - `exports/planner_rules.csv`
 - `exports/unknowns.csv`
 - `exports/contradictions.csv`
+- `exports/observations.csv`
+- `exports/claims.csv`
+- `exports/evidence_traceability.csv`
 
 ## Experiment layer
 
