@@ -109,6 +109,7 @@ Canonical mechanic documents:
 - `docs/knowledge_release_workflow.md`
 - `docs/release_bundle_layout.md`
 - `docs/release_bundle_file_catalog.csv`
+- `docs/release_bundle_assembly.md`
 
 ## Export layer
 
@@ -116,11 +117,17 @@ Canonical mechanic documents:
 - `exports/export_manifest.json`
 - `exports/mechanics.csv`
 - `exports/planner_rules.csv`
+- `exports/economy_rules.csv`
+- `exports/construction_rules.csv`
+- `exports/planner_risks.csv`
+- `exports/governance_decisions.csv`
 - `exports/unknowns.csv`
 - `exports/contradictions.csv`
 - `exports/observations.csv`
 - `exports/claims.csv`
+- `exports/claim_provenance_links.csv`
 - `exports/evidence_traceability.csv`
+- `exports/live_verification_matrix.csv`
 - `exports/graph_nodes.csv`
 - `exports/graph_edges.csv`
 - `exports/release_notes.md`
