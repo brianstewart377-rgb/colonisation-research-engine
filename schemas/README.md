@@ -8,7 +8,14 @@ Likely future contents:
 - mechanic schema
 - experiment schema
 - contradiction schema
+- colony state schema
 - planner knowledge projection schema
 - knowledge release manifest
 
-No production schema implementation belongs here yet. This is a documentation-first repository at this stage.
+Current documentation-first schema artifacts:
+
+- `colony_state.schema.json`
+- `colony_state_schema.md`
+- `colony_state_example.json`
+
+These are draft contracts for future implementation work, not production database code.

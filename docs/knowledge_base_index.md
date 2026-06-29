@@ -85,6 +85,12 @@ Canonical mechanic documents:
 - `ontology/knowledge_graph_nodes.csv`
 - `ontology/knowledge_graph_edges.csv`
 
+## Schema layer
+
+- `schemas/colony_state.schema.json`
+- `schemas/colony_state_schema.md`
+- `schemas/colony_state_example.json`
+
 ## Experiment layer
 
 - `experiments/EXP-0000-wregoe-methodology-seed.md`
