@@ -18,7 +18,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 from . import config
-from .config import TABLE_SPECS, TableSpec, extract_ids
+from .config import TABLE_SPECS, TableSpec, extract_ids, required_release_export_headers
 
 
 def _clean(value: str | None) -> str | None:
@@ -31,6 +31,104 @@ def _clean(value: str | None) -> str | None:
 def _read_csv(path: Path) -> list[dict[str, str]]:
     with open(path, "r", encoding="utf-8", newline="") as f:
         return list(csv.DictReader(f))
+
+
+class ReleaseContractError(ValueError):
+    """Raised when the release export bundle violates the runtime contract."""
+
+
+def _read_csv_header_and_count(path: Path) -> tuple[list[str], int]:
+    with open(path, "r", encoding="utf-8", newline="") as f:
+        reader = csv.reader(f)
+        try:
+            header = next(reader)
+        except StopIteration as exc:
+            raise ReleaseContractError(f"CSV header missing: {path}") from exc
+        return header, sum(1 for _ in reader)
+
+
+def _preflight_release_bundle(exports_dir: Path) -> dict:
+    manifest_path = exports_dir / config.MANIFEST_EXPORT
+    try:
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        raise ReleaseContractError(f"Manifest is not valid JSON: {manifest_path}: {exc}") from exc
+
+    if not isinstance(manifest, dict):
+        raise ReleaseContractError(f"Manifest must be a JSON object: {manifest_path}")
+
+    version = manifest.get("export_manifest_version")
+    if not isinstance(version, str) or not version.strip():
+        raise ReleaseContractError("Manifest must contain a non-empty string export_manifest_version")
+
+    if manifest.get("status") != "assembled":
+        raise ReleaseContractError("Manifest status must be exactly 'assembled'")
+
+    exports = manifest.get("exports")
+    if not isinstance(exports, list):
+        raise ReleaseContractError("Manifest must contain an exports list")
+
+    expected_headers = required_release_export_headers()
+    expected_paths = {f"exports/{name}" for name in expected_headers}
+
+    seen_paths: set[str] = set()
+    manifest_entries: dict[str, dict] = {}
+    for idx, entry in enumerate(exports):
+        if not isinstance(entry, dict):
+            raise ReleaseContractError(f"Manifest export entry at index {idx} must be an object")
+
+        path = entry.get("path")
+        if not isinstance(path, str) or not path:
+            raise ReleaseContractError(f"Manifest export entry at index {idx} must contain a non-empty string path")
+        if path in seen_paths:
+            raise ReleaseContractError(f"Manifest contains duplicate export path: {path}")
+        seen_paths.add(path)
+
+        if path not in expected_paths:
+            raise ReleaseContractError(f"Manifest contains unknown export path: {path}")
+        expected_form = f"exports/{Path(path).name}"
+        if path != expected_form:
+            raise ReleaseContractError(f"Manifest export path must use exact exports/<filename> form: {path}")
+
+        if entry.get("format") != "csv":
+            raise ReleaseContractError(f"Manifest export {path} must declare format='csv'")
+
+        source = entry.get("source")
+        if not isinstance(source, str) or not source.strip():
+            raise ReleaseContractError(f"Manifest export {path} must contain a non-empty string source")
+
+        record_count = entry.get("record_count")
+        if type(record_count) is not int or record_count < 0:
+            raise ReleaseContractError(
+                f"Manifest export {path} must contain a non-negative integer record_count"
+            )
+
+        manifest_entries[path] = entry
+
+    missing_paths = sorted(expected_paths - seen_paths)
+    if missing_paths:
+        raise ReleaseContractError(f"Manifest is missing required export paths: {', '.join(missing_paths)}")
+
+    extra_paths = sorted(seen_paths - expected_paths)
+    if extra_paths:
+        raise ReleaseContractError(f"Manifest contains extra export paths: {', '.join(extra_paths)}")
+
+    for export_name, expected_header in sorted(expected_headers.items()):
+        csv_path = exports_dir / export_name
+        if not csv_path.is_file():
+            raise ReleaseContractError(f"Required export CSV is missing: {csv_path}")
+        observed_header, observed_count = _read_csv_header_and_count(csv_path)
+        if observed_header != expected_header:
+            raise ReleaseContractError(
+                f"CSV header contract mismatch for {export_name}: expected {expected_header}, got {observed_header}"
+            )
+        manifest_count = manifest_entries[f"exports/{export_name}"]["record_count"]
+        if observed_count != manifest_count:
+            raise ReleaseContractError(
+                f"Manifest record_count mismatch for {export_name}: expected {manifest_count}, got {observed_count}"
+            )
+
+    return manifest
 
 
 @dataclass
@@ -241,6 +339,8 @@ def project(exports_dir: Path, source_register_path: Path | None = None) -> Proj
     result = ProjectionResult()
     result.source_register_path = source_register_path
     input_paths: list[Path] = []
+    result.manifest = _preflight_release_bundle(exports_dir)
+    input_paths.append(exports_dir / config.MANIFEST_EXPORT)
 
     # Typed detail tables.
     for spec in TABLE_SPECS:
@@ -294,9 +394,6 @@ def project(exports_dir: Path, source_register_path: Path | None = None) -> Proj
     input_paths.append(exports_dir / config.GRAPH_EDGES_EXPORT)
 
     # Manifest + table-level provenance.
-    manifest_path = exports_dir / config.MANIFEST_EXPORT
-    result.manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-    input_paths.append(manifest_path)
     spec_by_export = {s.export: s for s in TABLE_SPECS}
     for entry in result.manifest.get("exports", []):
         export_name = Path(entry["path"]).name

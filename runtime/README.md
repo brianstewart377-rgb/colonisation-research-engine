@@ -321,6 +321,34 @@ Sprint 2D adds a narrow composition method for direct decision references.
 
 ---
 
+## Sprint 3A: Release Contract Hardening
+
+Sprint 3A hardens the generated runtime release contract without changing the
+runtime schema or explanation contracts.
+
+- Builds now run against a unique temporary SQLite file in the target
+  directory, then promote it with atomic replace only after validation passes.
+- Manifest and CSV headers are preflight-checked before any temporary database
+  is created.
+- Content fingerprints now use canonical JSON encoding rather than delimiter
+  joining, so separator characters embedded in stored text cannot collide.
+- `--validate-only` opens the existing runtime through a read-only SQLite URI
+  and does not create journals, WAL/SHM sidecars, or report files.
+- Validation warnings may be preserved, but validation errors prevent
+  promotion and leave an existing output database unchanged.
+
+### Build Safety
+
+- The existing output database is never deleted or truncated before a new build
+  succeeds.
+- Validation still runs before promotion even if `build(..., run_validation=False)`
+  suppresses validation details in the returned report.
+- Any preflight failure, malformed input, validation error, or build exception
+  cleans up the temporary SQLite artifacts instead of exposing a half-built
+  runtime.
+
+---
+
 ## Statistics (current build)
 
 - Database size: **~840 KB** (`cre_runtime.db`)

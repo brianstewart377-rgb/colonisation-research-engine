@@ -28,15 +28,25 @@ import argparse
 import csv
 import hashlib
 import json
+import os
 import sqlite3
 import sys
+import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 
 from . import config
 from .config import DATA_TABLES, DEFAULT_EXPORTS_DIR, DEFAULT_OUTPUT_DB, SCHEMA_PATH, SCHEMA_VERSION, TABLE_SPECS
-from .projection import ProjectionResult, project
+from .projection import ProjectionResult, ReleaseContractError, project
 from .validation import ValidationReport, validate
+
+
+class RuntimeValidationError(RuntimeError):
+    """Raised when a built runtime database fails validation."""
+
+    def __init__(self, report: ValidationReport):
+        super().__init__("runtime validation failed")
+        self.report = report
 
 
 def _create_schema(conn: sqlite3.Connection) -> None:
@@ -125,16 +135,28 @@ def content_fingerprint(conn: sqlite3.Connection) -> str:
     for table in sorted(DATA_TABLES):
         cur = conn.execute(f"SELECT * FROM {table}")
         cols = [d[0] for d in cur.description]
-        serialised = sorted(
-            "\x1f".join("" if v is None else str(v) for v in row) for row in cur.fetchall()
+        serialised_rows = sorted(
+            json.dumps(
+                {col: row[idx] for idx, col in enumerate(cols)},
+                sort_keys=True,
+                separators=(",", ":"),
+                ensure_ascii=False,
+            )
+            for row in cur.fetchall()
         )
-        h.update(table.encode())
-        h.update(b"\x1e")
-        h.update(str(cols).encode())
-        h.update(b"\x1e")
-        for line in serialised:
-            h.update(line.encode())
-            h.update(b"\x1d")
+        envelope = {
+            "columns": cols,
+            "rows": serialised_rows,
+            "table": table,
+        }
+        h.update(
+            json.dumps(
+                envelope,
+                sort_keys=True,
+                separators=(",", ":"),
+                ensure_ascii=False,
+            ).encode("utf-8")
+        )
     return h.hexdigest()
 
 
@@ -165,64 +187,100 @@ def _insert_meta(conn: sqlite3.Connection, result: ProjectionResult, fingerprint
     )
 
 
+def _sqlite_artifact_paths(db_path: Path) -> list[Path]:
+    return [
+        db_path,
+        Path(f"{db_path}-journal"),
+        Path(f"{db_path}-wal"),
+        Path(f"{db_path}-shm"),
+    ]
+
+
+def _cleanup_sqlite_artifacts(db_path: Path) -> None:
+    for path in _sqlite_artifact_paths(db_path):
+        try:
+            path.unlink()
+        except FileNotFoundError:
+            continue
+
+
+def _make_temp_output_path(output_path: Path) -> Path:
+    fd, raw_path = tempfile.mkstemp(
+        prefix=f".{output_path.name}.tmp-",
+        suffix=".sqlite",
+        dir=str(output_path.parent),
+    )
+    os.close(fd)
+    return Path(raw_path)
+
+
+def _validate_db_file(db_path: Path) -> ValidationReport:
+    conn = sqlite3.connect(f"file:{db_path}?mode=ro", uri=True)
+    try:
+        return validate(conn)
+    finally:
+        conn.close()
+
+
 def build(exports_dir: Path = DEFAULT_EXPORTS_DIR, output_path: Path = DEFAULT_OUTPUT_DB,
           run_validation: bool = True, report_path: Path | None = None,
           source_register_path: Path | None = None) -> dict:
     exports_dir = Path(exports_dir)
     output_path = Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    if output_path.exists():
-        output_path.unlink()
-
     result = project(exports_dir, source_register_path)
+    temp_db_path = _make_temp_output_path(output_path)
+    _cleanup_sqlite_artifacts(temp_db_path)
 
-    conn = sqlite3.connect(str(output_path))
     try:
-        conn.execute("PRAGMA page_size = 4096")
-        conn.execute("PRAGMA foreign_keys = ON")
-        _create_schema(conn)
-        _insert_objects(conn, result)
-        _insert_detail(conn, result)
-        _insert_relationships(conn, result)
-        _insert_provenance(conn, result)
-        _insert_conflicts(conn, result)
-        fingerprint = content_fingerprint(conn)
-        _insert_meta(conn, result, fingerprint)
-        conn.commit()
-        conn.execute("VACUUM")
-        conn.commit()
+        table_stats = {}
+        conn = sqlite3.connect(str(temp_db_path))
+        try:
+            conn.execute("PRAGMA page_size = 4096")
+            conn.execute("PRAGMA foreign_keys = ON")
+            _create_schema(conn)
+            _insert_objects(conn, result)
+            _insert_detail(conn, result)
+            _insert_relationships(conn, result)
+            _insert_provenance(conn, result)
+            _insert_conflicts(conn, result)
+            fingerprint = content_fingerprint(conn)
+            _insert_meta(conn, result, fingerprint)
+            conn.commit()
+            conn.execute("VACUUM")
+            conn.commit()
+            for table in DATA_TABLES:
+                table_stats[table] = conn.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0]
+        finally:
+            conn.close()
 
-        validation: ValidationReport | None = None
-        if run_validation:
-            validation = validate(conn)
-    finally:
-        conn.close()
+        validation = _validate_db_file(temp_db_path)
+        if not validation.ok:
+            raise RuntimeValidationError(validation)
 
-    table_stats = {}
-    conn = sqlite3.connect(str(output_path))
-    try:
-        for table in DATA_TABLES:
-            table_stats[table] = conn.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0]
-    finally:
-        conn.close()
+        report = {
+            "generated_at": datetime.now(timezone.utc).isoformat(),
+            "exports_dir": str(exports_dir),
+            "output_db": str(output_path),
+            "db_size_bytes": temp_db_path.stat().st_size,
+            "schema_version": SCHEMA_VERSION,
+            "source_fingerprint": result.source_fingerprint,
+            "content_fingerprint": fingerprint,
+            "object_count": len(result.objects),
+            "reference_count": len(result.references),
+            "duplicate_identities_detected": result.duplicate_identities,
+            "table_stats": table_stats,
+            "validation": validation.as_dict() if run_validation else None,
+        }
 
-    report = {
-        "generated_at": datetime.now(timezone.utc).isoformat(),
-        "exports_dir": str(exports_dir),
-        "output_db": str(output_path),
-        "db_size_bytes": output_path.stat().st_size,
-        "schema_version": SCHEMA_VERSION,
-        "source_fingerprint": result.source_fingerprint,
-        "content_fingerprint": fingerprint,
-        "object_count": len(result.objects),
-        "reference_count": len(result.references),
-        "duplicate_identities_detected": result.duplicate_identities,
-        "table_stats": table_stats,
-        "validation": validation.as_dict() if validation else None,
-    }
-    if report_path:
-        Path(report_path).write_text(json.dumps(report, indent=2, sort_keys=True), encoding="utf-8")
-    return report
+        os.replace(temp_db_path, output_path)
+        _cleanup_sqlite_artifacts(temp_db_path)
+        if report_path:
+            Path(report_path).write_text(json.dumps(report, indent=2, sort_keys=True), encoding="utf-8")
+        return report
+    except Exception:
+        _cleanup_sqlite_artifacts(temp_db_path)
+        raise
 
 
 def _print_report(report: dict) -> None:
@@ -268,7 +326,11 @@ def main(argv: list[str] | None = None) -> int:
         if not db_path.exists():
             print(f"error: runtime db not found: {db_path}", file=sys.stderr)
             return 2
-        conn = sqlite3.connect(str(db_path))
+        try:
+            conn = sqlite3.connect(f"file:{db_path}?mode=ro", uri=True)
+        except sqlite3.Error as exc:
+            print(f"error: could not open runtime db read-only: {db_path} ({exc})", file=sys.stderr)
+            return 2
         try:
             report = validate(conn).as_dict()
         finally:
@@ -280,7 +342,10 @@ def main(argv: list[str] | None = None) -> int:
         report = build(Path(args.exports_dir), Path(args.output), run_validation=True,
                        report_path=Path(args.report) if args.report else None,
                        source_register_path=Path(args.source_register))
-    except (FileNotFoundError, OSError, csv.Error) as exc:
+    except RuntimeValidationError as exc:
+        print(json.dumps(exc.report.as_dict(), indent=2, sort_keys=True), file=sys.stderr)
+        return 1
+    except (FileNotFoundError, OSError, csv.Error, ReleaseContractError, json.JSONDecodeError) as exc:
         print(f"error: runtime build failed - {exc}", file=sys.stderr)
         return 2
     _print_report(report)

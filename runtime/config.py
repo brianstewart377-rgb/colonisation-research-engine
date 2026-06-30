@@ -68,6 +68,7 @@ class TableSpec:
 
     table: str
     export: str
+    export_columns: list[str]  # exact ordered CSV header contract
     id_col: str
     object_type: str
     columns: list[str]  # scalar csv columns persisted verbatim (includes id_col)
@@ -83,6 +84,10 @@ TABLE_SPECS: list[TableSpec] = [
     TableSpec(
         table="mechanics",
         export="mechanics.csv",
+        export_columns=[
+            "mechanic_id", "title", "status", "primary_category", "source_basis",
+            "related_evidence", "related_experiments",
+        ],
         id_col="mechanic_id",
         object_type="mechanic",
         columns=["mechanic_id", "title", "status", "primary_category", "source_basis"],
@@ -94,6 +99,11 @@ TABLE_SPECS: list[TableSpec] = [
     TableSpec(
         table="planner_rules",
         export="planner_rules.csv",
+        export_columns=[
+            "rule_id", "title", "status", "category", "rule", "related_mechanics",
+            "planner_implications", "testing_status", "contradictions", "unknowns",
+            "related_decisions", "source",
+        ],
         id_col="rule_id",
         object_type="planner_rule",
         columns=["rule_id", "title", "status", "category", "rule", "planner_implications", "testing_status", "source"],
@@ -110,6 +120,11 @@ TABLE_SPECS: list[TableSpec] = [
     TableSpec(
         table="economy_rules",
         export="economy_rules.csv",
+        export_columns=[
+            "rule_id", "title", "status", "rule", "related_mechanics",
+            "planner_implications", "testing_status", "contradictions", "unknowns",
+            "source",
+        ],
         id_col="rule_id",
         object_type="economy_rule",
         columns=["rule_id", "title", "status", "rule", "planner_implications", "testing_status", "source"],
@@ -125,6 +140,11 @@ TABLE_SPECS: list[TableSpec] = [
     TableSpec(
         table="construction_rules",
         export="construction_rules.csv",
+        export_columns=[
+            "rule_id", "title", "status", "rule", "related_mechanics",
+            "planner_implications", "testing_status", "contradictions", "unknowns",
+            "source",
+        ],
         id_col="rule_id",
         object_type="construction_rule",
         columns=["rule_id", "title", "status", "rule", "planner_implications", "testing_status", "source"],
@@ -140,6 +160,10 @@ TABLE_SPECS: list[TableSpec] = [
     TableSpec(
         table="planner_risks",
         export="planner_risks.csv",
+        export_columns=[
+            "risk_id", "title", "severity", "failure_mode", "why_dangerous",
+            "required_mitigation", "source",
+        ],
         id_col="risk_id",
         object_type="planner_risk",
         columns=["risk_id", "title", "severity", "failure_mode", "why_dangerous", "required_mitigation", "source"],
@@ -151,11 +175,20 @@ TABLE_SPECS: list[TableSpec] = [
     TableSpec(
         table="decisions",
         export="decisions.csv",
+        export_columns=[
+            "decision_id", "title", "status", "date", "context", "problem_statement",
+            "alternatives_considered", "decision", "rationale", "trade_offs",
+            "consequences", "evidence_references", "claim_references",
+            "mechanic_references", "planner_rule_references",
+            "experiment_references", "supersedes", "superseded_by", "confidence",
+            "review_status",
+        ],
         id_col="decision_id",
         object_type="decision",
         columns=[
             "decision_id", "title", "status", "date", "context", "problem_statement",
-            "decision", "rationale", "trade_offs", "consequences", "confidence", "review_status",
+            "decision", "rationale", "trade_offs", "consequences", "confidence",
+            "review_status",
         ],
         title_col="title",
         status_col="status",
@@ -172,6 +205,10 @@ TABLE_SPECS: list[TableSpec] = [
     TableSpec(
         table="governance_decisions",
         export="governance_decisions.csv",
+        export_columns=[
+            "decision_id", "title", "status", "decision_to_make", "why_it_matters",
+            "related_unknowns", "related_risks", "blocking_impact", "source",
+        ],
         id_col="decision_id",
         object_type="governance_decision",
         columns=["decision_id", "title", "status", "decision_to_make", "why_it_matters", "blocking_impact", "source"],
@@ -183,6 +220,11 @@ TABLE_SPECS: list[TableSpec] = [
     TableSpec(
         table="unknowns",
         export="unknowns.csv",
+        export_columns=[
+            "unknown_id", "title", "category", "unknown_statement",
+            "related_mechanics", "related_live_verification",
+            "planner_implications", "source",
+        ],
         id_col="unknown_id",
         object_type="unknown",
         columns=["unknown_id", "title", "category", "unknown_statement", "planner_implications", "source"],
@@ -194,6 +236,11 @@ TABLE_SPECS: list[TableSpec] = [
     TableSpec(
         table="contradictions",
         export="contradictions.csv",
+        export_columns=[
+            "contradiction_id", "title", "category", "description", "confidence",
+            "related_mechanics", "planner_implications", "testing_status",
+            "unknowns", "source",
+        ],
         id_col="contradiction_id",
         object_type="contradiction",
         columns=["contradiction_id", "title", "category", "description", "confidence", "planner_implications", "testing_status", "source"],
@@ -205,6 +252,10 @@ TABLE_SPECS: list[TableSpec] = [
     TableSpec(
         table="observations",
         export="observations.csv",
+        export_columns=[
+            "observation_id", "source_id", "context", "observation_type",
+            "statement", "confidence", "related_mechanics", "planner_relevance",
+        ],
         id_col="observation_id",
         object_type="observation",
         columns=["observation_id", "source_id", "context", "observation_type", "statement", "confidence", "planner_relevance"],
@@ -215,6 +266,13 @@ TABLE_SPECS: list[TableSpec] = [
     TableSpec(
         table="claims",
         export="claims.csv",
+        export_columns=[
+            "claim_id", "claim_type", "status", "confidence", "title", "claim_text",
+            "primary_basis", "linked_mechanics", "linked_contradictions",
+            "linked_unknowns", "source_document", "page_or_sheet",
+            "section_heading", "category", "evidence_type", "planner_implication",
+            "needs_live_verification",
+        ],
         id_col="claim_id",
         object_type="claim",
         columns=[
@@ -235,6 +293,11 @@ TABLE_SPECS: list[TableSpec] = [
     TableSpec(
         table="live_verifications",
         export="live_verification_matrix.csv",
+        export_columns=[
+            "verification_id", "title", "primary_target", "method_type",
+            "required_state", "primary_observations", "success_condition",
+            "linked_mechanics",
+        ],
         id_col="verification_id",
         object_type="live_verification",
         columns=["verification_id", "title", "primary_target", "method_type", "required_state", "primary_observations", "success_condition"],
@@ -250,6 +313,21 @@ GRAPH_EDGES_EXPORT = "graph_edges.csv"
 CLAIM_PROVENANCE_EXPORT = "claim_provenance_links.csv"
 EVIDENCE_TRACEABILITY_EXPORT = "evidence_traceability.csv"
 MANIFEST_EXPORT = "export_manifest.json"
+
+RELEASE_AUX_EXPORT_HEADERS = {
+    GRAPH_NODES_EXPORT: [
+        "node_id", "node_type", "title", "status", "category", "source_ref", "path_or_ref",
+    ],
+    GRAPH_EDGES_EXPORT: [
+        "source_id", "relationship", "target_id", "basis",
+    ],
+    CLAIM_PROVENANCE_EXPORT: [
+        "claim_id", "source_entity", "relationship", "basis_note",
+    ],
+    EVIDENCE_TRACEABILITY_EXPORT: [
+        "evidence_id", "mechanic_id", "relationship", "strength", "basis", "notes",
+    ],
+}
 
 # The reference-source register is a canonical input that is *not* part of the
 # release export bundle. It is therefore declared as an explicit, separately
@@ -313,3 +391,9 @@ def extract_ids(text: str | None) -> list[str]:
         if match not in seen:
             seen.append(match)
     return seen
+
+
+def required_release_export_headers() -> dict[str, list[str]]:
+    headers = {spec.export: list(spec.export_columns) for spec in TABLE_SPECS}
+    headers.update({name: list(cols) for name, cols in RELEASE_AUX_EXPORT_HEADERS.items()})
+    return headers
