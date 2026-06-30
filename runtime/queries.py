@@ -937,7 +937,6 @@ class Runtime:
             [
                 self.get_decision(e.from_id) or {"decision_id": e.from_id}
                 for e in decision_edges
-                if self.get_decision(e.from_id) is not None
             ],
             "decision_id",
         )

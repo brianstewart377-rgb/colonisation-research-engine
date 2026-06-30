@@ -1,5 +1,8 @@
 import json
+import shutil
+import sqlite3
 from hashlib import sha256
+from pathlib import Path
 
 from runtime.queries import Runtime
 
@@ -101,6 +104,38 @@ def test_explain_claim_cl0010_surfaces_related_decisions(runtime_db):
         assert bundle is not None
 
         assert "D-0003" in _ids(bundle["related_decisions"], "decision_id")
+
+
+def test_explain_claim_preserves_missing_decision_references(runtime_db):
+    db_path, _ = runtime_db
+    mutated_path = Path(str(db_path) + ".missing-decision-copy")
+    shutil.copyfile(db_path, mutated_path)
+    try:
+        conn = sqlite3.connect(mutated_path)
+        conn.execute(
+            """
+            INSERT INTO object_references (from_id, to_id, relationship, origin)
+            VALUES (?, ?, ?, ?)
+            """,
+            ("D-9999", "CL-0010", "references_claim", "test_missing_decision_reference"),
+        )
+        conn.commit()
+        conn.close()
+
+        with Runtime(mutated_path) as rt:
+            bundle = rt.explain_claim("CL-0010")
+            assert bundle is not None
+
+            related_decisions = bundle["related_decisions"]
+            assert "D-0003" in _ids(related_decisions, "decision_id")
+            assert {"decision_id": "D-9999"} in related_decisions
+
+            nodes_by_id = {node["id"]: node for node in bundle["trace"]["nodes"]}
+            assert "D-9999" in nodes_by_id
+            assert nodes_by_id["D-9999"]["registry_status"] == "missing_from_registry"
+    finally:
+        if mutated_path.exists():
+            mutated_path.unlink()
 
 
 def test_explain_claim_trace_edges_reference_existing_nodes(runtime_db):
