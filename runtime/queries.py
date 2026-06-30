@@ -636,7 +636,7 @@ class Runtime:
                 }
             )
 
-        direct_evidence_rows = self._all(
+        traceability_rows = self._all(
             """
             SELECT et.evidence_id,
                    e.title,
@@ -655,14 +655,24 @@ class Runtime:
             (mechanic_id,),
         )
         traceability_edges: list[_Edge] = []
-        for row in direct_evidence_rows:
+        evidence_traceability_by_id: dict[str, list[dict]] = {}
+        for row in traceability_rows:
             evidence_id = row["evidence_id"]
             rel = row.get("relationship") or "traceability"
             traceability_edges.append(_Edge(evidence_id, mechanic_id, rel, "evidence_traceability"))
             if self.get_experiment(evidence_id) is not None:
                 experiment_ids.add(evidence_id)
-            if self.get_evidence(evidence_id) is not None:
+            evidence_row = self.get_evidence(evidence_id)
+            if evidence_row is not None:
                 direct_evidence_ids.add(evidence_id)
+                trace_row = {
+                    "evidence_id": evidence_id,
+                    "relationship": row.get("relationship"),
+                    "strength": row.get("strength"),
+                    "basis": row.get("basis"),
+                    "notes": row.get("notes"),
+                }
+                evidence_traceability_by_id.setdefault(evidence_id, []).append(trace_row)
 
         guardrail_contradictions = _sort_dicts(
             [
@@ -753,17 +763,23 @@ class Runtime:
             key=lambda x: ((x["category"] or ""), (x["item"].get("id") or x["item"].get("object_id") or "")),
         )
 
-        direct_evidence = []
-        seen_traceability: set[tuple[str, str | None]] = set()
-        for row in direct_evidence_rows:
-            key = (row["evidence_id"], row.get("relationship"))
-            if key in seen_traceability:
-                continue
-            seen_traceability.add(key)
-            direct_evidence.append(row)
         direct_evidence = sorted(
-            direct_evidence,
-            key=lambda r: ((r.get("evidence_id") or ""), (r.get("relationship") or "")),
+            [
+                {
+                    "evidence": self.get_evidence(evidence_id) or {"evidence_id": evidence_id},
+                    "traceability": sorted(
+                        evidence_traceability_by_id.get(evidence_id, []),
+                        key=lambda r: (
+                            r.get("evidence_id") or "",
+                            r.get("relationship") or "",
+                            r.get("basis") or "",
+                            r.get("notes") or "",
+                        ),
+                    ),
+                }
+                for evidence_id in sorted(direct_evidence_ids)
+            ],
+            key=lambda r: (r["evidence"].get("evidence_id") or ""),
         )
 
         return {
