@@ -38,6 +38,18 @@ def _sort_by_embedded_id(rows: list[dict], obj_key: str, id_key: str) -> list[di
     return sorted(rows, key=k)
 
 
+def _trace_node_from_object(oid: str, obj: dict | None) -> dict:
+    if obj is None:
+        return {"id": oid, "registry_status": "missing_from_registry"}
+    return {
+        "id": obj.get("object_id", oid),
+        "type": obj.get("object_type"),
+        "title": obj.get("title"),
+        "status": obj.get("status"),
+        "registry_status": "registered",
+    }
+
+
 @dataclass(frozen=True)
 class _Edge:
     from_id: str
@@ -182,8 +194,13 @@ class Runtime:
                 "mechanic_id",
             ),
             "planner_rules": _sort_dicts(
-                [self.get_object(i) or {"object_id": i} for i in _sorted_ids(direct_rule_ids)],
-                "object_id",
+                [
+                    self.get_planner_rule(i)
+                    or self.get_object(i)
+                    or {"object_id": i}
+                    for i in _sorted_ids(direct_rule_ids)
+                ],
+                "rule_id",
             ),
             "experiments": _sort_dicts(
                 [self.get_experiment(i) or {"experiment_id": i} for i in _sorted_ids(direct_experiment_ids)],
@@ -407,15 +424,7 @@ class Runtime:
 
         nodes = []
         for oid in sorted(node_ids):
-            obj = self.get_object(oid) or {"object_id": oid}
-            nodes.append(
-                {
-                    "id": obj.get("object_id", oid),
-                    "type": obj.get("object_type"),
-                    "title": obj.get("title"),
-                    "status": obj.get("status"),
-                }
-            )
+            nodes.append(_trace_node_from_object(oid, self.get_object(oid)))
 
         edges: list[dict] = []
         for e in sorted(direct_edges + claim_edges + mechanic_edges + traceability_edges, key=lambda x: (x.from_id, x.relationship, x.to_id, x.origin)):
