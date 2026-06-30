@@ -99,10 +99,18 @@ def _insert_relationships(conn: sqlite3.Connection, result: ProjectionResult) ->
 
 
 def _insert_provenance(conn: sqlite3.Connection, result: ProjectionResult) -> None:
-    rows = sorted(result.provenance, key=lambda r: r["object_type"])
+    rows = sorted(result.provenance, key=lambda r: r["export_path"])
     conn.executemany(
-        "INSERT INTO provenance (object_type, export_path, source_register, record_count) VALUES (?,?,?,?)",
-        [(r["object_type"], r["export_path"], r["source_register"], r["record_count"]) for r in rows],
+        "INSERT INTO provenance (export_path, object_type, source_register, record_count) VALUES (?,?,?,?)",
+        [(r["export_path"], r["object_type"], r["source_register"], r["record_count"]) for r in rows],
+    )
+
+
+def _insert_conflicts(conn: sqlite3.Connection, result: ProjectionResult) -> None:
+    rows = sorted(result.graph_conflicts, key=lambda r: (r["object_id"], r["field"]))
+    conn.executemany(
+        "INSERT INTO graph_node_conflicts (id, object_id, field, typed_value, graph_value) VALUES (?,?,?,?,?)",
+        [(i, r["object_id"], r["field"], r["typed_value"], r["graph_value"]) for i, r in enumerate(rows, 1)],
     )
 
 
@@ -127,6 +135,9 @@ def content_fingerprint(conn: sqlite3.Connection) -> str:
 
 
 def _insert_meta(conn: sqlite3.Connection, result: ProjectionResult, fingerprint: str) -> None:
+    source_register_fp = ""
+    if config.SOURCE_REGISTER.exists():
+        source_register_fp = hashlib.sha256(config.SOURCE_REGISTER.read_bytes()).hexdigest()
     meta = {
         "schema_version": SCHEMA_VERSION,
         "manifest_version": result.manifest.get("export_manifest_version", ""),
@@ -135,6 +146,9 @@ def _insert_meta(conn: sqlite3.Connection, result: ProjectionResult, fingerprint
         "content_fingerprint": fingerprint,
         "object_count": str(len(result.objects)),
         "reference_count": str(len(result.references)),
+        # Explicitly-declared auxiliary runtime input (not part of the export bundle).
+        "source_register_path": config.SOURCE_REGISTER_REL,
+        "source_register_fingerprint": source_register_fp,
     }
     conn.executemany(
         "INSERT INTO runtime_meta (key, value) VALUES (?,?)",
@@ -161,6 +175,7 @@ def build(exports_dir: Path = DEFAULT_EXPORTS_DIR, output_path: Path = DEFAULT_O
         _insert_detail(conn, result)
         _insert_relationships(conn, result)
         _insert_provenance(conn, result)
+        _insert_conflicts(conn, result)
         fingerprint = content_fingerprint(conn)
         _insert_meta(conn, result, fingerprint)
         conn.commit()
@@ -220,10 +235,9 @@ def _print_report(report: dict) -> None:
         print("-" * 64)
         print(f"validation       : {'PASS' if val['ok'] else 'FAIL'}")
         for name, count in val["stats"].items():
-            if name.endswith(("references", "identities", "provenance", "objects", "keys", "links", "edges")):
-                print(f"  {name:<28} {count}")
+            print(f"  {name:<32} {count}")
         if not val["ok"]:
-            print("  errors:")
+            print("  ERRORS:")
             for name, items in val["errors"].items():
                 print(f"    {name}: {len(items)}")
     print("=" * 64)

@@ -37,7 +37,16 @@ planner rules depending on M-0007 (PR-0003) · evidence supporting CL-0042 (MG-0
 decisions referencing M-0010 (D-0001) · mechanics blocked by live verification ·
 contradictions affecting a recommendation (C-0002 for M-0005).
 
-## Backlog / next (future sprints — NOT in scope of Sprint 1)
+## Sprint 1 Hardening (DONE 2026-06-30)
+- P0 read-only test fixed: `pytest.raises(sqlite3.OperationalError)` + post-write reread confirms data unchanged.
+- P0 identity-family/type integrity: `validation.check_identity_integrity` enforces valid prefix, prefix→type, table family, objects.object_type agreement; cross-family/mismatch/invalid ids are errors. Negative tests added.
+- P1 honest provenance model: decisions use STRUCTURED provenance (typed reference edges) → reported as info, not false missing-source warnings. Scalar types (mechanic/claim/planner_rule) keep source_ref check. Report split into errors/warnings/info/stats.
+- P1 release-portable inputs: source register declared as explicit separately-versioned runtime input; `runtime_meta.source_register_path` + `source_register_fingerprint` recorded; docs corrected (not "exports only").
+- P1 contradiction traversal: `contradictions_affecting` now resolves direct_mechanic / direct_rule / indirect_rule (rule→depends_on_mechanic→mechanic→contradiction). Regression tests for all paths + no-false-positive.
+- P2: provenance keyed by export_path; graph_node_conflicts table records graph-vs-typed metadata drift (3 status drifts) surfaced as warnings; fingerprints use repo-relative paths; `mechanics_blocked_by_live_verification` renamed to `mechanics_pending_live_verification` (alias kept).
+- Tests: 40 passed. Validation PASS. Byte-identical rebuild verified (sha 636cdb67…). Remaining warnings: G-0015 orphan (canonical gap) + 3 graph status drifts (ER-0009/ER-0010/CR-0008).
+
+## Backlog / next (future sprints — NOT in scope)
 - P1: Promote `G-0015` glossary node in canonical `graph_nodes.csv` (source-side fix).
 - P1: Richer query module (transitive evidence chains, reverse dependency graphs).
 - P2: CLI query tool / export of query results.

@@ -35,8 +35,10 @@ def main() -> None:
         _show("Which planner rules depend on M-0007?", rt.planner_rules_depending_on("M-0007"))
         _show("Which evidence supports CL-0042?", rt.evidence_supporting_claim("CL-0042"))
         _show("Which decisions reference M-0010?", rt.decisions_referencing("M-0010"))
-        _show("Which mechanics remain blocked by live verification?", rt.mechanics_blocked_by_live_verification())
-        _show("Which contradictions affect M-0005?", rt.contradictions_affecting("M-0005"))
+        _show("Which mechanics have pending live verification?", rt.mechanics_pending_live_verification())
+        _show("Which contradictions affect mechanic M-0005? (direct)", rt.contradictions_affecting("M-0005"))
+        _show("Which contradictions affect rule ER-0002? (direct rule)", rt.contradictions_affecting("ER-0002"))
+        _show("Which contradictions affect rule PR-0003? (indirect via mechanic)", rt.contradictions_affecting("PR-0003"))
 
 
 if __name__ == "__main__":

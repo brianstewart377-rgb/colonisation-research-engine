@@ -23,10 +23,12 @@ CREATE TABLE runtime_meta (
     value TEXT NOT NULL
 );
 
--- Table-level provenance: where each projected table came from.
+-- Table-level provenance: where each projected table came from. Keyed by the
+-- canonical export path (the stable release-bundle artifact identity) rather
+-- than by object type, so re-sourcing or splitting an export stays expressible.
 CREATE TABLE provenance (
-    object_type     TEXT PRIMARY KEY,
-    export_path     TEXT NOT NULL,
+    export_path     TEXT PRIMARY KEY,
+    object_type     TEXT NOT NULL,
     source_register TEXT NOT NULL,
     record_count    INTEGER NOT NULL
 );
@@ -250,3 +252,16 @@ CREATE TABLE graph_edges (
 );
 CREATE INDEX idx_ge_source ON graph_edges(source_id);
 CREATE INDEX idx_ge_target ON graph_edges(target_id);
+
+-- Metadata drift between a graph node and the typed canonical object of the
+-- same identity (e.g. an abbreviated status on the graph node). Recorded so the
+-- conflict is surfaced as a validation warning instead of silently lost when
+-- the typed (authoritative) value wins in the `objects` registry.
+CREATE TABLE graph_node_conflicts (
+    id          INTEGER PRIMARY KEY,
+    object_id   TEXT NOT NULL,
+    field       TEXT NOT NULL,
+    typed_value TEXT,
+    graph_value TEXT
+);
+CREATE INDEX idx_gnc_object ON graph_node_conflicts(object_id);

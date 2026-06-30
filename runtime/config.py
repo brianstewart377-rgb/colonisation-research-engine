@@ -251,8 +251,40 @@ CLAIM_PROVENANCE_EXPORT = "claim_provenance_links.csv"
 EVIDENCE_TRACEABILITY_EXPORT = "evidence_traceability.csv"
 MANIFEST_EXPORT = "export_manifest.json"
 
-# Reference-source register lives outside exports/ (it is canonical input).
-SOURCE_REGISTER = REPO_ROOT / "reference_sources" / "source_register.csv"
+# The reference-source register is a canonical input that is *not* part of the
+# release export bundle. It is therefore declared as an explicit, separately
+# versioned runtime input: its stable repo-relative path and a content
+# fingerprint are recorded in runtime_meta (see build_runtime), so the runtime's
+# input surface is fully documented rather than implicitly "exports only".
+SOURCE_REGISTER_REL = "reference_sources/source_register.csv"
+SOURCE_REGISTER = REPO_ROOT / SOURCE_REGISTER_REL
+
+# Provenance model per object family.
+#   * scalar:     provenance is a canonical source pointer on the object itself
+#                 (objects.source_ref); a missing pointer is a warning.
+#   * structured: provenance is expressed through typed reference edges (e.g. a
+#                 decision references the mechanics/claims/evidence it rests on);
+#                 these objects legitimately have no scalar source_ref.
+SCALAR_PROVENANCE_TYPES = {"mechanic", "claim", "planner_rule"}
+STRUCTURED_PROVENANCE_TYPES = {"decision"}
+STRUCTURED_PROVENANCE_RELATIONSHIPS = (
+    "references_mechanic", "references_rule", "references_evidence",
+    "references_claim", "references_experiment",
+)
+
+
+def prefix_of(object_id: str | None) -> str | None:
+    """Return the identity family prefix of a canonical id (e.g. ``M-0007`` -> ``M``)."""
+
+    if not object_id or "-" not in object_id:
+        return None
+    return object_id.split("-", 1)[0]
+
+
+def type_for_id(object_id: str | None) -> str | None:
+    """Return the object type implied by an id's family prefix, if known."""
+
+    return PREFIX_TO_TYPE.get(prefix_of(object_id))
 
 # Every table that carries projected data (used for the content fingerprint).
 DATA_TABLES = [
@@ -262,6 +294,7 @@ DATA_TABLES = [
     "contradictions", "observations", "claims", "live_verifications",
     "evidence", "experiments", "sources",
     "object_references", "claim_provenance_links", "evidence_traceability", "graph_edges",
+    "graph_node_conflicts",
 ]
 
 

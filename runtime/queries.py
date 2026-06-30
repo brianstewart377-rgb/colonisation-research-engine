@@ -122,18 +122,21 @@ class Runtime:
             (mechanic_id,),
         )
 
-    def mechanics_blocked_by_live_verification(self) -> list[dict]:
-        """Which mechanics remain blocked by (pending) live verification?
+    def mechanics_pending_live_verification(self) -> list[dict]:
+        """Mechanics that have outstanding live verification attached.
 
-        A mechanic is considered blocked when it is targeted by an entry in the
-        live-verification matrix or by a claim still flagged as needing live
-        verification.
+        A mechanic is *pending live verification* when it is targeted by an
+        entry in the live-verification matrix, or by a claim still flagged as
+        needing live verification. This identifies mechanics whose confidence is
+        gated on real-game testing; it does NOT assert that every downstream use
+        of the mechanic is automatically blocked - that judgement belongs to the
+        (out-of-scope) planner layer, not the runtime.
         """
 
         return self._all(
             """
             SELECT m.mechanic_id, m.title, m.status,
-                   GROUP_CONCAT(DISTINCT r.from_id) AS blocking_sources
+                   GROUP_CONCAT(DISTINCT r.from_id) AS pending_verification_sources
             FROM mechanics m
             JOIN object_references r ON r.to_id = m.mechanic_id
             WHERE r.relationship IN ('verifies_mechanic', 'supports_mechanic')
@@ -146,28 +149,53 @@ class Runtime:
             """
         )
 
-    def contradictions_affecting(self, object_id: str) -> list[dict]:
-        """Which contradictions affect this recommendation (mechanic/rule)?
+    # Backwards-compatible alias for the original success-criteria phrasing.
+    def mechanics_blocked_by_live_verification(self) -> list[dict]:
+        return self.mechanics_pending_live_verification()
 
-        Combines contradictions that directly reference the object and
-        contradictions linked through a planner/economy/construction rule that
-        depends on the same mechanic.
+    def contradictions_affecting(self, object_id: str) -> list[dict]:
+        """Which contradictions affect this recommendation (a mechanic or rule)?
+
+        Resolves three paths and labels each via ``link_path``:
+          * direct_mechanic - the object is a mechanic a contradiction affects;
+          * direct_rule     - the object is a rule that records a contradiction;
+          * indirect_rule   - rule --depends_on_mechanic--> mechanic
+                              <--affects_mechanic-- contradiction.
         """
 
         return self._all(
             """
-            SELECT DISTINCT c.contradiction_id, c.title, c.confidence, c.planner_implications
+            -- direct: object is a mechanic the contradiction affects
+            SELECT c.contradiction_id, c.title, c.confidence, c.planner_implications,
+                   'direct_mechanic' AS link_path
             FROM contradictions c
-            JOIN object_references r ON r.from_id = c.contradiction_id
-            WHERE r.to_id = ? AND r.relationship = 'affects_mechanic'
+            JOIN object_references r
+              ON r.from_id = c.contradiction_id AND r.relationship = 'affects_mechanic'
+            WHERE r.to_id = ?
+
             UNION
-            SELECT DISTINCT c.contradiction_id, c.title, c.confidence, c.planner_implications
+
+            -- direct: object is a rule that records the contradiction
+            SELECT c.contradiction_id, c.title, c.confidence, c.planner_implications,
+                   'direct_rule' AS link_path
             FROM object_references rr
             JOIN contradictions c ON c.contradiction_id = rr.to_id
             WHERE rr.from_id = ? AND rr.relationship = 'has_contradiction'
-            ORDER BY 1
+
+            UNION
+
+            -- indirect: object is a rule depending on a mechanic the contradiction affects
+            SELECT c.contradiction_id, c.title, c.confidence, c.planner_implications,
+                   'indirect_rule' AS link_path
+            FROM object_references dep
+            JOIN object_references aff
+              ON aff.to_id = dep.to_id AND aff.relationship = 'affects_mechanic'
+            JOIN contradictions c ON c.contradiction_id = aff.from_id
+            WHERE dep.from_id = ? AND dep.relationship = 'depends_on_mechanic'
+
+            ORDER BY 1, 5
             """,
-            (object_id, object_id),
+            (object_id, object_id, object_id),
         )
 
     # ------------------------------------------------------------------ #

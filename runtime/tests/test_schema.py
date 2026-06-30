@@ -7,6 +7,7 @@ EXPECTED_TABLES = {
     "contradictions", "observations", "claims", "live_verifications",
     "evidence", "experiments", "sources",
     "object_references", "claim_provenance_links", "evidence_traceability", "graph_edges",
+    "graph_node_conflicts",
 }
 
 
@@ -30,6 +31,9 @@ def test_runtime_meta_populated(conn):
     assert len(meta["content_fingerprint"]) == 64
     assert len(meta["source_fingerprint"]) == 64
     assert int(meta["object_count"]) > 0
+    # The reference-source register is declared as an explicit runtime input.
+    assert meta["source_register_path"] == "reference_sources/source_register.csv"
+    assert len(meta["source_register_fingerprint"]) == 64
 
 
 def test_provenance_table_records_sources(conn):

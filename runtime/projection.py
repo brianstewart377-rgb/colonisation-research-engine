@@ -59,6 +59,7 @@ class ProjectionResult:
     claim_provenance: list[dict] = field(default_factory=list)
     evidence_traceability: list[dict] = field(default_factory=list)
     graph_edges: list[dict] = field(default_factory=list)
+    graph_conflicts: list[dict] = field(default_factory=list)
     provenance: list[dict] = field(default_factory=list)
     manifest: dict = field(default_factory=dict)
     source_fingerprint: str = ""
@@ -125,18 +126,36 @@ def _project_graph_nodes(result: ProjectionResult, rows: list[dict]) -> None:
 
     evidence: list[dict] = []
     experiments: list[dict] = []
+    detail_origins = {s.export for s in TABLE_SPECS} | {"source_register"}
     for raw in rows:
         nid = _clean(raw.get("node_id"))
         if nid is None:
             continue
         ntype = _clean(raw.get("node_type")) or "unknown_type"
+        node_status = _clean(raw.get("status"))
+        node_title = _clean(raw.get("title"))
+        # If a typed canonical object already declared this identity, compare the
+        # graph node's metadata against it and record any drift before the
+        # authoritative typed value wins in the registry.
+        existing = result.objects.get(nid)
+        if existing is not None and existing.origin in detail_origins:
+            if ntype != "unknown_type" and ntype != existing.object_type:
+                result.graph_conflicts.append({
+                    "object_id": nid, "field": "object_type",
+                    "typed_value": existing.object_type, "graph_value": ntype,
+                })
+            if node_status and existing.status and node_status != existing.status:
+                result.graph_conflicts.append({
+                    "object_id": nid, "field": "status",
+                    "typed_value": existing.status, "graph_value": node_status,
+                })
         _add_object(
             result,
             ObjectRecord(
                 object_id=nid,
                 object_type=ntype,
-                title=_clean(raw.get("title")),
-                status=_clean(raw.get("status")),
+                title=node_title,
+                status=node_status,
                 source_ref=_clean(raw.get("path_or_ref")) or _clean(raw.get("source_ref")),
                 origin=config.GRAPH_NODES_EXPORT,
             ),
@@ -191,9 +210,21 @@ def _project_sources(result: ProjectionResult, rows: list[dict]) -> None:
 
 
 def _fingerprint_inputs(paths: list[Path]) -> str:
+    """Fingerprint inputs using stable repo-relative paths (not just basenames).
+
+    Including the path means two distinct inputs that happen to share a basename
+    can never collide, and the fingerprint is stable across checkouts.
+    """
+
+    def rel(path: Path) -> str:
+        try:
+            return path.resolve().relative_to(config.REPO_ROOT).as_posix()
+        except ValueError:
+            return path.name
+
     h = hashlib.sha256()
-    for path in sorted(paths, key=lambda p: p.name):
-        h.update(path.name.encode())
+    for path in sorted(paths, key=rel):
+        h.update(rel(path).encode())
         h.update(b"\x00")
         h.update(path.read_bytes())
         h.update(b"\x00")

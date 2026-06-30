@@ -1,19 +1,53 @@
 {
   "errors": {},
+  "info": {
+    "structured_provenance_objects": [
+      {
+        "object_id": "D-0001",
+        "object_type": "decision",
+        "structured_refs": 6
+      },
+      {
+        "object_id": "D-0002",
+        "object_type": "decision",
+        "structured_refs": 10
+      },
+      {
+        "object_id": "D-0003",
+        "object_type": "decision",
+        "structured_refs": 6
+      },
+      {
+        "object_id": "D-0004",
+        "object_type": "decision",
+        "structured_refs": 4
+      },
+      {
+        "object_id": "D-0005",
+        "object_type": "decision",
+        "structured_refs": 4
+      }
+    ]
+  },
   "ok": true,
   "stats": {
     "broken_provenance": 0,
+    "canonical_source_orphans": 1,
     "claim_provenance_links": 370,
     "duplicate_identities": 0,
     "graph_edges": 294,
+    "graph_metadata_conflicts": 3,
+    "identity_integrity_errors": 0,
     "invalid_foreign_keys": 0,
     "missing_required_objects": 0,
+    "missing_source_ref": 0,
     "object_references": 1346,
     "objects": 604,
-    "orphan_references": 1
+    "structured_provenance_objects": 5,
+    "unresolved_provenance_gaps": 0
   },
   "warnings": {
-    "orphan_references": [
+    "canonical_source_orphans": [
       {
         "id": "G-0015",
         "kinds": [
@@ -21,31 +55,24 @@
         ]
       }
     ],
-    "provenance_warnings": [
+    "graph_metadata_conflicts": [
       {
-        "issue": "missing_source_ref",
-        "object_id": "D-0001",
-        "object_type": "decision"
+        "field": "status",
+        "graph_value": "Confirmed",
+        "object_id": "CR-0008",
+        "typed_value": "Confirmed as a caution rule"
       },
       {
-        "issue": "missing_source_ref",
-        "object_id": "D-0002",
-        "object_type": "decision"
+        "field": "status",
+        "graph_value": "Confirmed",
+        "object_id": "ER-0009",
+        "typed_value": "Confirmed for narrow scope"
       },
       {
-        "issue": "missing_source_ref",
-        "object_id": "D-0003",
-        "object_type": "decision"
-      },
-      {
-        "issue": "missing_source_ref",
-        "object_id": "D-0004",
-        "object_type": "decision"
-      },
-      {
-        "issue": "missing_source_ref",
-        "object_id": "D-0005",
-        "object_type": "decision"
+        "field": "status",
+        "graph_value": "Confirmed",
+        "object_id": "ER-0010",
+        "typed_value": "Confirmed as a caution rule"
       }
     ]
   }

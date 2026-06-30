@@ -34,11 +34,16 @@ Run all commands from the repository root (`/app`).
 
 ## Architecture decisions
 
-1. **Repository stays canonical; runtime is a pure function of the exports.**
-   The builder reads only the deterministic *release exports*
-   (`exports/*.csv` + `export_manifest.json`) and the canonical reference-source
-   register. It never parses Markdown directly when an export exists, and it
-   never writes back to the repository.
+1. **Repository stays canonical; runtime is a pure function of its inputs.**
+   The builder reads two explicitly-declared canonical inputs: (a) the
+   deterministic *release export bundle* (`exports/*.csv` +
+   `export_manifest.json`), and (b) one auxiliary canonical input — the
+   reference-source register (`reference_sources/source_register.csv`). The
+   register is not part of the export bundle, so it is declared as a separately
+   versioned runtime input: its stable repo-relative path and a content
+   fingerprint are recorded in `runtime_meta` (`source_register_path`,
+   `source_register_fingerprint`). The builder never parses Markdown when an
+   export exists and never writes back to the repository.
 
 2. **SQLite, standard library only.** A single-file SQLite database is the ideal
    disposable runtime: zero services, trivially deletable, fast to query. The
@@ -68,8 +73,24 @@ Run all commands from the repository root (`/app`).
    surrogate keys are assigned deterministically, no wall-clock value is stored
    inside the database, and a `VACUUM` normalises the file. A `content_fingerprint`
    (sha256 over all data tables, order-independent) and a `source_fingerprint`
-   (sha256 over the input files) are stored in `runtime_meta` and reported.
-   Rebuilding from identical exports yields a **byte-identical** database.
+   (sha256 over the input files, keyed by **stable repo-relative path**) are
+   stored in `runtime_meta` and reported. Rebuilding from identical inputs yields
+   a **byte-identical** database.
+
+7. **Identity-family integrity is enforced.** Validation checks that every typed
+   detail-row id has a valid canonical prefix, that the prefix maps to the
+   table's expected object type, and that `objects.object_type` agrees with the
+   type implied by the id prefix. Malformed or cross-family ids are **errors**.
+
+8. **Provenance has two honest models.** *Scalar-provenance* objects
+   (`mechanic`, `claim`, `planner_rule`) carry a canonical `source_ref`; a
+   missing one is a warning. *Structured-provenance* objects (`decision`) derive
+   provenance through typed reference edges (the mechanics / claims / evidence /
+   experiments they rest on) and therefore legitimately have **no** scalar
+   `source_ref`. Validation confirms each decision has ≥1 structured reference
+   and reports them as `info.structured_provenance_objects` rather than spurious
+   "missing source" warnings. A decision with zero structured references would be
+   an `unresolved_provenance_gap` warning.
 
 ---
 
@@ -81,6 +102,7 @@ Run all commands from the repository root (`/app`).
 | Identity registry | `objects` |
 | Typed detail | `mechanics`, `planner_rules`, `economy_rules`, `construction_rules`, `planner_risks`, `decisions`, `governance_decisions`, `unknowns`, `contradictions`, `observations`, `claims`, `live_verifications`, `evidence`, `experiments`, `sources` |
 | Relationships | `object_references` (derived), `graph_edges`, `claim_provenance_links`, `evidence_traceability` (verbatim) |
+| Audit | `graph_node_conflicts` (graph-vs-typed metadata drift) |
 
 Full DDL with inline rationale: [`schema.sql`](schema.sql).
 
@@ -88,8 +110,11 @@ Full DDL with inline rationale: [`schema.sql`](schema.sql).
   table-agnostic provenance pointer.
 - `object_references(id, from_id, to_id, relationship, origin)` — normalised
   edges; `origin` records which export/column produced each edge.
-- `provenance(object_type, export_path, source_register, record_count)` —
-  table-level provenance projected straight from `export_manifest.json`.
+- `provenance(export_path PK, object_type, source_register, record_count)` —
+  table-level provenance keyed by canonical export path (so re-sourcing or
+  splitting an export stays expressible), projected from `export_manifest.json`.
+- `graph_node_conflicts(id, object_id, field, typed_value, graph_value)` —
+  recorded metadata drift between a graph node and the typed canonical object.
 
 ---
 
@@ -126,8 +151,20 @@ The runtime answers the Sprint-1 success-criteria questions (see
 | Which planner rules depend on M-0007? | `planner_rules_depending_on("M-0007")` → `PR-0003` |
 | Which evidence supports CL-0042? | `evidence_supporting_claim("CL-0042")` → `MG-0001` |
 | Which decisions reference M-0010? | `decisions_referencing("M-0010")` → `D-0001` |
-| Which mechanics remain blocked by live verification? | `mechanics_blocked_by_live_verification()` → M-0007..M-0013 + more |
+| Which mechanics have pending live verification? | `mechanics_pending_live_verification()` → M-0007..M-0013 + more |
 | Which contradictions affect this recommendation? | `contradictions_affecting("M-0005")` → `C-0002` |
+
+> `mechanics_pending_live_verification()` reports mechanics whose confidence is
+> gated on outstanding live testing. It deliberately does **not** assert that
+> every downstream use is blocked — that judgement belongs to the (out-of-scope)
+> planner. The old name `mechanics_blocked_by_live_verification()` remains as a
+> thin alias for the original success-criteria phrasing.
+>
+> `contradictions_affecting(object_id)` resolves three labelled paths
+> (`link_path`): `direct_mechanic` (object is an affected mechanic),
+> `direct_rule` (object is a rule that records the contradiction), and
+> `indirect_rule` (rule → `depends_on_mechanic` → mechanic ← `affects_mechanic`
+> ← contradiction). E.g. `PR-0003` reaches `C-0002` only via the indirect path.
 
 Plus single-object retrieval (`get_mechanic`, `get_planner_rule`, `get_decision`,
 `get_contradiction`, `get_unknown`) and the full claim provenance chain
@@ -140,11 +177,12 @@ cannot be mutated through this interface.
 
 ## Statistics (current build)
 
-- Database size: **~828 KB** (`cre_runtime.db`)
+- Database size: **~840 KB** (`cre_runtime.db`)
 - Identities (`objects`): **604**
 - Normalised references: **1,346**
 - Canonical graph edges: **294**
 - Claim provenance links: **370**
+- Graph/typed metadata conflicts recorded: **3**
 - Claims: 343 · Mechanics: 13 · Planner rules: 13 · Economy rules: 20 ·
   Construction rules: 23 · Planner risks: 15 · Unknowns: 20 · Contradictions: 9 ·
   Observations: 13 · Decisions: 5 · Governance decisions: 5 ·
@@ -152,31 +190,48 @@ cannot be mutated through this interface.
 
 ## Validation output (current build)
 
+The report separates **errors**, **warnings**, **info**, and **stats**:
+
 ```
 validation       : PASS
-  orphan_references            1   (warning — canonical-source gap: G-0015)
-  duplicate_identities         0
-  broken_provenance            0
-  missing_required_objects     0
-  invalid_foreign_keys         0
+  identity_integrity_errors        0
+  duplicate_identities             0
+  broken_provenance                0
+  missing_required_objects         0
+  invalid_foreign_keys             0
+  missing_source_ref               0
+  structured_provenance_objects    5   (info  — decisions D-0001..D-0005)
+  unresolved_provenance_gaps       0
+  canonical_source_orphans         1   (warn  — G-0015)
+  graph_metadata_conflicts         3   (warn  — ER-0009 / ER-0010 / CR-0008 status drift)
 ```
 
-A machine-readable copy is written to `validation_output.json`. The single
-orphan (`G-0015`, a glossary id referenced by a graph edge but not yet defined
-in `graph_nodes.csv`) is a finding *about the canonical source* and is reported
-as a warning rather than failing the build.
+A machine-readable copy is written to `validation_output.json`.
+
+**Remaining warnings and why they remain (all are honest canonical-source findings):**
+
+- `canonical_source_orphans` = 1 → `G-0015`, a glossary id referenced by a graph
+  edge but not yet defined in `graph_nodes.csv`. A source-side fix (add the node)
+  is tracked for the canonical repo; the runtime must mirror, not invent it.
+- `graph_metadata_conflicts` = 3 → `ER-0009`, `ER-0010`, `CR-0008` carry a
+  shortened `status` on their graph node (e.g. "Confirmed") versus the fuller
+  typed register status (e.g. "Confirmed as a caution rule"). The typed value is
+  authoritative and wins in `objects`; the drift is recorded for source cleanup.
 
 ## Test results
 
 ```
 python3 -m pytest runtime/tests -q
-30 passed
+40 passed
 ```
 
 Coverage: projection (identity extraction, counts, determinism), schema
-(tables/indexes/meta/provenance), reference integrity (orphans/duplicates/FKs/
-provenance), runtime generation (build + every example query), and deterministic
-rebuild (stable content fingerprint + byte-identical file).
+(tables/indexes/meta/provenance/source-register input), identity integrity
+(family/type agreement + negative injections), reference integrity
+(orphans/duplicates/FKs/structured-provenance/graph-conflicts), runtime
+generation (build, read-only enforcement, every example query incl. direct +
+indirect contradiction paths), and deterministic rebuild (stable content
+fingerprint + byte-identical file).
 
 ---
 
