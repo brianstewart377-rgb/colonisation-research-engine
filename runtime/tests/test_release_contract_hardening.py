@@ -77,6 +77,21 @@ def _mutate_mechanic_id(exports_dir: Path, old_id: str, new_id: str) -> None:
     _rewrite_csv(csv_path, [header, *mutated])
 
 
+def _mutate_claim_title(exports_dir: Path, claim_id: str, new_title: str) -> None:
+    csv_path = exports_dir / "claims.csv"
+    rows = _read_csv_rows(csv_path)
+    header, data = rows[0], rows[1:]
+    claim_idx = header.index("claim_id")
+    title_idx = header.index("title")
+    mutated = []
+    for row in data:
+        if row and row[claim_idx] == claim_id:
+            row = list(row)
+            row[title_idx] = new_title
+        mutated.append(row)
+    _rewrite_csv(csv_path, [header, *mutated])
+
+
 def test_current_release_bundle_passes_preflight(exports_dir):
     result = project(exports_dir)
     assert result.manifest["status"] == "assembled"
@@ -203,6 +218,35 @@ def test_atomic_replacement_preserves_existing_db_on_validation_failure_even_whe
 
     with pytest.raises(RuntimeValidationError):
         build(bad_exports, output_db, run_validation=False)
+
+    assert _sha256(output_db) == before
+    assert _temp_artifacts_for(output_db) == []
+
+
+def test_report_write_failure_preserves_existing_db(tmp_path):
+    baseline_exports = _copy_exports(tmp_path)
+    _mutate_claim_title(baseline_exports, "CL-0001", "Sprint 3A.1 baseline title")
+    output_db = tmp_path / "cre_runtime.db"
+    build(baseline_exports, output_db, run_validation=True)
+    before = _sha256(output_db)
+
+    missing_report = tmp_path / "missing_reports" / "build_report.json"
+    with pytest.raises(OSError):
+        build(DEFAULT_EXPORTS_DIR, output_db, run_validation=True, report_path=missing_report)
+
+    assert _sha256(output_db) == before
+    assert _temp_artifacts_for(output_db) == []
+
+
+def test_report_path_cannot_alias_output_path(tmp_path):
+    baseline_exports = _copy_exports(tmp_path)
+    _mutate_claim_title(baseline_exports, "CL-0001", "Sprint 3A.1 alias baseline title")
+    output_db = tmp_path / "cre_runtime.db"
+    build(baseline_exports, output_db, run_validation=True)
+    before = _sha256(output_db)
+
+    with pytest.raises(OSError, match="report path must not alias output db"):
+        build(DEFAULT_EXPORTS_DIR, output_db, run_validation=True, report_path=output_db)
 
     assert _sha256(output_db) == before
     assert _temp_artifacts_for(output_db) == []

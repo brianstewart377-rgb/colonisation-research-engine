@@ -222,11 +222,26 @@ def _validate_db_file(db_path: Path) -> ValidationReport:
         conn.close()
 
 
+def _resolved_path(path: Path) -> Path:
+    return path.expanduser().resolve(strict=False)
+
+
+def _validate_report_path(output_path: Path, report_path: Path | None) -> Path | None:
+    if report_path is None:
+        return None
+    resolved_output = _resolved_path(output_path)
+    resolved_report = _resolved_path(report_path)
+    if resolved_report == resolved_output:
+        raise OSError(f"report path must not alias output db: {report_path}")
+    return report_path
+
+
 def build(exports_dir: Path = DEFAULT_EXPORTS_DIR, output_path: Path = DEFAULT_OUTPUT_DB,
           run_validation: bool = True, report_path: Path | None = None,
           source_register_path: Path | None = None) -> dict:
     exports_dir = Path(exports_dir)
     output_path = Path(output_path)
+    report_path = _validate_report_path(output_path, Path(report_path) if report_path else None)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     result = project(exports_dir, source_register_path)
     temp_db_path = _make_temp_output_path(output_path)
@@ -273,10 +288,10 @@ def build(exports_dir: Path = DEFAULT_EXPORTS_DIR, output_path: Path = DEFAULT_O
             "validation": validation.as_dict() if run_validation else None,
         }
 
+        if report_path:
+            report_path.write_text(json.dumps(report, indent=2, sort_keys=True), encoding="utf-8")
         os.replace(temp_db_path, output_path)
         _cleanup_sqlite_artifacts(temp_db_path)
-        if report_path:
-            Path(report_path).write_text(json.dumps(report, indent=2, sort_keys=True), encoding="utf-8")
         return report
     except Exception:
         _cleanup_sqlite_artifacts(temp_db_path)
