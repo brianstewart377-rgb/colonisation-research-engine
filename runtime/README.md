@@ -175,6 +175,44 @@ cannot be mutated through this interface.
 
 ---
 
+## Sprint 2A: Decision Explanation Slice
+
+Sprint 2A adds one narrow, deterministic explanation capability: the runtime can
+assemble a structured, inspectable evidence bundle for a single canonical
+decision.
+
+- The output is an evidence bundle, not a generated recommendation or a natural-language answer.
+- The runtime reads only the generated SQLite database.
+- No planner reasoning is added and no Markdown is parsed.
+- Every returned supporting item is traceable via ids and explicit edges.
+
+### API
+
+`Runtime.explain_decision(decision_id: str) -> dict | None`
+
+- Returns `None` if the decision id does not exist.
+- Returns a deterministically ordered bundle for known ids.
+
+### Example (D-0003, compact)
+
+`D-0003` is a guardrail decision: it rejects any claim that Dodec is universally
+superior to Orbis or Ocellus based solely on currently available evidence.
+
+The runtime surfaces that boundary by returning:
+
+- `decision_boundary` from the canonical `decisions` table fields (no generated prose)
+- direct references (one hop):
+  - decision → `EV-0003`
+  - decision → `CL-0009`, `CL-0010`
+  - decision → `M-0005`, `M-0007`
+  - decision → `PR-0003`
+- mechanic context derived from those mechanics:
+  - contradictions affecting the mechanics (includes `C-0002` where present)
+  - unknowns about the mechanics (includes `U-0003`, `U-0004` where present)
+  - live verifications targeting the mechanics (includes `LV-0002` where present)
+
+---
+
 ## Statistics (current build)
 
 - Database size: **~840 KB** (`cre_runtime.db`)

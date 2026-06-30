@@ -1,5 +1,6 @@
 cre-vault/
 __pycache__/
+.venv/
 .env
 .env.*
 *.env
