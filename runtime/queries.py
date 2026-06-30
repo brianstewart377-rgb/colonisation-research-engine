@@ -372,22 +372,30 @@ class Runtime:
             ),
         }
 
+        provenance_edges: list[_Edge] = []
+        for entry in claim_support:
+            for prov in entry.get("provenance") or []:
+                cid = prov.get("claim_id")
+                sid = prov.get("source_entity")
+                rel = prov.get("relationship")
+                if cid and sid and rel:
+                    provenance_edges.append(
+                        _Edge(
+                            from_id=cid,
+                            to_id=sid,
+                            relationship=rel,
+                            origin="claim_provenance_links",
+                        )
+                    )
+
         node_ids: set[str] = {decision_id}
-        for bucket in direct_references.values():
-            for row in bucket:
-                if "object_id" in row:
-                    node_ids.add(row["object_id"])
-                for k in ("evidence_id", "claim_id", "mechanic_id", "experiment_id"):
-                    if k in row and row[k]:
-                        node_ids.add(row[k])
+        for edge in direct_edges + claim_edges + mechanic_edges + traceability_edges + provenance_edges:
+            node_ids.add(edge.from_id)
+            node_ids.add(edge.to_id)
         for entry in claim_support:
             c = entry.get("claim") or {}
             if isinstance(c, dict) and c.get("claim_id"):
                 node_ids.add(c["claim_id"])
-            for prov in entry.get("provenance") or []:
-                sid = prov.get("source_entity")
-                if sid:
-                    node_ids.add(sid)
             for k in ("linked_mechanics", "linked_contradictions", "linked_unknowns"):
                 for row in entry.get(k) or []:
                     for kk in ("mechanic_id", "contradiction_id", "unknown_id"):
@@ -436,20 +444,15 @@ class Runtime:
                     "origin": e.origin,
                 }
             )
-        for entry in claim_support:
-            for prov in entry.get("provenance") or []:
-                cid = prov.get("claim_id")
-                sid = prov.get("source_entity")
-                rel = prov.get("relationship")
-                if cid and sid and rel:
-                    edges.append(
-                        {
-                            "from_id": cid,
-                            "to_id": sid,
-                            "relationship": rel,
-                            "origin": "claim_provenance_links",
-                        }
-                    )
+        for e in provenance_edges:
+            edges.append(
+                {
+                    "from_id": e.from_id,
+                    "to_id": e.to_id,
+                    "relationship": e.relationship,
+                    "origin": e.origin,
+                }
+            )
         edges = sorted(edges, key=lambda r: (r["from_id"], r["relationship"], r["to_id"], r["origin"]))
 
         raw_conn = self._raw_conn()

@@ -98,6 +98,32 @@ def test_explain_decision_trace_edges_reference_existing_nodes(runtime_db):
             assert e["origin"]
 
 
+def test_explain_decision_direct_edge_endpoints_are_in_trace_nodes(runtime_db):
+    db_path, _ = runtime_db
+    with Runtime(db_path) as rt:
+        bundle = rt.explain_decision("D-0003")
+        assert bundle is not None
+
+        node_ids = {n["id"] for n in bundle["trace"]["nodes"]}
+        direct_edges = [e for e in bundle["trace"]["edges"] if e["from_id"] == "D-0003"]
+        assert direct_edges
+        for edge in direct_edges:
+            assert edge["to_id"] in node_ids
+
+
+def test_explain_decision_direct_planner_rule_rule_id_appears_as_trace_node(runtime_db):
+    db_path, _ = runtime_db
+    with Runtime(db_path) as rt:
+        bundle = rt.explain_decision("D-0003")
+        assert bundle is not None
+
+        rules = bundle["direct_references"]["planner_rules"]
+        assert any(r["rule_id"] == "PR-0003" for r in rules)
+
+        node_ids = {n["id"] for n in bundle["trace"]["nodes"]}
+        assert "PR-0003" in node_ids
+
+
 def test_explain_decision_trace_nodes_include_registry_status(runtime_db):
     db_path, _ = runtime_db
     with Runtime(db_path) as rt:
