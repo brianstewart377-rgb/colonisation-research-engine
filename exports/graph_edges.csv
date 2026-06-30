@@ -1,0 +1,295 @@
+source_id,relationship,target_id,basis
+EXP-0000,produced,M-0001,EXP-0000 key observations
+EXP-0000,produced,M-0002,EXP-0000 key observations
+EXP-0000,produced,M-0003,EXP-0000 key observations
+EV-0001,supports,M-0006,Rocha Liberty strong and weak link observations
+EV-0001,supports,M-0007,Rocha Liberty economy and commodity observations
+EV-0002,supports,M-0003,Weak Refinery link appeared but metals remained absent
+EV-0002,supports,M-0004,Raven projected deficits versus live buildability discussion
+EV-0003,supports,M-0005,Preview evidence for colony-type port comparison
+EV-0003,supports,M-0007,Preview evidence for inherited-economy interpretation
+EV-0004,supports,M-0004,Reference pack extraction target
+EV-0004,supports,M-0005,Reference pack extraction target
+EV-0004,supports,M-0006,Reference pack extraction target
+EV-0004,supports,M-0007,Reference pack extraction target
+EV-0004,supports,M-0008,Reference pack extraction target
+M-0003,constrains,PR-0004,Weak-link repair should not be universalized
+M-0004,constrains,PR-0006,Current versus proposed buildability distinction
+M-0005,informs,PR-0003,Port classes must not be flattened into free economy selection
+M-0006,informs,PR-0004,Prefer local strong links
+M-0006,informs,PR-0005,Visible arrows are incomplete routing evidence
+M-0007,informs,PR-0003,Inherited economy behavior blocks fake choose-economy outputs
+M-0008,informs,LV-0004,Body-modifier non-stacking requires live verification
+M-0003,raises,C-0004,Weak-link generalisation conflict
+M-0004,raises,C-0003,Projected deficit versus live buildability conflict
+M-0005,raises,C-0002,Station-class superiority remains unproven
+M-0007,raises,C-0002,Port-class equality in preview conflicts with strong superiority claims
+PR-0002,uses,M-0001,Impossible builds must be blocked
+PR-0003,uses,M-0002,No direct station economy selection
+PR-0003,uses,M-0007,Inherited economy modeling
+PR-0004,uses,M-0006,Strong-link preference
+PR-0006,uses,M-0004,Construction-point modeling
+PR-0007,uses,G-0012,Negative evidence as first-class knowledge
+PR-0010,creates,G-0015,Needs Live Verification as explicit workflow object
+M-0001,decomposes_to,CR-0001,Construction-facing rule extraction
+M-0003,decomposes_to,ER-0009,Economy-facing rule extraction
+M-0004,decomposes_to,CR-0002,Construction-facing rule extraction
+M-0004,decomposes_to,CR-0003,Construction-facing rule extraction
+M-0004,decomposes_to,CR-0004,Construction-facing rule extraction
+M-0004,decomposes_to,CR-0005,Construction-facing rule extraction
+M-0004,decomposes_to,CR-0006,Construction-facing rule extraction
+M-0004,decomposes_to,CR-0007,Construction-facing rule extraction
+M-0005,decomposes_to,ER-0002,Economy-facing rule extraction
+M-0005,decomposes_to,ER-0003,Economy-facing rule extraction
+M-0005,decomposes_to,ER-0010,Economy-facing rule extraction
+M-0006,decomposes_to,ER-0007,Economy-facing rule extraction
+M-0006,decomposes_to,ER-0008,Economy-facing rule extraction
+M-0007,decomposes_to,ER-0001,Economy-facing rule extraction
+M-0007,decomposes_to,ER-0002,Economy-facing rule extraction
+M-0008,decomposes_to,ER-0004,Economy-facing rule extraction
+M-0008,decomposes_to,ER-0005,Economy-facing rule extraction
+M-0008,decomposes_to,ER-0006,Economy-facing rule extraction
+EV-0002,supports,CR-0007,Raven buildability interpretation evidence
+EV-0002,supports,CR-0008,Placeholder and proposal-state caution
+EV-0003,supports,ER-0010,Preview equality caution
+EV-0001,supports,CS-0001,A4 support-body context
+EV-0001,produced,OBS-0004,Structured observation extraction
+EV-0001,produced,OBS-0005,Structured observation extraction
+EV-0001,produced,OBS-0006,Structured observation extraction
+EV-0001,produced,OBS-0007,Structured observation extraction
+EV-0002,raises,R-0005,Projected versus current buildability risk
+EV-0002,informs,CS-0004,Demolition caution context
+EV-0002,produced,OBS-0008,Structured observation extraction
+EV-0002,produced,OBS-0009,Structured observation extraction
+EV-0003,raises,R-0004,Preview-state ambiguity risk
+EV-0003,produced,OBS-0010,Structured observation extraction
+EV-0003,produced,OBS-0011,Structured observation extraction
+EV-0004,supports,R-0009,Canonical reference_sources pack now governs direct source provenance
+EXP-0000,constrains,R-0003,Weak-link overconfidence risk
+EXP-0000,produced,OBS-0001,Structured observation extraction
+EXP-0000,produced,OBS-0002,Structured observation extraction
+EXP-0000,produced,OBS-0003,Structured observation extraction
+EXP-0001,tests,CS-0001,Industrial anchor plus High Tech support-body pattern
+EXP-0001,produced,OBS-0012,Structured baseline extraction
+EXP-0001,produced,OBS-0013,Structured prediction extraction
+OBS-0001,supports,CL-0001,Claim extraction from structured observation
+OBS-0002,supports,CL-0002,Claim extraction from structured observation
+OBS-0003,supports,CL-0003,Claim extraction from structured observation
+OBS-0004,supports,CL-0004,Claim extraction from structured observation
+OBS-0005,supports,CL-0005,Claim extraction from structured observation
+OBS-0006,supports,CL-0006,Claim extraction from structured observation
+OBS-0007,supports,CL-0007,Claim extraction from structured observation
+OBS-0008,supports,CL-0008,Claim extraction from structured observation
+OBS-0009,qualifies,CL-0008,Placeholder-name interpretation constraint
+OBS-0010,supports,CL-0009,Claim extraction from structured observation
+OBS-0011,supports,CL-0010,Claim extraction from structured observation
+OBS-0012,supports,CL-0011,Baseline for pending experimental claim
+OBS-0013,predicts,CL-0011,Prediction for pending experimental claim
+CL-0001,canonicalized_as,M-0001,Claim-to-mechanic elevation
+CL-0002,canonicalized_as,M-0002,Claim-to-mechanic elevation
+CL-0003,canonicalized_as,M-0003,Claim-to-mechanic elevation
+CL-0003,qualified_by,C-0004,Broader weak-link generalization remains disputed
+CL-0005,limited_by,U-0006,Routing aggregation still unresolved
+CL-0006,limited_by,U-0001,Commodity mapping still unresolved
+CL-0007,limited_by,U-0001,Commodity mapping still unresolved
+CL-0007,limited_by,U-0002,Rank versus percentage still unresolved
+CL-0008,limited_by,U-0009,Construction edge cases still unresolved
+CL-0009,limited_by,U-0003,Post-build divergence still unresolved
+CL-0010,qualified_by,C-0002,Station-class superiority remains unresolved
+CL-0010,limited_by,U-0003,Post-build divergence still unresolved
+CL-0011,limited_by,U-0001,Commodity mapping still unresolved
+CL-0011,limited_by,U-0002,Rank versus percentage still unresolved
+CL-0012,informs,R-0009,Committed canonical derivatives now constrain provenance claims instead of absent artifacts
+GD-0001,targets,U-0012,Patch partitioning affects planner-safe publication policy
+GD-0002,targets,U-0012,Publication threshold remains unresolved
+GD-0003,targets,U-0011,Body-linkage representation remains unresolved
+GD-0004,targets,R-0006,Review surface is needed for identity collisions
+GD-0004,targets,R-0007,Review surface is needed for contradiction and source-drift review
+GD-0005,targets,R-0009,Image-backed evidence workflow remains incomplete
+PR-0001,requires,CD-0001,Coverage-first planner model
+PR-0001,requires,CD-0002,Coverage-first planner model
+PR-0001,requires,CD-0003,Coverage-first planner model
+PR-0001,requires,CD-0004,Coverage-first planner model
+PR-0001,requires,CD-0005,Coverage-first planner model
+PR-0001,requires,CD-0006,Coverage-first planner model
+PR-0001,requires,CD-0007,Coverage-first planner model
+PR-0001,requires,RL-0001,Candidate roles are part of the reasoning hierarchy
+PR-0001,requires,RL-0003,Candidate roles are part of the reasoning hierarchy
+PR-0001,requires,RL-0004,Candidate roles are part of the reasoning hierarchy
+PR-0001,requires,AP-0001,Candidate architectures are part of the reasoning hierarchy
+PR-0001,requires,OBJ-0001,Objective is the start of the reasoning hierarchy
+PR-0001,requires,RS-0001,Recommendation output must expose objective
+PR-0001,requires,RS-0003,Recommendation output must expose current coverage
+PR-0001,requires,RS-0004,Recommendation output must expose targeted gap
+PR-0001,requires,RS-0005,Recommendation output must expose recommended role
+PR-0001,requires,RS-0006,Recommendation output must expose recommended architecture
+PR-0001,requires,RS-0012,Recommendation output must expose confidence
+PR-0001,requires,RS-0013,Recommendation output must expose unknowns
+PR-0008,requires,CD-0008,Confidence must be visible in planner reasoning
+CD-0001,contains,AC-0001,Commodity coverage dimension uses commodity assets
+CD-0002,contains,AC-0003,Service coverage dimension uses service assets
+CD-0003,contains,AC-0004,Mission coverage dimension uses mission assets
+CD-0004,contains,AC-0002,Economy-shaping coverage dimension uses economy assets
+CD-0005,contains,AC-0006,Construction progression coverage dimension uses infrastructure assets
+CD-0006,contains,AC-0002,Body-role coverage often reflects economy assets
+CD-0007,contains,AC-0006,Resilience reasoning depends on infrastructure and dependency structure
+CD-0008,contains,AC-0005,Confidence coverage affects strategic decision quality
+PR-0003,mitigates,R-0001,Inherited-economy safety rule
+PR-0002,mitigates,R-0002,Impossible build blocking
+PR-0004,mitigates,R-0003,Prefer local strong links
+PR-0006,mitigates,R-0005,Separate current and projected buildability
+KP-0009,mitigates,R-0008,Higher evidence threshold for demolition
+KP-0005,mitigates,R-0009,Unknown is safer than fabricated completeness
+IB-0001,enables,IB-0003,Current-state ingest depends on durable provenance storage
+IB-0001,enables,IB-0004,Analyst evidence entry depends on durable provenance storage
+IB-0001,enables,IB-0005,Review surfaces depend on durable provenance storage
+IB-0001,enables,IB-0006,Publication pipeline depends on durable provenance storage
+IB-0002,extends,IB-0007,Recommendation objects depend on surrounding schemas
+IB-0003,mitigates,MRG-0001,Current-state ingest reduces lack of authoritative warehouse coverage
+IB-0004,mitigates,MRG-0009,Analyst workflow addresses screenshot pipeline gap
+IB-0005,implements,GD-0004,Backlog item for contradiction and identity review surface
+IB-0006,implements,GD-0001,Backlog item for version-aware publication
+IB-0006,implements,GD-0002,Backlog item for publication threshold policy
+IB-0008,implements,GD-0003,Backlog item for body-linkage uncertainty handling
+IB-0010,implements,GD-0005,Backlog item for analyst-side evidence attachment workflow
+IB-0011,mitigates,R-0009,Direct re-ingestion reduces false completeness risk
+LV-0001,addresses,U-0001,Commodity-exposure uncertainty
+LV-0001,addresses,U-0002,Rank versus absolute percentage uncertainty
+LV-0002,addresses,U-0003,Station-class post-build divergence uncertainty
+LV-0002,addresses,U-0004,Specialised-port exemption uncertainty
+LV-0003,addresses,U-0005,Weak-link threshold uncertainty
+LV-0004,addresses,U-0007,Modifier stacking uncertainty
+LV-0005,addresses,U-0006,Routing aggregation uncertainty
+CS-0001,uses,CD-0001,Coverage-gap strategy
+CS-0001,uses,CD-0004,Economy-shaping strategy
+CS-0001,uses,CD-0006,Complementary body roles
+CS-0001,uses,RL-0003,Industrial anchor role
+CS-0001,uses,RL-0004,High Tech support role
+CS-0001,instantiates,AP-0001,Named architecture pattern
+CS-0002,uses,CD-0004,Local shaping before remote spillover
+CS-0002,uses,CD-0007,Fragility of weak-link-only architectures
+CS-0002,uses,RL-0012,Link repair candidate role
+CS-0003,uses,CD-0006,Complementary roles over duplication
+CS-0003,uses,RL-0003,Anchor role can remain stable while another body complements it
+CS-0003,uses,RL-0004,Complementary support role
+CS-0004,uses,CD-0008,Higher confidence threshold for demolition
+CS-0004,constrains,RS-0009,Opportunity cost must be explicit for demolition
+CS-0004,constrains,RS-0014,Recommendation must explain what would change it
+CS-0001,informs,PR-0009,Contextual strategy must not be universalized
+CS-0004,informs,PR-0002,Unsafe demolition should be blocked
+AP-0001,uses,RL-0003,Industrial anchor role
+AP-0001,uses,RL-0004,High Tech support role
+AP-0001,serves,OBJ-0001,Broaden construction-material coverage
+AP-0001,serves,OBJ-0004,Raise High Tech coverage
+AP-0002,uses,RL-0001,Primary metals producer role
+AP-0002,uses,RL-0002,Primary refinery producer role
+AP-0002,serves,OBJ-0001,Support metals and refinery coverage
+AP-0003,uses,M-0001,Water World body constraints
+AP-0003,serves,OBJ-0006,Tourism-oriented objective context
+AP-0005,uses,RL-0012,Link repair candidate role
+AP-0005,uses,RL-0013,Experiment testbed role
+AP-0005,serves,OBJ-0001,Attempt to repair missing commodity coverage
+MD-0001,depends_on,M-0002,Safety gate before inheritance model
+MD-0001,depends_on,M-0007,Inheritance model target
+MD-0002,depends_on,M-0005,Port taxonomy prerequisite
+MD-0002,depends_on,M-0007,Dependent inheritance model
+MD-0003,depends_on,M-0007,Inherited-economy prerequisite
+MD-0003,depends_on,M-0008,Body-economy dependent mechanic
+MD-0004,depends_on,M-0006,Broader routing model
+MD-0004,depends_on,M-0003,Narrow constraining case
+MD-0005,depends_on,M-0004,Construction and state context
+MD-0005,depends_on,M-0005,Port hierarchy and taxonomy context
+MD-0005,depends_on,M-0006,Routing interpretation target
+MD-0006,depends_on,M-0004,Construction-point target
+MD-0007,depends_on,M-0001,Body constraint prerequisite
+U-0001,targets,M-0002,Commodity-projection gap
+U-0001,targets,M-0007,Commodity-projection gap
+U-0002,targets,M-0003,Rank versus absolute percentage gap
+U-0002,targets,M-0006,Rank versus absolute percentage gap
+U-0003,targets,M-0005,Post-build station-class divergence gap
+U-0003,targets,M-0007,Post-build station-class divergence gap
+U-0005,targets,M-0003,Weak-link sufficiency gap
+U-0005,targets,M-0006,Weak-link sufficiency gap
+U-0007,targets,M-0008,Modifier-stacking gap
+U-0009,targets,M-0004,Construction-edge-case gap
+RS-0005,uses,RL-0003,Roles are part of recommendation schema
+RS-0005,uses,RL-0004,Roles are part of recommendation schema
+RS-0006,uses,AP-0001,Architectures are part of recommendation schema
+RS-0001,uses,OBJ-0001,Objective is a required recommendation field
+RS-0011,uses,EV-0001,Evidence citation requirement
+RS-0011,uses,EV-0002,Evidence citation requirement
+RS-0011,uses,EV-0003,Evidence citation requirement
+RS-0013,uses,U-0001,Unknowns belong in planner output
+RS-0013,uses,U-0003,Unknowns belong in planner output
+ER-0001,reinforces,PR-0003,No fake choose-economy planner behavior
+ER-0007,reinforces,PR-0004,Prefer local strong links
+ER-0008,constrains,PR-0004,Weak-link-only recommendations remain experimental
+CR-0001,reinforces,PR-0002,Impossible surface builds must be blocked
+CR-0007,reinforces,PR-0006,Separate current buildability from full-plan projection
+LV-0001,tests,M-0007,A4 High Tech promotion and final market effect
+LV-0001,tests,M-0008,Body-driven economy expectation versus actual outcome
+LV-0002,tests,M-0005,Station-class behavior after build completion
+LV-0002,tests,M-0007,Post-build inherited economy divergence by port class
+LV-0003,tests,M-0003,Refinery threshold for restoring metals
+LV-0003,tests,M-0006,Weak-link sufficiency versus local strong support
+LV-0005,tests,M-0006,Main port routing aggregation
+G-0001,describes,M-0004,Construction points terminology
+G-0003,describes,M-0005,Colony-type port terminology
+G-0006,describes,M-0006,Strong-link terminology
+G-0007,describes,M-0006,Weak-link terminology
+G-0011,informs,PR-0009,Architecture must remain contextual
+C-0002,targets,M-0005,Station-class superiority unresolved
+C-0002,targets,M-0007,Inherited-economy interpretation remains more conservative than superiority claims
+C-0003,targets,M-0004,Construction-point interpretation risk
+C-0004,targets,PR-0004,Weak-link heuristic must remain caveated
+EV-0004,supports,M-0009,Canonical reference pack now includes direct prerequisite and escalation sources
+EV-0004,supports,M-0010,Canonical reference pack now includes compatibility and overlap sources
+EV-0004,supports,M-0011,Canonical reference pack now includes stat and service-threshold sources
+EV-0004,supports,M-0012,Canonical reference pack now includes direct population-source material
+EV-0004,supports,M-0013,Canonical reference pack now includes score and caveat source material
+M-0006,informs,PR-0011,Main-port routing rules must be resolved before topology interpretation
+M-0009,informs,PR-0011,Port-conversion state also affects routing interpretation
+M-0006,informs,PR-0012,Arrow-count caution comes from routing model limitations
+M-0013,informs,PR-0012,High-risk caveat layer blocks irreversible advice from weak proof
+M-0004,informs,PR-0013,CP math remains part of build-sequencing viability
+M-0009,informs,PR-0013,Dependency chains constrain build order alongside CP math
+PR-0011,mitigates,R-0014,Main-port resolution reduces routing overconfidence
+PR-0012,mitigates,R-0014,Blocks irreversible changes based on arrow count alone
+PR-0013,mitigates,R-0015,Branch-sensitive dependency modeling mitigates family flattening
+M-0006,raises,C-0008,Routing display can diverge from routed influence
+M-0013,raises,C-0008,High-risk caveat layer preserves the display-versus-influence conflict
+M-0009,raises,C-0009,Dependency tree detail can exceed simplified family-level wording
+M-0006,informs,LV-0011,Multi-port weak-link exceptions are a routing verification task
+M-0009,informs,LV-0011,Port-conversion state affects multi-port routing tests
+M-0009,informs,LV-0012,Branch-specific prerequisites require direct validation
+LV-0006,addresses,U-0013,Strong-link numeric application uncertainty
+LV-0007,addresses,U-0014,Tie-order uncertainty
+LV-0008,addresses,U-0015,Population multiplier uncertainty
+LV-0009,addresses,U-0016,Population demolition uncertainty
+LV-0010,addresses,U-0017,Pad-availability uncertainty
+LV-0011,addresses,U-0018,Weak-link generation exception uncertainty
+LV-0011,addresses,U-0020,Surface-to-orbital forwarding scope uncertainty
+LV-0012,addresses,U-0019,Large-branch dependency uncertainty
+U-0013,targets,M-0006,Exact numeric modifier application gap
+U-0014,targets,M-0010,Tie-order gap
+U-0015,targets,M-0012,Population multiplier gap
+U-0016,targets,M-0012,Population demolition gap
+U-0017,targets,M-0009,Pad metadata gap
+U-0017,targets,M-0013,Pad metadata gap in caveat publication
+U-0018,targets,M-0006,Multi-port weak-link generation gap
+U-0018,targets,M-0009,Port-state dependency gap
+U-0019,targets,M-0009,Branch-specific prerequisite gap
+U-0020,targets,M-0006,Surface-to-orbital forwarding gap
+U-0020,targets,M-0009,Port-state forwarding gap
+C-0005,raises,R-0010,Bugged agricultural output makes naive advice dangerous
+C-0006,raises,R-0011,Suspected passthrough bug makes stable-doctrine advice unsafe
+C-0007,raises,R-0013,Pad-metadata conflict undermines hauling advice
+C-0008,raises,R-0014,Display-versus-influence conflict drives routing overconfidence risk
+C-0009,raises,R-0015,Dependency interpretation conflict drives family flattening risk
+MD-0008,depends_on,M-0005,Port taxonomy prerequisite
+MD-0008,depends_on,M-0006,Routing interpretation target
+MD-0008,depends_on,M-0009,Port-conversion and hierarchy state prerequisite
+MD-0009,depends_on,M-0004,Construction-point prerequisite
+MD-0009,depends_on,M-0009,Dependency-chain target
+MD-0010,depends_on,M-0006,Routing model prerequisite
+MD-0010,depends_on,M-0013,Caveat layer dependent mechanic

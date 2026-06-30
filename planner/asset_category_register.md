@@ -1,0 +1,92 @@
+# Asset Category Register
+
+This register turns the repository's asset vocabulary into explicit planner-facing categories.
+
+## AC-0001 - Commodity Asset
+
+- Status: Confirmed
+- Source: `ontology/roles_assets_strategies.md`, `planner/decision_support_model.md`
+- Definition: A commodity the player wants locally available or reliably supported through colony market behavior.
+- Examples:
+  - Steel
+  - Titanium
+  - Aluminium
+  - CMM Composite
+  - Ceramic Composites
+  - Computer Components
+  - Robotics
+  - Auto-Fabricators
+  - Micro Controllers
+- Planner use: Core material-coverage analysis.
+
+## AC-0002 - Economy Asset
+
+- Status: Confirmed
+- Source: `ontology/roles_assets_strategies.md`, `planner/decision_support_model.md`
+- Definition: An economy type that matters because it influences commodities, missions, services, or system identity.
+- Semantic note: An economy asset is observed or projected colony/economy state. It is not the same thing as an economy role such as `Industrial Anchor` or `High Tech Support`.
+- Examples:
+  - Industrial
+  - Extraction
+  - Refinery
+  - High Tech
+  - Agriculture
+  - Tourism
+  - Military
+  - Security
+- Planner use: Economy-shaping and mission-context analysis.
+
+## AC-0003 - Service Asset
+
+- Status: Confirmed
+- Source: `ontology/roles_assets_strategies.md`, `planner/decision_support_model.md`
+- Definition: A player-facing service exposed by a facility or facility group.
+- Examples:
+  - Shipyard
+  - Outfitting
+  - Tech Broker
+  - Material Trader
+  - Interstellar Factors
+  - Black Market
+- Planner use: Service-hub reasoning and convenience planning.
+
+## AC-0004 - Mission Asset
+
+- Status: Confirmed
+- Source: `ontology/roles_assets_strategies.md`, `planner/decision_support_model.md`
+- Definition: A mission-board profile or mission type useful to the player.
+- Examples:
+  - Industrial missions
+  - Extraction missions
+  - Tourism missions
+  - Agriculture missions
+  - High Tech missions
+  - Security or Military missions
+- Planner use: Mission-density and mission-specialization objectives.
+
+## AC-0005 - Strategic Asset
+
+- Status: Confirmed
+- Source: `ontology/roles_assets_strategies.md`
+- Definition: A wider colony property that matters beyond one facility or market screen.
+- Examples:
+  - Population
+  - Security
+  - Development
+  - Wealth
+  - Tech level
+  - BGS usefulness
+- Planner use: Strategic colony development analysis.
+
+## AC-0006 - Infrastructure Asset
+
+- Status: Confirmed
+- Source: `ontology/roles_assets_strategies.md`
+- Definition: A structural enabling asset that affects what the colony can build or support next.
+- Semantic note: Infrastructure assets include capacity, access, and hierarchy signals. They are not automatically built facilities.
+- Examples:
+  - Construction-point generation
+  - body slot availability
+  - orbital versus surface access
+  - main-port structure
+- Planner use: Unlock logic, sequencing, architecture feasibility, and safe separation between empty capacity and realized infrastructure.

@@ -1,0 +1,10 @@
+{
+  "source_id": "MG-0001",
+  "title": "Elite Dangerous Colonization Mega Guide",
+  "version": "2.3.0",
+  "type": "community_guide",
+  "author_or_origin": "CMDR Mechan and community contributors",
+  "source_tier": "Tier 2 - community reference",
+  "primary_file": "elite-dangerous-colonization-mega-guide-v2-3.txt",
+  "notes": "Text extraction from uploaded DOCX; original DOCX was ~89MB and not committed as binary."
+}

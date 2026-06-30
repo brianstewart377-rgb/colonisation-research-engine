@@ -1,0 +1,240 @@
+node_id,node_type,title,status,category,source_ref,path_or_ref
+M-0001,mechanic,Water Worlds Have No Surface Slots,Confirmed,body_constraints,EXP-0000; M-0001,mechanics/M-0001-water-worlds-have-no-surface-slots.md
+M-0002,mechanic,Station Economy Is Inherited Not Manually Chosen,Confirmed,economy,EXP-0000; EV-0003,mechanics/M-0002-station-economy-is-inherited.md
+M-0003,mechanic,One Weak Refinery Link Is Insufficient To Restore Metals,Confirmed,economy_negative_evidence,EXP-0000; EV-0002,mechanics/M-0003-one-weak-refinery-link-is-insufficient-to-restore-metals.md
+M-0004,mechanic,Construction Points and Facility Tiers,Likely,construction,MG-0001; DM-0001,mechanics/M-0004-construction-points-and-facility-tiers.md
+M-0005,mechanic,Colony-Type and Specialised Ports,Likely,port_taxonomy,EV-0003; MG-0001,mechanics/M-0005-colony-type-and-specialised-ports.md
+M-0006,mechanic,Strong and Weak Link Routing,Likely,market_links,EV-0001; FW-0001; MG-0001,mechanics/M-0006-strong-and-weak-link-routing.md
+M-0007,mechanic,Colony Port Economy Inheritance,Likely,economy,EV-0001; EV-0003; MG-0001,mechanics/M-0007-colony-port-economy-inheritance.md
+M-0008,mechanic,Local Body Base Economies and Modifiers,Likely,economy_body_effects,MG-0001; DM-0001,mechanics/M-0008-local-body-base-economies-and-modifiers.md
+EXP-0000,experiment,Wregoe Methodology Seed,Active,methodology,EXP-0000,experiments/EXP-0000-wregoe-methodology-seed.md
+EXP-0001,experiment,A4 Complementary High Tech Role,Awaiting completion,economy_experiment,EXP-0001,experiments/EXP-0001-a4-complementary-high-tech-role.md
+EV-0001,evidence,Rocha Liberty Post High Tech Build Evidence,Analyst reviewed,screenshot_evidence,EV-0001,evidence/EV-0001-rocha-liberty-post-high-tech-build.md
+EV-0002,evidence,Wregoe Raven Proposed Build Review,Analyst reviewed,planner_screenshot,EV-0002,evidence/EV-0002-wregoe-raven-proposed-build-review.md
+EV-0003,evidence,A4 T3 Station Selection Preview Evidence,Analyst reviewed,architect_preview,EV-0003,evidence/EV-0003-a4-t3-station-selection-previews.md
+EV-0004,evidence,Colonisation Reference Documents Pack,Analyst reviewed,reference_pack_metadata,EV-0004,evidence/EV-0004-reference-documents-pack.md
+PR-0001,planner_rule,Optimize objectives not isolated facilities,Confirmed,decision_model,decision_support_model,planner/planner_rules_register.md
+PR-0002,planner_rule,Block impossible builds,Confirmed,safety,planner_safety; M-0001,planner/planner_rules_register.md
+PR-0003,planner_rule,Never imply direct station economy selection,Confirmed,economy_safety,planner_safety; M-0002; M-0007,planner/planner_rules_register.md
+PR-0004,planner_rule,Prefer local strong links for targeted shaping,Likely,economy_strategy,M-0003; M-0006,planner/planner_rules_register.md
+PR-0005,planner_rule,Treat visible arrows as incomplete routing evidence,Likely,analysis_safety,M-0006,planner/planner_rules_register.md
+PR-0006,planner_rule,Distinguish current buildability from proposed-plan totals,Likely,construction_safety,EV-0002; M-0004,planner/planner_rules_register.md
+PR-0007,planner_rule,Preserve negative evidence and contradictions,Confirmed,research_safety,project_principles; planner_safety,planner/planner_rules_register.md
+PR-0008,planner_rule,Label every recommendation by confidence band,Confirmed,safety,planner_safety,planner/planner_rules_register.md
+PR-0009,planner_rule,Never universalize a contextual strategy,Confirmed,decision_model,decision_support_model; EXP-0001,planner/planner_rules_register.md
+PR-0010,planner_rule,Suggest experiments when confidence is weak,Confirmed,research_workflow,planner_safety; experiments/README,planner/planner_rules_register.md
+KP-0001,knowledge_projection_rule,Planner consumes projections not raw evidence,Confirmed,knowledge_projection,platform_architecture,planner/knowledge_projection_rules.md
+KP-0002,knowledge_projection_rule,Experimental and disputed mechanics are not silent defaults,Confirmed,knowledge_projection,platform_architecture; planner_safety,planner/knowledge_projection_rules.md
+KP-0003,knowledge_projection_rule,Unsupported requests should be blocked not softened,Confirmed,knowledge_projection,planner_safety,planner/knowledge_projection_rules.md
+KP-0004,knowledge_projection_rule,Recommendations must show what would change them,Confirmed,knowledge_projection,decision_support_model,planner/knowledge_projection_rules.md
+KP-0005,knowledge_projection_rule,Unknown is a valid published state,Confirmed,knowledge_projection,project_principles; planner_safety,planner/knowledge_projection_rules.md
+KP-0006,knowledge_projection_rule,Historical evidence should not masquerade as current state,Confirmed,knowledge_projection,planner_safety; data_sources_review,planner/knowledge_projection_rules.md
+KP-0007,knowledge_projection_rule,Contradiction cases can block publication,Confirmed,knowledge_projection,platform_architecture,planner/knowledge_projection_rules.md
+KP-0008,knowledge_projection_rule,Planner-safe knowledge is version-aware,Confirmed,knowledge_projection,knowledge_versioning; project_principles,planner/knowledge_projection_rules.md
+KP-0009,knowledge_projection_rule,Demolition advice requires stronger evidence than additive advice,Confirmed,knowledge_projection,planner_safety; EV-0002,planner/knowledge_projection_rules.md
+KP-0010,knowledge_projection_rule,Complementary-role strategies must remain contextual,Confirmed,knowledge_projection,EXP-0001; decision_support_model,planner/knowledge_projection_rules.md
+CD-0001,coverage_dimension,Commodity coverage,Confirmed,planning,decision_support_model; roles_assets_strategies,planner/coverage_dimensions_register.md
+CD-0002,coverage_dimension,Service coverage,Confirmed,planning,decision_support_model; roles_assets_strategies,planner/coverage_dimensions_register.md
+CD-0003,coverage_dimension,Mission and activity coverage,Confirmed,planning,decision_support_model; roles_assets_strategies,planner/coverage_dimensions_register.md
+CD-0004,coverage_dimension,Economy-shaping coverage,Confirmed,planning,decision_support_model; M-0006,planner/coverage_dimensions_register.md
+CD-0005,coverage_dimension,Construction progression coverage,Confirmed,planning,decision_support_model; M-0004,planner/coverage_dimensions_register.md
+CD-0006,coverage_dimension,Body-role coverage,Confirmed,planning,roles_assets_strategies,planner/coverage_dimensions_register.md
+CD-0007,coverage_dimension,Resilience and redundancy coverage,Confirmed,planning,roles_assets_strategies; M-0003; M-0006,planner/coverage_dimensions_register.md
+CD-0008,coverage_dimension,Confidence coverage,Confirmed,planning,planner_safety; confidence_model_register,planner/coverage_dimensions_register.md
+RL-0001,role,Primary Metals Producer,Canonical,planning_role,roles_assets_strategies; decision_support_model,planner/role_register.md
+RL-0002,role,Primary Refinery Producer,Canonical,planning_role,roles_assets_strategies; decision_support_model,planner/role_register.md
+RL-0003,role,Industrial Anchor,Canonical,planning_role,roles_assets_strategies; EXP-0001,planner/role_register.md
+RL-0004,role,High Tech Support,Canonical,planning_role,roles_assets_strategies; EXP-0001,planner/role_register.md
+RL-0005,role,Extraction Support,Canonical,planning_role,roles_assets_strategies; decision_support_model,planner/role_register.md
+RL-0006,role,Tourism Mission Hub,Canonical,planning_role,roles_assets_strategies; decision_support_model,planner/role_register.md
+RL-0007,role,Agriculture Mission Hub,Canonical,planning_role,roles_assets_strategies; decision_support_model,planner/role_register.md
+RL-0008,role,Security Support,Canonical,planning_role,roles_assets_strategies; decision_support_model,planner/role_register.md
+RL-0009,role,Research Support,Canonical,planning_role,roles_assets_strategies; decision_support_model,planner/role_register.md
+RL-0010,role,Population Driver,Canonical,planning_role,roles_assets_strategies; decision_support_model,planner/role_register.md
+RL-0011,role,Service Hub,Canonical,planning_role,roles_assets_strategies; decision_support_model,planner/role_register.md
+RL-0012,role,Link Repair Candidate,Canonical,planning_role,roles_assets_strategies,planner/role_register.md
+RL-0013,role,Experiment Testbed,Canonical,planning_role,roles_assets_strategies; EXP-0000,planner/role_register.md
+OBJ-0001,objective,Maximum construction-material coverage,Canonical,planning_objective,decision_support_model,planner/objective_register.md
+OBJ-0002,objective,Maximum mission density,Canonical,planning_objective,decision_support_model,planner/objective_register.md
+OBJ-0003,objective,Maximum local production for bootstrapping,Canonical,planning_objective,decision_support_model,planner/objective_register.md
+OBJ-0004,objective,Maximum High Tech coverage,Canonical,planning_objective,decision_support_model; EXP-0001,planner/objective_register.md
+OBJ-0005,objective,Maximum Refinery coverage,Canonical,planning_objective,decision_support_model,planner/objective_register.md
+OBJ-0006,objective,Maximum tourism or agriculture missions,Canonical,planning_objective,decision_support_model,planner/objective_register.md
+OBJ-0007,objective,Minimum demolition risk,Canonical,planning_objective,decision_support_model; planner_risk_register,planner/objective_register.md
+OBJ-0008,objective,No cargo-hauling dependency,Canonical,planning_objective,decision_support_model; EXP-0001,planner/objective_register.md
+AC-0001,asset_category,Commodity Asset,Canonical,planning_asset_category,roles_assets_strategies; decision_support_model,planner/asset_category_register.md
+AC-0002,asset_category,Economy Asset,Canonical,planning_asset_category,roles_assets_strategies; decision_support_model,planner/asset_category_register.md
+AC-0003,asset_category,Service Asset,Canonical,planning_asset_category,roles_assets_strategies; decision_support_model,planner/asset_category_register.md
+AC-0004,asset_category,Mission Asset,Canonical,planning_asset_category,roles_assets_strategies; decision_support_model,planner/asset_category_register.md
+AC-0005,asset_category,Strategic Asset,Canonical,planning_asset_category,roles_assets_strategies,planner/asset_category_register.md
+AC-0006,asset_category,Infrastructure Asset,Canonical,planning_asset_category,roles_assets_strategies,planner/asset_category_register.md
+AP-0001,architecture_pattern,Industrial Anchor plus High Tech Support Body,Experimental,architecture_pattern,roles_assets_strategies; EXP-0001,planner/architecture_pattern_register.md
+AP-0002,architecture_pattern,Extraction and Refinery Primary Producer,Canonical,architecture_pattern,roles_assets_strategies,planner/architecture_pattern_register.md
+AP-0003,architecture_pattern,Water World Tourism Orbital Pair,Conceptual,architecture_pattern,roles_assets_strategies; M-0001,planner/architecture_pattern_register.md
+AP-0004,architecture_pattern,HMC Industrial Ground Cluster,Conceptual,architecture_pattern,roles_assets_strategies,planner/architecture_pattern_register.md
+AP-0005,architecture_pattern,Moonlet Weak-Link Support Chain,Conceptual,architecture_pattern,roles_assets_strategies; EXP-0000,planner/architecture_pattern_register.md
+RS-0001,recommendation_field,Objective being served,Canonical,recommendation_schema,decision_support_model,planner/recommendation_schema_register.md
+RS-0002,recommendation_field,Constraints summary,Canonical,recommendation_schema,decision_support_model; planner_safety,planner/recommendation_schema_register.md
+RS-0003,recommendation_field,Current coverage summary,Canonical,recommendation_schema,decision_support_model,planner/recommendation_schema_register.md
+RS-0004,recommendation_field,Coverage gap being targeted,Canonical,recommendation_schema,decision_support_model; roles_assets_strategies,planner/recommendation_schema_register.md
+RS-0005,recommendation_field,Recommended role,Canonical,recommendation_schema,decision_support_model; role_register,planner/recommendation_schema_register.md
+RS-0006,recommendation_field,Recommended architecture,Canonical,recommendation_schema,decision_support_model; architecture_pattern_register,planner/recommendation_schema_register.md
+RS-0007,recommendation_field,Candidate facilities,Canonical,recommendation_schema,decision_support_model,planner/recommendation_schema_register.md
+RS-0008,recommendation_field,Expected gains,Canonical,recommendation_schema,decision_support_model,planner/recommendation_schema_register.md
+RS-0009,recommendation_field,Expected losses or opportunity cost,Canonical,recommendation_schema,decision_support_model; roles_assets_strategies,planner/recommendation_schema_register.md
+RS-0010,recommendation_field,Mechanics used,Canonical,recommendation_schema,decision_support_model; mechanics_index,planner/recommendation_schema_register.md
+RS-0011,recommendation_field,Evidence used,Canonical,recommendation_schema,decision_support_model; evidence_traceability,planner/recommendation_schema_register.md
+RS-0012,recommendation_field,Confidence band,Canonical,recommendation_schema,decision_support_model; confidence_model_register,planner/recommendation_schema_register.md
+RS-0013,recommendation_field,Unknowns,Canonical,recommendation_schema,decision_support_model; unknowns_register,planner/recommendation_schema_register.md
+RS-0014,recommendation_field,What would change the recommendation,Canonical,recommendation_schema,decision_support_model,planner/recommendation_schema_register.md
+CS-0001,contextual_strategy,Industrial Anchor plus High Tech Support Body,Experimental,strategy,EXP-0001; EV-0001,planner/contextual_strategy_register.md
+CS-0002,contextual_strategy,Prefer local same-body shaping before remote spillover,Likely,strategy,M-0003; M-0006,planner/contextual_strategy_register.md
+CS-0003,contextual_strategy,Use under-utilized bodies to fill gaps not mirror the strongest body,Confirmed,strategy,decision_support_model; EXP-0001,planner/contextual_strategy_register.md
+CS-0004,contextual_strategy,Demolition is a late-stage strategy not a first response,Confirmed,strategy,planner_safety; EV-0002,planner/contextual_strategy_register.md
+MD-0001,mechanic_dependency,Station economy inheritance depends on rejecting manual economy choice,Confirmed,mechanic_dependency,M-0002; M-0007,mechanics/mechanic_dependency_register.md
+MD-0002,mechanic_dependency,Port taxonomy precedes economy inheritance modeling,Likely,mechanic_dependency,M-0005; M-0007,mechanics/mechanic_dependency_register.md
+MD-0003,mechanic_dependency,Body-economy modeling depends on inherited-economy assumptions,Likely,mechanic_dependency,M-0007; M-0008,mechanics/mechanic_dependency_register.md
+MD-0004,mechanic_dependency,Weak-link insufficiency is a special case inside routing,Confirmed,mechanic_dependency,M-0003; M-0006,mechanics/mechanic_dependency_register.md
+MD-0005,mechanic_dependency,Main-port routing interpretations depend on port hierarchy and state,Likely,mechanic_dependency,M-0004; M-0005; M-0006,mechanics/mechanic_dependency_register.md
+MD-0006,mechanic_dependency,Construction-point planning depends on state interpretation,Likely,mechanic_dependency,M-0004; EV-0002,mechanics/mechanic_dependency_register.md
+MD-0007,mechanic_dependency,Body constraints pre-empt downstream strategy and construction,Confirmed,mechanic_dependency,M-0001,mechanics/mechanic_dependency_register.md
+R-0001,planner_risk,Fake manual economy selection,Critical,planner_risk,M-0002; planner_rules,planner/planner_risk_register.md
+R-0002,planner_risk,Surface recommendations on impossible bodies,Critical,planner_risk,M-0001; planner_rules,planner/planner_risk_register.md
+R-0003,planner_risk,Weak-link overconfidence,High,planner_risk,M-0003; M-0006,planner/planner_risk_register.md
+R-0004,planner_risk,Preview-state treated as completed-state truth,High,planner_risk,EV-0003; anomaly_register,planner/planner_risk_register.md
+R-0005,planner_risk,Proposed-build totals treated as current buildability,High,planner_risk,EV-0002; M-0004,planner/planner_risk_register.md
+R-0006,planner_risk,Identity collapse across same-name facilities or disputed architects,High,planner_risk,identity_rules; anomaly_register,planner/planner_risk_register.md
+R-0007,planner_risk,Stale or mirrored sources override better evidence,High,planner_risk,source_authority; contradictions,planner/planner_risk_register.md
+R-0008,planner_risk,Demolition advice without strong direct evidence,Critical,planner_risk,knowledge_projection_rules; EV-0002,planner/planner_risk_register.md
+R-0009,planner_risk,Missing primary artifacts mistaken for completed extraction,Medium,planner_risk,reference_sources; source_coverage,planner/planner_risk_register.md
+U-0001,unknown,Economy percentages to commodity exposure,Open,unknown,M-0002; M-0007,docs/unknowns_register.md
+U-0002,unknown,Rank order versus absolute percentage,Open,unknown,M-0003; M-0006; EXP-0001,docs/unknowns_register.md
+U-0003,unknown,Station-class post-build divergence,Open,unknown,M-0005; EV-0003,docs/unknowns_register.md
+U-0004,unknown,Specialised-port exemption depth,Open,unknown,M-0005,docs/unknowns_register.md
+U-0005,unknown,Weak-link sufficiency threshold,Open,unknown,M-0003; M-0006,docs/unknowns_register.md
+U-0006,unknown,Main-port routing aggregation behavior,Open,unknown,M-0006; planner_rules,docs/unknowns_register.md
+U-0007,unknown,Body-modifier stacking behavior,Open,unknown,M-0008,docs/unknowns_register.md
+U-0008,unknown,Terraforming modifier role,Open,unknown,M-0008,docs/unknowns_register.md
+U-0009,unknown,Construction-point edge cases beyond current-versus-proposed interpretation,Open,unknown,M-0004; contradiction_register,docs/unknowns_register.md
+U-0010,unknown,Initial Primary Port exception scope,Open,unknown,M-0004,docs/unknowns_register.md
+U-0011,unknown,Body-linked public evidence granularity,Open,unknown,platform_architecture,docs/unknowns_register.md
+U-0012,unknown,Publication threshold for planner-safe knowledge,Open,unknown,platform_architecture; confidence_model_register,docs/unknowns_register.md
+GD-0001,governance_decision,Patch partitioning strategy for planner knowledge,Open,governance_decision,platform_architecture,docs/governance_decision_register.md
+GD-0002,governance_decision,Publication threshold for planner-safe knowledge,Open,governance_decision,platform_architecture; confidence_model_register,docs/governance_decision_register.md
+GD-0003,governance_decision,Body-linkage representation policy,Open,governance_decision,platform_architecture; unknowns_register,docs/governance_decision_register.md
+GD-0004,governance_decision,Human review surface for contradictions and identity collisions,Open,governance_decision,platform_architecture; anomaly_register,docs/governance_decision_register.md
+GD-0005,governance_decision,Analyst-side workflow for image-backed evidence,Open,governance_decision,platform_architecture; evidence_vault,docs/governance_decision_register.md
+IB-0001,implementation_backlog,Core repository-to-database provenance model,P0,implementation_backlog,platform_architecture,docs/implementation_backlog.md
+IB-0002,implementation_backlog,Claim observation mechanic and knowledge-release schemas,P0,implementation_backlog,schemas_readme; colony_state_schema,docs/implementation_backlog.md
+IB-0003,implementation_backlog,Current-state ingest from bulk public sources,P1,implementation_backlog,source_priority_register; manual_research_gaps,docs/implementation_backlog.md
+IB-0004,implementation_backlog,Analyst-side evidence entry workflow,P1,implementation_backlog,evidence_vault; governance_decision_register,docs/implementation_backlog.md
+IB-0005,implementation_backlog,Contradiction and identity review surface,P1,implementation_backlog,contradiction_register; anomaly_register,docs/implementation_backlog.md
+IB-0006,implementation_backlog,Planner-safe knowledge publication pipeline,P1,implementation_backlog,knowledge_projection_rules; confidence_model,docs/implementation_backlog.md
+IB-0007,implementation_backlog,Planner recommendation object and validation,P1,implementation_backlog,recommendation_schema_register,docs/implementation_backlog.md
+IB-0008,implementation_backlog,Body-linkage uncertainty handling,P1,implementation_backlog,unknowns_register; colony_state_schema,docs/implementation_backlog.md
+IB-0009,implementation_backlog,Knowledge graph export and query layer,P2,implementation_backlog,knowledge_graph,docs/implementation_backlog.md
+IB-0010,implementation_backlog,Evidence Vault binary workflow completion,P2,implementation_backlog,evidence_vault; manual_research_gaps,docs/implementation_backlog.md
+IB-0011,implementation_backlog,Direct primary-artifact re-ingestion,P1,implementation_backlog,source_coverage_register; manual_research_gaps,docs/implementation_backlog.md
+IB-0012,implementation_backlog,Live-verification result ingestion,P2,implementation_backlog,live_verification_register; verification_protocols,docs/implementation_backlog.md
+MRG-0001,manual_research_gap,No official public bulk export of full colonised-system layout state,Critical,manual_research_gap,manual_research_gaps,docs/manual_research_gaps.md
+MRG-0009,manual_research_gap,OCR and screenshot-review pipeline remains unbuilt,High,manual_research_gap,manual_research_gaps; evidence_vault,docs/manual_research_gaps.md
+OBS-0001,observation,Water Worlds in Wregoe were orbital-only,High,evidence_observation,EXP-0000,evidence/observation_register.csv
+OBS-0002,observation,Station economy could not be manually selected in Wregoe,High,evidence_observation,EXP-0000,evidence/observation_register.csv
+OBS-0003,observation,One weak Refinery link did not restore key metals,High,evidence_observation,EXP-0000,evidence/observation_register.csv
+OBS-0004,observation,A4 post-build facility set showed two High Tech Hubs,High,evidence_observation,EV-0001,evidence/observation_register.csv
+OBS-0005,observation,Rocha Liberty showed mixed strong and weak links after build,High,evidence_observation,EV-0001,evidence/observation_register.csv
+OBS-0006,observation,Rocha Liberty advertised mixed economies after build,High,evidence_observation,EV-0001,evidence/observation_register.csv
+OBS-0007,observation,Rocha Liberty showed multiple High Tech-style commodities after build,High,evidence_observation,EV-0001,evidence/observation_register.csv
+OBS-0008,observation,Raven projected deficits and system-state metrics were visible,Medium,evidence_observation,EV-0002,evidence/observation_register.csv
+OBS-0009,observation,Placeholder two-word coded names should be treated as planned unless confirmed,High,evidence_observation,EV-0002,evidence/observation_register.csv
+OBS-0010,observation,Apollo and Artemis Orbis previews showed no visible bar difference,High,evidence_observation,EV-0003,evidence/observation_register.csv
+OBS-0011,observation,Orbis Ocellus and Dodec previews showed no reliable superiority on shown bars,Medium,evidence_observation,EV-0003,evidence/observation_register.csv
+OBS-0012,observation,A4 baseline before two High Tech Hubs was Industrial then Extraction with low High Tech,Medium,evidence_observation,EXP-0001,evidence/observation_register.csv
+OBS-0013,observation,A4 experiment predicts High Tech rises to about 250 percent and second place,Medium,predicted_observation,EXP-0001,evidence/observation_register.csv
+CL-0001,claim,Water Worlds are orbital-only for construction,Confirmed,claim,OBS-0001; EXP-0000,evidence/claim_register.csv
+CL-0002,claim,Station economy is inherited,Confirmed,claim,OBS-0002; EXP-0000,evidence/claim_register.csv
+CL-0003,claim,One weak Refinery link was insufficient in the tested Wregoe case,Confirmed_Narrow,claim,OBS-0003; EV-0002,evidence/claim_register.csv
+CL-0004,claim,A4 post-build facility set included two High Tech Hubs,Observed,claim,OBS-0004; EV-0001,evidence/claim_register.csv
+CL-0005,claim,Rocha Liberty showed strong High Tech and Industrial support after build,Observed,claim,OBS-0005; EV-0001,evidence/claim_register.csv
+CL-0006,claim,Rocha Liberty exposed mixed economies after build,Observed,claim,OBS-0006; EV-0001,evidence/claim_register.csv
+CL-0007,claim,Rocha Liberty showed multiple High Tech-style commodities after build,Observed,claim,OBS-0007; EV-0001,evidence/claim_register.csv
+CL-0008,claim,Raven projected deficits and placeholder plans were visible,Observed,claim,OBS-0008; OBS-0009; EV-0002,evidence/claim_register.csv
+CL-0009,claim,Apollo and Artemis Orbis previews looked mechanically identical on shown bars,Observed,claim,OBS-0010; EV-0003,evidence/claim_register.csv
+CL-0010,claim,No reliable station-class superiority was shown in the preview evidence,Observed,claim,OBS-0011; EV-0003,evidence/claim_register.csv
+CL-0011,claim,A4 High Tech promotion is expected to broaden total material coverage,Pending,claim,OBS-0012; OBS-0013; EXP-0001,evidence/claim_register.csv
+CL-0012,claim,Absent primary artifacts are only indirectly represented,Confirmed,claim,source_coverage_register; EV-0004,evidence/claim_register.csv
+ER-0001,economy_rule,Station economy is inherited not manually chosen,Confirmed,economy,M-0002,mechanics/economy_rules_register.md
+ER-0002,economy_rule,Colony-type ports inherit economy behavior,Likely,economy,M-0005; M-0007,mechanics/economy_rules_register.md
+ER-0003,economy_rule,Specialised ports retain an inherent economy baseline,Likely,economy,M-0005; M-0007,mechanics/economy_rules_register.md
+ER-0004,economy_rule,Local body type establishes base inheritable economies,Likely,economy_body_effects,M-0008,mechanics/economy_rules_register.md
+ER-0005,economy_rule,Local body modifiers affect inherited economy tendency,Likely,economy_body_effects,M-0008,mechanics/economy_rules_register.md
+ER-0006,economy_rule,Modifier stacking remains unverified,Needs verification,economy_body_effects,M-0008; LV-0004,mechanics/economy_rules_register.md
+ER-0007,economy_rule,Strong links are preferred for targeted economy shaping,Likely,market_links,M-0006,mechanics/economy_rules_register.md
+ER-0008,economy_rule,Weak links provide spillover not guaranteed control,Likely,market_links,M-0006,mechanics/economy_rules_register.md
+ER-0009,economy_rule,One weak Refinery link was insufficient in the Wregoe Dodec case,Confirmed,economy_negative_evidence,M-0003,mechanics/economy_rules_register.md
+ER-0010,economy_rule,Preview equality does not prove post-build market equality,Confirmed,port_comparison,EV-0003; M-0005,mechanics/economy_rules_register.md
+CR-0001,construction_rule,Water worlds have no surface slots,Confirmed,body_constraints,M-0001,mechanics/construction_rules_register.md
+CR-0002,construction_rule,Construction points are distinct from material cost,Likely,construction,M-0004,mechanics/construction_rules_register.md
+CR-0003,construction_rule,Tier 1 facilities generate Tier 2 construction points,Likely,construction,M-0004,mechanics/construction_rules_register.md
+CR-0004,construction_rule,Tier 2 facilities consume Tier 2 and generate Tier 3 construction points,Likely,construction,M-0004,mechanics/construction_rules_register.md
+CR-0005,construction_rule,Tier 3 facilities consume Tier 3 construction points and do not generate more,Likely,construction,M-0004,mechanics/construction_rules_register.md
+CR-0006,construction_rule,The initial Primary Port is a construction-point exception,Likely,construction,M-0004,mechanics/construction_rules_register.md
+CR-0007,construction_rule,Current buildability differs from proposed full-plan totals,Likely,construction_safety,EV-0002; M-0004,mechanics/construction_rules_register.md
+CR-0008,construction_rule,Placeholder names and visible previews are not enough to infer completion state,Confirmed,state_interpretation,EV-0002; EV-0003,mechanics/construction_rules_register.md
+G-0001,glossary,Construction Points,Canonical,construction,M-0004,ontology/glossary.md
+G-0003,glossary,Colony-Type Port,Canonical,port_taxonomy,M-0005,ontology/glossary.md
+G-0006,glossary,Strong Link,Canonical,economy_routing,M-0006; EV-0001,ontology/glossary.md
+G-0007,glossary,Weak Link,Canonical,economy_routing,M-0003; M-0006,ontology/glossary.md
+G-0008,glossary,Coverage,Canonical,planning,decision_support_model; roles_assets_strategies,ontology/glossary.md
+G-0009,glossary,Coverage Gap,Canonical,planning,roles_assets_strategies,ontology/glossary.md
+G-0010,glossary,Role,Canonical,planning,roles_assets_strategies,ontology/glossary.md
+G-0011,glossary,Architecture,Canonical,planning,roles_assets_strategies; decision_support_model,ontology/glossary.md
+G-0012,glossary,Negative Evidence,Canonical,research_method,project_principles; EXP-0000,ontology/glossary.md
+G-0013,glossary,Contradiction Case,Canonical,research_method,platform_architecture,ontology/glossary.md
+G-0014,glossary,Knowledge Projection,Canonical,knowledge_system,platform_architecture,ontology/glossary.md
+C-0001,contradiction,Official claim radius versus Steam mirror wording,Open,source_conflict,data_sources_review,docs/contradiction_register.md
+C-0002,contradiction,Station-class superiority remains unproven,Open,evidence_conflict,EV-0003,docs/contradiction_register.md
+C-0003,contradiction,Raven proposed-build deficits versus live buildability,Open,model_interpretation_conflict,EV-0002; M-0004,docs/contradiction_register.md
+C-0004,contradiction,Weak-link generalisation versus Wregoe narrow failure,Open,heuristic_conflict,M-0003; M-0006,docs/contradiction_register.md
+LV-0001,live_verification,A4 High Tech threshold and commodity coverage,Needs verification,economy,EXP-0001; EV-0001,experiments/live_verification_register.md
+LV-0002,live_verification,Post-build station-class market differences,Needs verification,port_comparison,EV-0003,experiments/live_verification_register.md
+LV-0003,live_verification,Refinery threshold for metals at the Dodec,Needs verification,economy_links,M-0003; EXP-0000,experiments/live_verification_register.md
+LV-0004,live_verification,Local body modifier non-stacking,Needs verification,body_economics,M-0008,experiments/live_verification_register.md
+LV-0005,live_verification,Main Port routing and link aggregation,Needs verification,routing,M-0004; M-0006,experiments/live_verification_register.md
+M-0009,mechanic,"Facility Prerequisites, Port Conversion, and High-Tier Port Cost Escalation",Extracted,construction_dependencies,MG-0001; DM-0001; DD-0001,mechanics/M-0009-facility-prerequisites-port-conversion-and-escalation.md
+M-0010,mechanic,"Economy Compatibility, Rank Protection, and Market Cannibalization",Extracted,economy_markets,MG-0001; DM-0001; FW-0001,mechanics/M-0010-economy-compatibility-rank-protection-and-market-cannibalization.md
+M-0011,mechanic,"Facility Stats, Service Activation, and System Effects",Extracted,system_stats_services,MG-0001; DM-0001,mechanics/M-0011-facility-stats-service-activation-and-system-effects.md
+M-0012,mechanic,"Population Growth, Body Multipliers, and Output Scaling",Extracted,population,MG-0001,mechanics/M-0012-population-growth-body-multipliers-and-output-scaling.md
+M-0013,mechanic,"System Scores, Payments, and High-Risk Caveats",Extracted,score_caveats,MG-0001; FW-0001,mechanics/M-0013-system-scores-payments-and-high-risk-caveats.md
+PR-0011,planner_rule,Resolve main-port priority before reading link topology,Extracted,routing_safety,M-0006; M-0009,planner/planner_rules_register.md
+PR-0012,planner_rule,Do not recommend irreversible changes from arrow count alone,Extracted,routing_safety,M-0006; M-0013,planner/planner_rules_register.md
+PR-0013,planner_rule,Dependency trees constrain build sequencing alongside CP math,Extracted,construction_safety,M-0004; M-0009,planner/planner_rules_register.md
+MD-0008,mechanic_dependency,Main-port resolution is a prerequisite for safe routing interpretation,Extracted,mechanic_dependency,M-0005; M-0006; M-0009,mechanics/mechanic_dependency_register.md
+MD-0009,mechanic_dependency,Dependency-chain modeling constrains capital-build sequencing,Extracted,mechanic_dependency,M-0004; M-0009,mechanics/mechanic_dependency_register.md
+MD-0010,mechanic_dependency,Routing-display caveats depend on the broader link-routing model,Extracted,mechanic_dependency,M-0006; M-0013,mechanics/mechanic_dependency_register.md
+R-0010,planner_risk,Agricultural advice that ignores the zero-output planetary agri bug,High,planner_risk,C-0005; M-0013,planner/planner_risk_register.md
+R-0011,planner_risk,Nested-port passthrough bug treated as stable design doctrine,Critical,planner_risk,C-0006; M-0006; M-0013,planner/planner_risk_register.md
+R-0012,planner_risk,Population-pruning demolition advice based on anecdote,Critical,planner_risk,LV-0009; M-0012; M-0013,planner/planner_risk_register.md
+R-0013,planner_risk,Pad-size advice that trusts advertised settlement metadata,High,planner_risk,C-0007; LV-0010,planner/planner_risk_register.md
+R-0014,planner_risk,Arrow-count routing overconfidence,Critical,planner_risk,C-0008; PR-0012,planner/planner_risk_register.md
+R-0015,planner_risk,Dependency-family flattening,High,planner_risk,C-0009; PR-0013,planner/planner_risk_register.md
+U-0013,unknown,Strong-link modifier exact numeric application,Open,unknown,M-0006; LV-0006,docs/unknowns_register.md
+U-0014,unknown,Same-strength economy rank ordering,Open,unknown,M-0010; LV-0007,docs/unknowns_register.md
+U-0015,unknown,Body-specific population multipliers beyond current sample rows,Open,unknown,M-0012; LV-0008,docs/unknowns_register.md
+U-0016,unknown,Demolition impact on population,Open,unknown,M-0012; LV-0009,docs/unknowns_register.md
+U-0017,unknown,Actual landing pad availability by settlement variant,Open,unknown,M-0009; M-0013; LV-0010,docs/unknowns_register.md
+U-0018,unknown,Main-port weak-link generation exceptions,Open,unknown,M-0006; M-0009; LV-0011,docs/unknowns_register.md
+U-0019,unknown,Large-branch versus family-level prerequisite strictness,Open,unknown,M-0009; LV-0012,docs/unknowns_register.md
+U-0020,unknown,Main Surface Port to Main Orbital Port forwarding scope,Open,unknown,M-0006; M-0009; LV-0011,docs/unknowns_register.md
+C-0005,contradiction,Planetary agriculture intent versus bugged zero-output ports,Open,bugged_live_behavior,MG-0001; M-0010; M-0013,docs/contradiction_register.md
+C-0006,contradiction,Planetary-to-orbital inherited-economy passthrough looks stronger than intended,Open,suspected_bug,MG-0001; M-0006; M-0013,docs/contradiction_register.md
+C-0007,contradiction,Advertised landing pads versus actual landing access,Open,ui_metadata_conflict,DM-0001; M-0009; M-0013,docs/contradiction_register.md
+C-0008,contradiction,Visible Market Links topology versus actual routed influence,Open,ui_display_conflict,FW-0001; M-0006; M-0013,docs/contradiction_register.md
+C-0009,contradiction,Family-level prerequisites versus large-branch dependency readings,Open,dependency_interpretation_conflict,DM-0001; DD-0001; M-0009,docs/contradiction_register.md
+LV-0006,live_verification,Strong-link modifier exact values and additive stacking,Needs verification,routing,M-0006,experiments/live_verification_register.md
+LV-0007,live_verification,Same-strength economy tie ordering,Needs verification,economy_ranking,M-0010,experiments/live_verification_register.md
+LV-0008,live_verification,Body-specific population multipliers,Needs verification,population,M-0012,experiments/live_verification_register.md
+LV-0009,live_verification,Demolition and population decay,Needs verification,population_demolition,M-0012; M-0013,experiments/live_verification_register.md
+LV-0010,live_verification,Settlement pad-size divergence by variant,Needs verification,facility_metadata,M-0009; M-0013,experiments/live_verification_register.md
+LV-0011,live_verification,Multi-port weak-link generation and forwarding,Needs verification,routing_multi_port,M-0006; M-0009,experiments/live_verification_register.md
+LV-0012,live_verification,Large-branch prerequisite strictness,Needs verification,construction_dependencies,M-0009,experiments/live_verification_register.md

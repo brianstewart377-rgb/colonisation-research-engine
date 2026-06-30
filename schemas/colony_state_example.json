@@ -1,0 +1,185 @@
+{
+  "schema_version": "0.1.0-draft",
+  "knowledge_version": "CRE Knowledge v0.5.0-draft",
+  "state_timestamp": "2026-06-29T12:00:00Z",
+  "patch_context": {
+    "patch_family": "post-colonisation",
+    "patch_label": "repository-draft-context"
+  },
+  "system": {
+    "system_name": "Wregoe ZN-X c28-28",
+    "architect_name": "Brian",
+    "architect_confidence": "Likely",
+    "state_confidence": "Likely",
+    "source_refs": [
+      "EV-0002",
+      "EV-0003"
+    ]
+  },
+  "bodies": [
+    {
+      "body_ref": "BODY-A4",
+      "body_name": "A4",
+      "body_class": "planetary_body",
+      "build_surface_allowed": true,
+      "orbital_only": false,
+      "slot_summary": {
+        "orbital_slots": 1,
+        "surface_slots": 5,
+        "notes": "Repository baseline from EXP-0001 context"
+      },
+      "base_economy_hypotheses": [
+        {
+          "economy_name": "Industrial",
+          "hypothesis_type": "observed",
+          "confidence": "Likely",
+          "source_refs": [
+            "EXP-0001"
+          ]
+        },
+        {
+          "economy_name": "High Tech",
+          "hypothesis_type": "predicted",
+          "confidence": "Experimental",
+          "source_refs": [
+            "EXP-0001"
+          ]
+        }
+      ],
+      "role_refs": [
+        "RL-0004"
+      ],
+      "confidence": "Likely",
+      "source_refs": [
+        "EXP-0001",
+        "EV-0001"
+      ]
+    },
+    {
+      "body_ref": "BODY-WW-P5",
+      "body_name": "P5",
+      "body_class": "water_world",
+      "build_surface_allowed": false,
+      "orbital_only": true,
+      "slot_summary": {
+        "orbital_slots": 1,
+        "surface_slots": 0,
+        "notes": "Water World constraint represented from Wregoe methodology seed"
+      },
+      "confidence": "Confirmed",
+      "source_refs": [
+        "EXP-0000",
+        "M-0001"
+      ]
+    }
+  ],
+  "facilities": [
+    {
+      "facility_ref": "FAC-ROCHA-LIBERTY",
+      "facility_name": "Rocha Liberty",
+      "facility_type": "Industrial Surface Outpost",
+      "body_ref": "BODY-A4",
+      "location_resolution": "resolved",
+      "state": "completed",
+      "role_refs": [
+        "RL-0004"
+      ],
+      "economy_refs": [
+        "Industrial",
+        "High Tech",
+        "Extraction",
+        "Military",
+        "Refinery"
+      ],
+      "confidence": "Likely",
+      "source_refs": [
+        "EV-0001"
+      ]
+    }
+  ],
+  "market_links": [
+    {
+      "target_facility_ref": "FAC-ROCHA-LIBERTY",
+      "link_economy": "High Tech",
+      "link_strength": "strong",
+      "count": 2,
+      "aggregation_status": "unknown",
+      "source_refs": [
+        "EV-0001"
+      ]
+    },
+    {
+      "target_facility_ref": "FAC-ROCHA-LIBERTY",
+      "link_economy": "Refinery",
+      "link_strength": "weak",
+      "count": 4,
+      "aggregation_status": "unknown",
+      "source_refs": [
+        "EV-0001"
+      ]
+    }
+  ],
+  "economy_snapshots": [
+    {
+      "subject_ref": "FAC-ROCHA-LIBERTY",
+      "subject_type": "facility",
+      "economy_name": "High Tech",
+      "snapshot_kind": "observed",
+      "source_refs": [
+        "EV-0001"
+      ]
+    },
+    {
+      "subject_ref": "BODY-A4",
+      "subject_type": "body",
+      "economy_name": "High Tech",
+      "rank": 2,
+      "value_percent": 250,
+      "snapshot_kind": "predicted",
+      "source_refs": [
+        "EXP-0001"
+      ]
+    }
+  ],
+  "commodity_observations": [
+    {
+      "facility_ref": "FAC-ROCHA-LIBERTY",
+      "commodity_name": "Computer Components",
+      "observation_kind": "visible_for_sale",
+      "source_refs": [
+        "EV-0001"
+      ]
+    }
+  ],
+  "planner_constraints": [
+    {
+      "constraint_type": "body_feasibility",
+      "statement": "Water Worlds must not receive surface facility recommendations",
+      "severity": "hard_block",
+      "source_refs": [
+        "M-0001",
+        "PR-0002"
+      ]
+    }
+  ],
+  "evidence_refs": [
+    "EV-0001",
+    "EV-0002",
+    "EV-0003"
+  ],
+  "claim_refs": [
+    "CL-0002",
+    "CL-0007",
+    "CL-0010"
+  ],
+  "unknown_refs": [
+    "U-0001",
+    "U-0003",
+    "U-0006"
+  ],
+  "review": {
+    "review_status": "analyst_reviewed",
+    "reviewer": "Brian",
+    "review_notes": "Illustrative repository example only; not a complete production state export."
+  }
+}

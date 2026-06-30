@@ -1,0 +1,25 @@
+evidence_id,mechanic_id,relationship,strength,basis,notes
+EV-0001,M-0006,supports,Medium,Post-build High Tech observations and Wregoe same-body support reasoning,"Supports strong-versus-weak link planning, but not a full routing formula"
+EV-0001,M-0007,supports,Medium,Rocha Liberty post-build economy and commodity observations,Supports inherited-economy interpretation in context
+EV-0001,M-0005,indirect_support,Low,Rocha Liberty post-build context,"Useful context for port-role interpretation, but not a direct class comparison"
+EV-0002,M-0003,supports,High,One weak Refinery link failed to restore Steel Titanium Aluminium,Direct narrow negative evidence
+EV-0002,M-0004,supports,Medium,Raven projected deficits versus immediate buildability discussion,Strong caution on current versus projected CP interpretation
+EV-0002,M-0006,indirect_support,Low,Remote weak-link insufficiency context,Helpful context but not a full routing proof
+EV-0003,M-0005,supports,Medium,Preview comparisons across station classes and layouts,Supports caution around station-class assumptions
+EV-0003,M-0007,supports,Medium,Preview facility economy observations for colony-type stations,Supports inherited-economy interpretation and caution around manual choice
+EV-0003,M-0006,indirect_support,Low,Market Links screen context for station comparisons,Not enough alone to prove routing mechanics
+EV-0004,M-0004,supports,Medium,Reference-pack metadata now maps to committed canonical source families,Supports extraction provenance and source-family linkage through committed reference_sources
+EV-0004,M-0005,supports,Medium,Reference-pack metadata now maps to committed canonical source families,Supports extraction provenance and source-family linkage through committed reference_sources
+EV-0004,M-0006,supports,Medium,Reference-pack metadata now maps to committed canonical source families,Supports extraction provenance and source-family linkage through committed reference_sources
+EV-0004,M-0007,supports,Medium,Reference-pack metadata now maps to committed canonical source families,Supports extraction provenance and source-family linkage through committed reference_sources
+EV-0004,M-0008,supports,Medium,Reference-pack metadata now maps to committed canonical source families,Supports extraction provenance and source-family linkage through committed reference_sources
+EXP-0000,M-0001,produced,High,Methodology seed concluded Water Worlds have no surface slots,Direct experiment-derived mechanic
+EXP-0000,M-0002,produced,High,Methodology seed rejected manual station economy choice,Direct experiment-derived mechanic
+EXP-0000,M-0003,produced,High,Methodology seed preserved failed weak-link repair result,Direct experiment-derived mechanic
+EXP-0001,M-0007,tests,Medium,A4 High Tech support-body experiment aims to validate inherited economy outcomes,Still unresolved
+EXP-0001,M-0008,tests,Medium,A4 body-role and economy interaction experiment,Still unresolved
+EV-0004,M-0009,supports,Medium,Reference pack plus committed canonical prerequisite and escalation sources,Supports source-family provenance for dependency and escalation extraction
+EV-0004,M-0010,supports,Medium,Reference pack plus committed canonical compatibility and overlap sources,Supports source-family provenance for economy compatibility extraction
+EV-0004,M-0011,supports,Medium,Reference pack plus committed canonical facility-stat sources,Supports source-family provenance for stat and service extraction
+EV-0004,M-0012,supports,Medium,Reference pack plus committed canonical population sources,Supports source-family provenance for population extraction
+EV-0004,M-0013,supports,Medium,Reference pack plus committed canonical caveat and score sources,Supports source-family provenance for score and caveat extraction

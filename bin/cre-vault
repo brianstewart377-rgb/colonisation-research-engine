@@ -1,0 +1,524 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import argparse
+import getpass
+import hashlib
+import json
+import mimetypes
+import re
+import shutil
+import sqlite3
+import sys
+from dataclasses import dataclass
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Iterable
+
+
+REPO_ROOT = Path(__file__).resolve().parent.parent
+SCHEMA_PATH = REPO_ROOT / "schemas" / "evidence_vault_schema.sql"
+VAULT_ROOT = REPO_ROOT / "cre-vault"
+RAW_ROOT = VAULT_ROOT / "raw"
+DATABASE_PATH = VAULT_ROOT / "vault.db"
+EVIDENCE_EXPORT_ROOT = REPO_ROOT / "evidence"
+PHASE_CHOICES = ("before", "after", "during", "reference", "unknown")
+
+
+@dataclass(frozen=True)
+class FileImportCandidate:
+    source_path: Path
+    relative_path: Path
+    original_filename: str
+    sha256: str
+    mime_type: str
+    file_size_bytes: int
+    captured_at: str
+    evidence_type: str
+
+
+def utc_now() -> str:
+    return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+
+
+def infer_evidence_type(mime_type: str) -> str:
+    if mime_type.startswith("image/"):
+        return "screenshot"
+    if mime_type in {"application/zip", "application/x-zip-compressed"}:
+        return "archive"
+    if mime_type in {"application/json", "text/csv", "text/plain"}:
+        return "data_file"
+    return "file"
+
+
+def compute_sha256(file_path: Path) -> str:
+    digest = hashlib.sha256()
+    with file_path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def slugify(value: str) -> str:
+    slug = re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-")
+    return slug or "evidence-summary"
+
+
+def build_candidate(source_root: Path, file_path: Path, captured_at_override: str | None) -> FileImportCandidate:
+    stat_result = file_path.stat()
+    guessed_mime, _ = mimetypes.guess_type(str(file_path))
+    mime_type = guessed_mime or "application/octet-stream"
+    captured_at = captured_at_override or datetime.fromtimestamp(
+        stat_result.st_mtime,
+        tz=timezone.utc,
+    ).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+    return FileImportCandidate(
+        source_path=file_path,
+        relative_path=file_path.relative_to(source_root),
+        original_filename=file_path.name,
+        sha256=compute_sha256(file_path),
+        mime_type=mime_type,
+        file_size_bytes=stat_result.st_size,
+        captured_at=captured_at,
+        evidence_type=infer_evidence_type(mime_type),
+    )
+
+
+def ensure_database(connection: sqlite3.Connection) -> None:
+    VAULT_ROOT.mkdir(parents=True, exist_ok=True)
+    RAW_ROOT.mkdir(parents=True, exist_ok=True)
+    schema_sql = SCHEMA_PATH.read_text(encoding="utf-8")
+    connection.executescript(schema_sql)
+    connection.commit()
+
+
+def next_id(connection: sqlite3.Connection, table: str, column: str, prefix: str, width: int = 6) -> str:
+    cursor = connection.execute(
+        f"""
+        SELECT {column}
+        FROM {table}
+        WHERE {column} LIKE ?
+        ORDER BY CAST(SUBSTR({column}, ?) AS INTEGER) DESC
+        LIMIT 1
+        """,
+        (f"{prefix}-%", len(prefix) + 2),
+    )
+    row = cursor.fetchone()
+    last_value = 0
+    if row and row[0]:
+        last_value = int(str(row[0]).split("-")[1])
+    return f"{prefix}-{last_value + 1:0{width}d}"
+
+
+def format_item_range(evidence_ids: list[str]) -> str:
+    if not evidence_ids:
+        return "none"
+    if len(evidence_ids) == 1:
+        return evidence_ids[0]
+    return f"{evidence_ids[0]} to {evidence_ids[-1]}"
+
+
+def markdown_summary_path(batch_id: str, title: str) -> Path:
+    return EVIDENCE_EXPORT_ROOT / f"{batch_id.lower()}-{slugify(title)}.md"
+
+
+def collect_files(source_dir: Path) -> list[Path]:
+    files = [path for path in sorted(source_dir.rglob("*")) if path.is_file()]
+    return files
+
+
+def duplicate_records(
+    connection: sqlite3.Connection,
+    sha256_values: Iterable[str],
+) -> dict[str, dict[str, str]]:
+    records: dict[str, dict[str, str]] = {}
+    for sha256 in sha256_values:
+        row = connection.execute(
+            """
+            SELECT evidence_id, stored_path, original_filename
+            FROM evidence_item
+            WHERE sha256 = ?
+            """,
+            (sha256,),
+        ).fetchone()
+        if row:
+            records[sha256] = {
+                "evidence_id": row[0],
+                "stored_path": row[1],
+                "original_filename": row[2],
+            }
+    return records
+
+
+def write_metadata(metadata_path: Path, payload: dict) -> None:
+    metadata_path.write_text(json.dumps(payload, indent=2, sort_keys=True), encoding="utf-8")
+
+
+def export_markdown_summary(
+    summary_path: Path,
+    batch_record: dict,
+    new_items: list[dict],
+    duplicates: list[dict],
+) -> None:
+    EVIDENCE_EXPORT_ROOT.mkdir(parents=True, exist_ok=True)
+    lines: list[str] = [
+        f"# {batch_record['batch_id']} - {batch_record['title']}",
+        "",
+        "## Batch",
+        "",
+        f"- Imported at: {batch_record['uploaded_at']}",
+        f"- Source folder: `{batch_record['source_folder']}`",
+        f"- Source channel: {batch_record['source_channel']}",
+        f"- Uploaded by: {batch_record['uploaded_by']}",
+        f"- System: {batch_record['system_name'] or 'unknown'}",
+        f"- Body: {batch_record['body_name'] or 'unknown'}",
+        f"- Facility: {batch_record['facility_name'] or 'unknown'}",
+        f"- Experiment: {batch_record['experiment_id'] or 'none'}",
+        f"- Phase: {batch_record['phase']}",
+        "",
+        "## Registered evidence items",
+        "",
+    ]
+
+    if new_items:
+        lines.extend(
+            [
+                "| Evidence ID | File | Type | SHA-256 | Stored path |",
+                "|---|---|---|---|---|",
+            ]
+        )
+        for item in new_items:
+            lines.append(
+                f"| {item['evidence_id']} | `{item['source_relative_path']}` | {item['evidence_type']} | `{item['sha256']}` | `{item['stored_path']}` |"
+            )
+    else:
+        lines.append("No new evidence items were created in this import.")
+
+    if duplicates:
+        lines.extend(
+            [
+                "",
+                "## Duplicates detected",
+                "",
+                "| Incoming file | Existing evidence ID | Existing filename | Stored path |",
+                "|---|---|---|---|",
+            ]
+        )
+        for duplicate in duplicates:
+            lines.append(
+                f"| `{duplicate['source_relative_path']}` | {duplicate['evidence_id']} | `{duplicate['existing_filename']}` | `{duplicate['stored_path']}` |"
+            )
+
+    lines.extend(
+        [
+            "",
+            "## Notes",
+            "",
+            "- Raw files were copied into managed storage before analysis.",
+            "- SHA-256 hashes were used for duplicate detection.",
+            "- This summary records registration metadata only. It does not perform OCR, AI classification, or interpretation.",
+            "",
+        ]
+    )
+
+    summary_path.write_text("\n".join(lines), encoding="utf-8")
+
+
+def import_command(args: argparse.Namespace) -> int:
+    source_dir = Path(args.source_dir).expanduser().resolve()
+    if not source_dir.exists() or not source_dir.is_dir():
+        print(f"Source directory not found: {source_dir}", file=sys.stderr)
+        return 1
+
+    files = collect_files(source_dir)
+    if not files:
+        print(f"No files found in {source_dir}", file=sys.stderr)
+        return 1
+
+    VAULT_ROOT.mkdir(parents=True, exist_ok=True)
+    RAW_ROOT.mkdir(parents=True, exist_ok=True)
+    connection = sqlite3.connect(DATABASE_PATH)
+    connection.row_factory = sqlite3.Row
+    ensure_database(connection)
+
+    uploaded_at = utc_now()
+    uploaded_by = args.uploaded_by or getpass.getuser()
+    candidates = [build_candidate(source_dir, file_path, args.captured_at) for file_path in files]
+    duplicates_by_sha = duplicate_records(connection, {candidate.sha256 for candidate in candidates})
+
+    new_candidates: list[FileImportCandidate] = []
+    duplicate_candidates: list[FileImportCandidate] = []
+    seen_new_hashes: set[str] = set()
+    first_candidate_by_sha: dict[str, FileImportCandidate] = {}
+
+    for candidate in candidates:
+        if candidate.sha256 in duplicates_by_sha:
+            duplicate_candidates.append(candidate)
+            continue
+        if candidate.sha256 in seen_new_hashes:
+            duplicate_candidates.append(candidate)
+            continue
+        seen_new_hashes.add(candidate.sha256)
+        first_candidate_by_sha[candidate.sha256] = candidate
+        new_candidates.append(candidate)
+
+    if not new_candidates:
+        print("No new evidence registered.")
+        print(f"Duplicate files: {len(duplicate_candidates)}")
+        for candidate in duplicate_candidates:
+            existing = duplicates_by_sha[candidate.sha256]
+            print(f"- {candidate.relative_path} already registered as {existing['evidence_id']}")
+        print("Ready for analysis with the existing evidence records.")
+        return 0
+
+    batch_id = next_id(connection, "evidence_batch", "batch_id", "EB")
+    created_paths: list[Path] = []
+    inserted_items: list[dict] = []
+
+    try:
+        connection.execute("BEGIN")
+        connection.execute(
+            """
+            INSERT INTO evidence_batch (
+                batch_id,
+                title,
+                description,
+                source_channel,
+                uploaded_by,
+                uploaded_at,
+                default_system_name,
+                default_body_name,
+                default_facility_name,
+                default_experiment_id,
+                default_phase,
+                notes
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """,
+            (
+                batch_id,
+                args.title,
+                args.description,
+                args.source_channel,
+                uploaded_by,
+                uploaded_at,
+                args.system,
+                args.body,
+                args.facility,
+                args.experiment,
+                args.phase,
+                args.notes,
+            ),
+        )
+
+        for candidate in new_candidates:
+            evidence_id = next_id(connection, "evidence_item", "evidence_id", "EV")
+            target_dir = RAW_ROOT / evidence_id
+            target_dir.mkdir(parents=True, exist_ok=False)
+            created_paths.append(target_dir)
+            target_file = target_dir / candidate.original_filename
+            shutil.copy2(candidate.source_path, target_file)
+
+            stored_path = target_file.relative_to(REPO_ROOT).as_posix()
+            title_suffix = candidate.relative_path.as_posix()
+            item_title = f"{args.title} - {title_suffix}"
+
+            connection.execute(
+                """
+                INSERT INTO evidence_item (
+                    evidence_id,
+                    batch_id,
+                    evidence_type,
+                    title,
+                    system_name,
+                    body_name,
+                    facility_name,
+                    experiment_id,
+                    research_package_id,
+                    phase,
+                    captured_at,
+                    uploaded_at,
+                    captured_by,
+                    source_channel,
+                    original_filename,
+                    stored_path,
+                    sha256,
+                    mime_type,
+                    file_size_bytes,
+                    review_status,
+                    notes
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                """,
+                (
+                    evidence_id,
+                    batch_id,
+                    candidate.evidence_type,
+                    item_title,
+                    args.system,
+                    args.body,
+                    args.facility,
+                    args.experiment,
+                    None,
+                    args.phase,
+                    candidate.captured_at,
+                    uploaded_at,
+                    args.captured_by,
+                    args.source_channel,
+                    candidate.original_filename,
+                    stored_path,
+                    candidate.sha256,
+                    candidate.mime_type,
+                    candidate.file_size_bytes,
+                    "unreviewed",
+                    args.notes,
+                ),
+            )
+
+            metadata = {
+                "batch_id": batch_id,
+                "body_name": args.body,
+                "captured_at": candidate.captured_at,
+                "captured_by": args.captured_by,
+                "evidence_id": evidence_id,
+                "evidence_type": candidate.evidence_type,
+                "experiment_id": args.experiment,
+                "facility_name": args.facility,
+                "file_size_bytes": candidate.file_size_bytes,
+                "mime_type": candidate.mime_type,
+                "notes": args.notes,
+                "original_filename": candidate.original_filename,
+                "phase": args.phase,
+                "review_status": "unreviewed",
+                "sha256": candidate.sha256,
+                "source_channel": args.source_channel,
+                "source_relative_path": candidate.relative_path.as_posix(),
+                "stored_path": stored_path,
+                "system_name": args.system,
+                "title": item_title,
+                "uploaded_at": uploaded_at,
+            }
+            write_metadata(target_dir / "metadata.json", metadata)
+            inserted_items.append(
+                {
+                    "evidence_id": evidence_id,
+                    "evidence_type": candidate.evidence_type,
+                    "sha256": candidate.sha256,
+                    "source_relative_path": candidate.relative_path.as_posix(),
+                    "stored_path": stored_path,
+                }
+            )
+
+        connection.commit()
+    except Exception:
+        connection.rollback()
+        for path in reversed(created_paths):
+            if path.exists():
+                shutil.rmtree(path, ignore_errors=True)
+        raise
+    finally:
+        connection.close()
+
+    inserted_items_by_sha = {item["sha256"]: item for item in inserted_items}
+    duplicate_rows = []
+    for candidate in duplicate_candidates:
+        if candidate.sha256 in duplicates_by_sha:
+            duplicate_rows.append(
+                {
+                    "evidence_id": duplicates_by_sha[candidate.sha256]["evidence_id"],
+                    "existing_filename": duplicates_by_sha[candidate.sha256]["original_filename"],
+                    "source_relative_path": candidate.relative_path.as_posix(),
+                    "stored_path": duplicates_by_sha[candidate.sha256]["stored_path"],
+                }
+            )
+            continue
+
+        existing_new_item = inserted_items_by_sha[candidate.sha256]
+        first_candidate = first_candidate_by_sha[candidate.sha256]
+        duplicate_rows.append(
+            {
+                "evidence_id": existing_new_item["evidence_id"],
+                "existing_filename": first_candidate.original_filename,
+                "source_relative_path": candidate.relative_path.as_posix(),
+                "stored_path": existing_new_item["stored_path"],
+            }
+        )
+
+    summary_path = markdown_summary_path(batch_id, args.title)
+    export_markdown_summary(
+        summary_path=summary_path,
+        batch_record={
+            "batch_id": batch_id,
+            "title": args.title,
+            "uploaded_at": uploaded_at,
+            "source_folder": source_dir.as_posix(),
+            "source_channel": args.source_channel,
+            "uploaded_by": uploaded_by,
+            "system_name": args.system,
+            "body_name": args.body,
+            "facility_name": args.facility,
+            "experiment_id": args.experiment,
+            "phase": args.phase,
+        },
+        new_items=inserted_items,
+        duplicates=duplicate_rows,
+    )
+
+    print("Evidence registered.")
+    print(f"Batch: {batch_id}")
+    print(f"Evidence items: {format_item_range([item['evidence_id'] for item in inserted_items])}")
+    print(f"Linked experiment: {args.experiment or 'none'}")
+    print(f"Phase: {args.phase}")
+    print("Ready for analysis.")
+    print(f"Markdown summary: {summary_path.relative_to(REPO_ROOT).as_posix()}")
+    if duplicate_rows:
+        print(f"Duplicates detected: {len(duplicate_rows)}")
+        for duplicate in duplicate_rows:
+            print(f"- {duplicate['source_relative_path']} already registered as {duplicate['evidence_id']}")
+    return 0
+
+
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(
+        prog="cre-vault",
+        description="Register evidence files in the local Colonisation Research Engine Evidence Vault.",
+    )
+    subparsers = parser.add_subparsers(dest="command", required=True)
+
+    import_parser = subparsers.add_parser(
+        "import",
+        help="Import a folder of files into managed Evidence Vault storage.",
+    )
+    import_parser.add_argument("source_dir", help="Folder containing files to import.")
+    import_parser.add_argument("--title", required=True, help="Title for the evidence batch.")
+    import_parser.add_argument("--description", help="Optional batch description.")
+    import_parser.add_argument("--system", help="System name for the imported evidence.")
+    import_parser.add_argument("--body", help="Body name for the imported evidence.")
+    import_parser.add_argument("--facility", help="Facility name for the imported evidence.")
+    import_parser.add_argument("--experiment", help="Experiment ID to link to the evidence.")
+    import_parser.add_argument(
+        "--phase",
+        choices=PHASE_CHOICES,
+        default="unknown",
+        help="Evidence phase.",
+    )
+    import_parser.add_argument("--captured-by", help="Who captured the evidence.")
+    import_parser.add_argument("--captured-at", help="Override captured_at for all files in ISO-8601 format.")
+    import_parser.add_argument(
+        "--source-channel",
+        default="local_cli_import",
+        help="Source channel label stored with the evidence.",
+    )
+    import_parser.add_argument("--uploaded-by", help="Override the uploaded_by value. Defaults to the local user.")
+    import_parser.add_argument("--notes", help="Optional notes stored on the batch and evidence items.")
+    import_parser.set_defaults(handler=import_command)
+
+    return parser
+
+
+def main() -> int:
+    parser = build_parser()
+    args = parser.parse_args()
+    return args.handler(args)
+
+
+if __name__ == "__main__":
+    sys.exit(main())

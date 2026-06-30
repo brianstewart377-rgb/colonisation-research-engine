@@ -1,0 +1,371 @@
+claim_id,source_entity,relationship,basis_note
+CL-0001,OBS-0001,supported_by,Direct Wregoe observation preserved through EXP-0000
+CL-0001,EXP-0000,produced_by,Experiment seed created the mechanic claim
+CL-0001,M-0001,canonicalized_as,Claim formalized into canonical mechanic
+CL-0002,OBS-0002,supported_by,Direct Wregoe observation preserved through EXP-0000
+CL-0002,EXP-0000,produced_by,Experiment seed created the mechanic claim
+CL-0002,M-0002,canonicalized_as,Claim formalized into canonical mechanic
+CL-0003,OBS-0003,supported_by,Direct negative evidence from Wregoe
+CL-0003,EV-0002,corroborated_by,Raven review context supports the narrow failure interpretation
+CL-0003,M-0003,canonicalized_as,Claim formalized into canonical mechanic
+CL-0003,C-0004,qualified_by,Broader weak-link generalization remains disputed
+CL-0004,OBS-0004,supported_by,Structured facility-state extraction
+CL-0004,EV-0001,derived_from,Post-build screenshot evidence record
+CL-0005,OBS-0005,supported_by,Structured Market Links extraction
+CL-0005,EV-0001,derived_from,Post-build screenshot evidence record
+CL-0005,U-0006,limited_by,Aggregation behavior still unresolved
+CL-0006,OBS-0006,supported_by,Structured post-build economy extraction
+CL-0006,EV-0001,derived_from,Post-build screenshot evidence record
+CL-0006,U-0001,limited_by,Commodity exposure transformation still unresolved
+CL-0007,OBS-0007,supported_by,Structured commodity extraction
+CL-0007,EV-0001,derived_from,Post-build screenshot evidence record
+CL-0007,U-0001,limited_by,No direct commodity mapping formula yet
+CL-0007,U-0002,limited_by,Rank versus absolute percentage still unresolved
+CL-0008,OBS-0008,supported_by,Structured Raven planner-state extraction
+CL-0008,OBS-0009,qualified_by,Placeholder-name interpretation rule
+CL-0008,EV-0002,derived_from,Raven planning screenshots
+CL-0008,U-0009,limited_by,Not all construction-point edge cases are known
+CL-0009,OBS-0010,supported_by,Structured preview extraction
+CL-0009,EV-0003,derived_from,Architect preview screenshots
+CL-0010,OBS-0011,supported_by,Structured preview extraction
+CL-0010,EV-0003,derived_from,Architect preview screenshots
+CL-0010,C-0002,qualified_by,Station-class superiority remains unresolved
+CL-0011,OBS-0012,uses_baseline,Before-state baseline for A4 experiment
+CL-0011,OBS-0013,predicted_by,Experiment prediction
+CL-0011,EXP-0001,derived_from,Active unresolved experiment
+CL-0011,U-0001,limited_by,Commodity mapping still unresolved
+CL-0011,U-0002,limited_by,Rank versus percentage still unresolved
+CL-0012,docs/source_coverage_register.md,supported_by,Coverage register records committed canonical reference sources
+CL-0012,EV-0004,qualified_by,Reference pack is committed as canonical source-family provenance in repo
+CL-0012,R-0009,informs,Prevents fabricated direct extraction claims
+CL-0013,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 27 / Before You Start: CP-Cost Increases For Tier 2 And Tier 3 Ports
+CL-0014,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 27 / Before You Start: CP-Cost Increases For Tier 2 And Tier 3 Ports
+CL-0015,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 27 / Before You Start: CP-Cost Increases For Tier 2 And Tier 3 Ports
+CL-0016,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 27 / Before You Start: CP-Cost Increases For Tier 2 And Tier 3 Ports
+CL-0017,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 27 / Before You Start: CP-Cost Increases For Tier 2 And Tier 3 Ports
+CL-0018,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 27 / Before You Start: CP-Cost Increases For Tier 2 And Tier 3 Ports
+CL-0019,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 27 / Before You Start: CP-Cost Increases For Tier 2 And Tier 3 Ports
+CL-0020,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 27 / Before You Start: CP-Cost Increases For Tier 2 And Tier 3 Ports
+CL-0021,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 27 / Before You Start: CP-Cost Increases For Tier 2 And Tier 3 Ports
+CL-0022,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 27 / Before You Start: CP-Cost Increases For Tier 2 And Tier 3 Ports
+CL-0023,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 27 / Before You Start: CP-Cost Increases For Tier 2 And Tier 3 Ports
+CL-0024,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 27 / Before You Start: CP-Cost Increases For Tier 2 And Tier 3 Ports
+CL-0025,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 47 / How Do Colony-Type Ports Gain Economies? Base Inheritable Economy + Modifiers
+CL-0026,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 47 / How Do Colony-Type Ports Gain Economies? Base Inheritable Economy + Modifiers
+CL-0027,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 47 / How Do Colony-Type Ports Gain Economies? Base Inheritable Economy + Modifiers
+CL-0028,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 47 / How Do Colony-Type Ports Gain Economies? Base Inheritable Economy + Modifiers
+CL-0029,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 47 / How Do Colony-Type Ports Gain Economies? Base Inheritable Economy + Modifiers
+CL-0030,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 47 / How Do Colony-Type Ports Gain Economies? Base Inheritable Economy + Modifiers
+CL-0031,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 47 / How Do Colony-Type Ports Gain Economies? Base Inheritable Economy + Modifiers
+CL-0032,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 47 / How Do Colony-Type Ports Gain Economies? Base Inheritable Economy + Modifiers
+CL-0033,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 47 / How Do Colony-Type Ports Gain Economies? Base Inheritable Economy + Modifiers
+CL-0034,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 47 / How Do Colony-Type Ports Gain Economies? Base Inheritable Economy + Modifiers
+CL-0035,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 47 / How Do Colony-Type Ports Gain Economies? Base Inheritable Economy + Modifiers
+CL-0036,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 47 / How Do Colony-Type Ports Gain Economies? Base Inheritable Economy + Modifiers
+CL-0037,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 47 / How Do Colony-Type Ports Gain Economies? Base Inheritable Economy + Modifiers
+CL-0038,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 47 / How Do Colony-Type Ports Gain Economies? Base Inheritable Economy + Modifiers
+CL-0039,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 47 / How Do Colony-Type Ports Gain Economies? Base Inheritable Economy + Modifiers
+CL-0040,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 47 / How Do Colony-Type Ports Gain Economies? Base Inheritable Economy + Modifiers
+CL-0041,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 47 / How Do Colony-Type Ports Gain Economies? Base Inheritable Economy + Modifiers
+CL-0042,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 47 / How Do Colony-Type Ports Gain Economies? Base Inheritable Economy + Modifiers
+CL-0043,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 47 / How Do Colony-Type Ports Gain Economies? Base Inheritable Economy + Modifiers
+CL-0044,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 47 / How Do Colony-Type Ports Gain Economies? Base Inheritable Economy + Modifiers
+CL-0045,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 47 / How Do Colony-Type Ports Gain Economies? Base Inheritable Economy + Modifiers
+CL-0046,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 47 / How Do Colony-Type Ports Gain Economies? Base Inheritable Economy + Modifiers
+CL-0047,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 47 / How Do Colony-Type Ports Gain Economies? Base Inheritable Economy + Modifiers
+CL-0048,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 47 / How Do Colony-Type Ports Gain Economies? Base Inheritable Economy + Modifiers
+CL-0049,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 47 / How Do Colony-Type Ports Gain Economies? Base Inheritable Economy + Modifiers
+CL-0050,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 47 / How Do Colony-Type Ports Gain Economies? Base Inheritable Economy + Modifiers
+CL-0051,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 47 / How Do Colony-Type Ports Gain Economies? Base Inheritable Economy + Modifiers
+CL-0052,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 47 / How Do Colony-Type Ports Gain Economies? Base Inheritable Economy + Modifiers
+CL-0053,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 54 / Strong Links
+CL-0054,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 54 / Strong Links
+CL-0055,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 54 / Strong Links
+CL-0056,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 54 / Strong Links
+CL-0057,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 54 / Strong Links
+CL-0058,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 54 / Strong Links
+CL-0059,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 54 / Strong Links
+CL-0060,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 54 / Strong Links
+CL-0061,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 61 / Security
+CL-0062,MG-0001,extracted_from,"MG-0001 Elite Dangerous Colonization Mega Guide / 75 / What Does Population Affect, And How Do I Grow It?"
+CL-0063,MG-0001,extracted_from,"MG-0001 Elite Dangerous Colonization Mega Guide / 75 / What Does Population Affect, And How Do I Grow It?"
+CL-0064,MG-0001,extracted_from,"MG-0001 Elite Dangerous Colonization Mega Guide / 75 / What Does Population Affect, And How Do I Grow It?"
+CL-0065,MG-0001,extracted_from,"MG-0001 Elite Dangerous Colonization Mega Guide / 75 / What Does Population Affect, And How Do I Grow It?"
+CL-0066,MG-0001,extracted_from,"MG-0001 Elite Dangerous Colonization Mega Guide / 75 / What Does Population Affect, And How Do I Grow It?"
+CL-0067,MG-0001,extracted_from,"MG-0001 Elite Dangerous Colonization Mega Guide / 75 / What Does Population Affect, And How Do I Grow It?"
+CL-0068,MG-0001,extracted_from,"MG-0001 Elite Dangerous Colonization Mega Guide / 75 / What Does Population Affect, And How Do I Grow It?"
+CL-0069,MG-0001,extracted_from,"MG-0001 Elite Dangerous Colonization Mega Guide / 75 / What Does Population Affect, And How Do I Grow It?"
+CL-0070,MG-0001,extracted_from,"MG-0001 Elite Dangerous Colonization Mega Guide / 75 / What Does Population Affect, And How Do I Grow It?"
+CL-0072,MG-0001,extracted_from,"MG-0001 Elite Dangerous Colonization Mega Guide / 75 / What Does Population Affect, And How Do I Grow It?"
+CL-0073,MG-0001,extracted_from,"MG-0001 Elite Dangerous Colonization Mega Guide / 75 / What Does Population Affect, And How Do I Grow It?"
+CL-0075,MG-0001,extracted_from,"MG-0001 Elite Dangerous Colonization Mega Guide / 92 / Bugs, Known Issues, And Possible Workarounds"
+CL-0076,MG-0001,extracted_from,"MG-0001 Elite Dangerous Colonization Mega Guide / 92 / Bugs, Known Issues, And Possible Workarounds"
+CL-0077,MG-0001,extracted_from,"MG-0001 Elite Dangerous Colonization Mega Guide / 92 / Bugs, Known Issues, And Possible Workarounds"
+CL-0078,MG-0001,extracted_from,"MG-0001 Elite Dangerous Colonization Mega Guide / 92 / Bugs, Known Issues, And Possible Workarounds"
+CL-0079,MG-0001,extracted_from,"MG-0001 Elite Dangerous Colonization Mega Guide / 92 / Bugs, Known Issues, And Possible Workarounds"
+CL-0080,MG-0001,extracted_from,"MG-0001 Elite Dangerous Colonization Mega Guide / 92 / Bugs, Known Issues, And Possible Workarounds"
+CL-0081,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 100 / Appendix D: Detailed Overlap Of Economy Pairs
+CL-0082,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 100 / Appendix D: Detailed Overlap Of Economy Pairs
+CL-0083,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 100 / Appendix D: Detailed Overlap Of Economy Pairs
+CL-0084,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 100 / Appendix D: Detailed Overlap Of Economy Pairs
+CL-0085,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 100 / Appendix D: Detailed Overlap Of Economy Pairs
+CL-0086,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 100 / Appendix D: Detailed Overlap Of Economy Pairs
+CL-0087,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 100 / Appendix D: Detailed Overlap Of Economy Pairs
+CL-0088,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 100 / Appendix D: Detailed Overlap Of Economy Pairs
+CL-0089,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 100 / Appendix D: Detailed Overlap Of Economy Pairs
+CL-0090,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 100 / Appendix D: Detailed Overlap Of Economy Pairs
+CL-0091,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 100 / Appendix D: Detailed Overlap Of Economy Pairs
+CL-0092,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 100 / Appendix D: Detailed Overlap Of Economy Pairs
+CL-0093,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 100 / Appendix D: Detailed Overlap Of Economy Pairs
+CL-0094,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 100 / Appendix D: Detailed Overlap Of Economy Pairs
+CL-0095,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 100 / Appendix D: Detailed Overlap Of Economy Pairs
+CL-0096,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 100 / Appendix D: Detailed Overlap Of Economy Pairs
+CL-0097,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 100 / Appendix D: Detailed Overlap Of Economy Pairs
+CL-0098,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 100 / Appendix D: Detailed Overlap Of Economy Pairs
+CL-0099,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 100 / Appendix D: Detailed Overlap Of Economy Pairs
+CL-0100,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 100 / Appendix D: Detailed Overlap Of Economy Pairs
+CL-0101,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 100 / Appendix D: Detailed Overlap Of Economy Pairs
+CL-0102,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 100 / Appendix D: Detailed Overlap Of Economy Pairs
+CL-0103,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 100 / Appendix D: Detailed Overlap Of Economy Pairs
+CL-0104,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 100 / Appendix D: Detailed Overlap Of Economy Pairs
+CL-0105,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 100 / Appendix D: Detailed Overlap Of Economy Pairs
+CL-0106,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 100 / Appendix D: Detailed Overlap Of Economy Pairs
+CL-0107,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 100 / Appendix D: Detailed Overlap Of Economy Pairs
+CL-0108,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 100 / Appendix D: Detailed Overlap Of Economy Pairs
+CL-0109,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 100 / Appendix D: Detailed Overlap Of Economy Pairs
+CL-0110,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 100 / Appendix D: Detailed Overlap Of Economy Pairs
+CL-0111,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 100 / Appendix D: Detailed Overlap Of Economy Pairs
+CL-0112,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 100 / Appendix D: Detailed Overlap Of Economy Pairs
+CL-0113,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 100 / Appendix D: Detailed Overlap Of Economy Pairs
+CL-0114,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 100 / Appendix D: Detailed Overlap Of Economy Pairs
+CL-0115,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 100 / Appendix D: Detailed Overlap Of Economy Pairs
+CL-0116,MG-0001,extracted_from,"MG-0001 Elite Dangerous Colonization Mega Guide / 25 / How To Architect A System? Construction Points, And A Tool You Will Love"
+CL-0117,MG-0001,extracted_from,"MG-0001 Elite Dangerous Colonization Mega Guide / 25 / How To Architect A System? Construction Points, And A Tool You Will Love"
+CL-0118,MG-0001,extracted_from,"MG-0001 Elite Dangerous Colonization Mega Guide / 25 / How To Architect A System? Construction Points, And A Tool You Will Love"
+CL-0119,MG-0001,extracted_from,"MG-0001 Elite Dangerous Colonization Mega Guide / 25 / How To Architect A System? Construction Points, And A Tool You Will Love"
+CL-0120,MG-0001,extracted_from,"MG-0001 Elite Dangerous Colonization Mega Guide / 25 / How To Architect A System? Construction Points, And A Tool You Will Love"
+CL-0121,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 27 / Before You Start: CP-Cost Increases For Tier 2 And Tier 3 Ports
+CL-0122,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 27 / Before You Start: CP-Cost Increases For Tier 2 And Tier 3 Ports
+CL-0123,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 27 / Before You Start: CP-Cost Increases For Tier 2 And Tier 3 Ports
+CL-0124,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 27 / Before You Start: CP-Cost Increases For Tier 2 And Tier 3 Ports
+CL-0125,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 27 / Before You Start: CP-Cost Increases For Tier 2 And Tier 3 Ports
+CL-0126,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 27 / Before You Start: CP-Cost Increases For Tier 2 And Tier 3 Ports
+CL-0127,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 27 / Before You Start: CP-Cost Increases For Tier 2 And Tier 3 Ports
+CL-0128,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 29 / How To Effectively Plan For System Construction
+CL-0129,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 29 / How To Effectively Plan For System Construction
+CL-0130,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 29 / How To Effectively Plan For System Construction
+CL-0131,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 29 / How To Effectively Plan For System Construction
+CL-0132,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 33 / The Value Of Space Versus Ground Slots
+CL-0133,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 33 / The Value Of Space Versus Ground Slots
+CL-0134,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 33 / The Value Of Space Versus Ground Slots
+CL-0135,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 33 / The Value Of Space Versus Ground Slots
+CL-0136,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 36 / Station Interiors
+CL-0137,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 36 / Station Interiors
+CL-0138,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 36 / Station Interiors
+CL-0139,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 47 / How Do Colony-Type Ports Gain Economies? Base Inheritable Economy + Modifiers
+CL-0140,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 47 / How Do Colony-Type Ports Gain Economies? Base Inheritable Economy + Modifiers
+CL-0141,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 47 / How Do Colony-Type Ports Gain Economies? Base Inheritable Economy + Modifiers
+CL-0142,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 47 / How Do Colony-Type Ports Gain Economies? Base Inheritable Economy + Modifiers
+CL-0143,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 47 / How Do Colony-Type Ports Gain Economies? Base Inheritable Economy + Modifiers
+CL-0144,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 47 / How Do Colony-Type Ports Gain Economies? Base Inheritable Economy + Modifiers
+CL-0145,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 52 / What Are Strong & Weak Links? How Are They Modified By Link Modifiers?
+CL-0146,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 52 / What Are Strong & Weak Links? How Are They Modified By Link Modifiers?
+CL-0147,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 52 / What Are Strong & Weak Links? How Are They Modified By Link Modifiers?
+CL-0148,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 52 / What Are Strong & Weak Links? How Are They Modified By Link Modifiers?
+CL-0149,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 54 / Strong Links
+CL-0150,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 54 / Strong Links
+CL-0151,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 54 / Strong Links
+CL-0152,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 54 / Strong Links
+CL-0153,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 57 / Weak Links
+CL-0154,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 58 / Special Case: Port-to-Port Strong Links
+CL-0155,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 58 / Special Case: Port-to-Port Strong Links
+CL-0156,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 58 / Special Case: Port-to-Port Strong Links
+CL-0157,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 58 / Special Case: Port-to-Port Strong Links
+CL-0158,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 59 / Special Case: When Ports Convert To Being Supporting Facilities
+CL-0159,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 59 / Special Case: When Ports Convert To Being Supporting Facilities
+CL-0160,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 61 / Security
+CL-0161,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 61 / Security
+CL-0162,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 62 / Wealth
+CL-0163,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 62 / Standard of Living
+CL-0164,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 62 / Technology Level
+CL-0165,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 62 / Technology Level
+CL-0166,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 62 / Technology Level
+CL-0167,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 62 / Development Level
+CL-0168,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 63 / Happiness
+CL-0169,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 68 / Which Economies Are Compatible With Each Other?
+CL-0170,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 68 / Which Economies Are Compatible With Each Other?
+CL-0171,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 68 / Which Economies Are Compatible With Each Other?
+CL-0172,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 68 / Which Economies Are Compatible With Each Other?
+CL-0173,MG-0001,extracted_from,"MG-0001 Elite Dangerous Colonization Mega Guide / 75 / What Does Population Affect, And How Do I Grow It?"
+CL-0174,MG-0001,extracted_from,"MG-0001 Elite Dangerous Colonization Mega Guide / 75 / What Does Population Affect, And How Do I Grow It?"
+CL-0175,MG-0001,extracted_from,"MG-0001 Elite Dangerous Colonization Mega Guide / 75 / What Does Population Affect, And How Do I Grow It?"
+CL-0176,MG-0001,extracted_from,"MG-0001 Elite Dangerous Colonization Mega Guide / 75 / What Does Population Affect, And How Do I Grow It?"
+CL-0177,MG-0001,extracted_from,"MG-0001 Elite Dangerous Colonization Mega Guide / 75 / What Does Population Affect, And How Do I Grow It?"
+CL-0178,MG-0001,extracted_from,"MG-0001 Elite Dangerous Colonization Mega Guide / 75 / What Does Population Affect, And How Do I Grow It?"
+CL-0179,MG-0001,extracted_from,"MG-0001 Elite Dangerous Colonization Mega Guide / 75 / What Does Population Affect, And How Do I Grow It?"
+CL-0180,MG-0001,extracted_from,"MG-0001 Elite Dangerous Colonization Mega Guide / 75 / What Does Population Affect, And How Do I Grow It?"
+CL-0181,MG-0001,extracted_from,"MG-0001 Elite Dangerous Colonization Mega Guide / 75 / What Does Population Affect, And How Do I Grow It?"
+CL-0182,MG-0001,extracted_from,"MG-0001 Elite Dangerous Colonization Mega Guide / 75 / What Does Population Affect, And How Do I Grow It?"
+CL-0183,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 80 / System Score And Credits Per Week
+CL-0184,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 80 / System Score And Credits Per Week
+CL-0185,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 95 / Appendix A: Advanced Strategies
+CL-0186,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 95 / Appendix A: Advanced Strategies
+CL-0187,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 95 / Appendix A: Advanced Strategies
+CL-0188,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 95 / Appendix A: Advanced Strategies
+CL-0189,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 95 / Appendix A: Advanced Strategies
+CL-0190,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 87 / Case Study #2: Building An “Ideal” Agriculture System
+CL-0191,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 87 / Case Study #2: Building An “Ideal” Agriculture System
+CL-0192,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 84 / Case Study #1: Building An “Ideal” Refinery System
+CL-0193,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 87 / Case Study #2: Building An “Ideal” Agriculture System
+CL-0194,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0195,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0196,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0197,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0198,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0199,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0200,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0201,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0202,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0203,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0204,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0205,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0206,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0207,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0208,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0209,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0210,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0211,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0212,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0213,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0214,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0215,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0216,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0217,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0218,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0219,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0220,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0221,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0222,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0223,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0224,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0225,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0226,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0227,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0228,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0229,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0230,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0231,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0232,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0233,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0234,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0235,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0236,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0237,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0238,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0239,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0240,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0241,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0242,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0243,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0244,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0245,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0246,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0247,MG-0001,extracted_from,MG-0001 Elite Dangerous Colonization Mega Guide / 99 / Appendix C: Detailed By-Facility System Scores
+CL-0248,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Orbital Station Information / Orbital Station Information
+CL-0249,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Orbital Station Information / Orbital Station Information
+CL-0250,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Orbital Station Information / Orbital Station Information
+CL-0251,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Orbital Station Information / Orbital Station Information
+CL-0252,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Orbital Outpost Information / Orbital Outpost Information
+CL-0253,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Orbital Outpost Information / Orbital Outpost Information
+CL-0254,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Orbital Outpost Information / Orbital Outpost Information
+CL-0255,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Orbital Outpost Information / Orbital Outpost Information
+CL-0256,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Orbital Outpost Information / Orbital Outpost Information
+CL-0257,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Orbital Outpost Information / Orbital Outpost Information
+CL-0258,DM-0001,extracted_from,DM-0001 Colonization Construction Details / System Effects by Installation Type / System Effects by Installation Type
+CL-0259,DM-0001,extracted_from,DM-0001 Colonization Construction Details / System Effects by Installation Type / System Effects by Installation Type
+CL-0260,DM-0001,extracted_from,DM-0001 Colonization Construction Details / System Effects by Installation Type / System Effects by Installation Type
+CL-0261,DM-0001,extracted_from,DM-0001 Colonization Construction Details / System Effects by Installation Type / System Effects by Installation Type
+CL-0262,DM-0001,extracted_from,DM-0001 Colonization Construction Details / System Effects by Installation Type / System Effects by Installation Type
+CL-0263,DM-0001,extracted_from,DM-0001 Colonization Construction Details / System Effects by Installation Type / System Effects by Installation Type
+CL-0264,DM-0001,extracted_from,DM-0001 Colonization Construction Details / System Effects by Installation Type / System Effects by Installation Type
+CL-0265,DM-0001,extracted_from,DM-0001 Colonization Construction Details / System Effects by Installation Type / System Effects by Installation Type
+CL-0266,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Orbital Installation Information / Orbital Installation Information
+CL-0267,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Orbital Installation Information / Orbital Installation Information
+CL-0268,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Orbital Installation Information / Orbital Installation Information
+CL-0269,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Orbital Installation Information / Orbital Installation Information
+CL-0270,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Orbital Installation Information / Orbital Installation Information
+CL-0271,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Orbital Installation Information / Orbital Installation Information
+CL-0272,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Orbital Installation Information / Orbital Installation Information
+CL-0273,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Orbital Installation Information / Orbital Installation Information
+CL-0274,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Orbital Installation Information / Orbital Installation Information
+CL-0275,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Orbital Installation Information / Orbital Installation Information
+CL-0276,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Surface Port Information / Surface Port Information
+CL-0277,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Surface Port Information / Surface Port Information
+CL-0278,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Surface Port Information / Surface Port Information
+CL-0279,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Surface Port Information / Surface Port Information
+CL-0280,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Surface Settlement Information / Surface Settlement Information
+CL-0281,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Surface Settlement Information / Surface Settlement Information
+CL-0282,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Surface Settlement Information / Surface Settlement Information
+CL-0283,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Surface Settlement Information / Surface Settlement Information
+CL-0284,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Surface Settlement Information / Surface Settlement Information
+CL-0285,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Surface Settlement Information / Surface Settlement Information
+CL-0286,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Surface Settlement Information / Surface Settlement Information
+CL-0287,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Surface Settlement Information / Surface Settlement Information
+CL-0288,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Surface Settlement Information / Surface Settlement Information
+CL-0289,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Surface Settlement Information / Surface Settlement Information
+CL-0290,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Surface Settlement Information / Surface Settlement Information
+CL-0291,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Surface Settlement Information / Surface Settlement Information
+CL-0292,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Surface Settlement Information / Surface Settlement Information
+CL-0293,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Surface Settlement Information / Surface Settlement Information
+CL-0294,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Surface Settlement Information / Surface Settlement Information
+CL-0295,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Surface Settlement Information / Surface Settlement Information
+CL-0296,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Surface Settlement Information / Surface Settlement Information
+CL-0297,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Surface Settlement Information / Surface Settlement Information
+CL-0298,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Surface Hub Information / Surface Hub Information
+CL-0299,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Surface Hub Information / Surface Hub Information
+CL-0300,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Surface Hub Information / Surface Hub Information
+CL-0301,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Surface Hub Information / Surface Hub Information
+CL-0302,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Surface Hub Information / Surface Hub Information
+CL-0303,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Surface Hub Information / Surface Hub Information
+CL-0304,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Surface Hub Information / Surface Hub Information
+CL-0305,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Surface Hub Information / Surface Hub Information
+CL-0306,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Surface Hub Information / Surface Hub Information
+CL-0307,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Resource Requirements for Major Materials / Resource Requirements for Major Materials
+CL-0308,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Resource Requirements for Major Materials / Resource Requirements for Major Materials
+CL-0309,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Resource Requirements for Major Materials / Resource Requirements for Major Materials
+CL-0310,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Resource Requirements for Major Materials / Resource Requirements for Major Materials
+CL-0311,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Resource Requirements for Major Materials / Resource Requirements for Major Materials
+CL-0312,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Resource Requirements for Major Materials / Resource Requirements for Major Materials
+CL-0313,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Resource Requirements for Major Materials / Resource Requirements for Major Materials
+CL-0314,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Important Construction Notes / Important Construction Notes
+CL-0315,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Important Construction Notes / Important Construction Notes
+CL-0316,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Important Construction Notes / Important Construction Notes
+CL-0317,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Important Construction Notes / Important Construction Notes
+CL-0318,DM-0001,extracted_from,DM-0001 Colonization Construction Details / Important Construction Notes / Important Construction Notes
+CL-0319,FW-0001,extracted_from,FW-0001 Elite Dangerous Colonisation Strong and Weak Links Illustrated Reference / 1. The one-minute model / 1. The one-minute model
+CL-0320,FW-0001,extracted_from,FW-0001 Elite Dangerous Colonisation Strong and Weak Links Illustrated Reference / 1. The one-minute model / 1. The one-minute model
+CL-0321,FW-0001,extracted_from,"FW-0001 Elite Dangerous Colonisation Strong and Weak Links Illustrated Reference / 2. Asset types, main ports, and body influence / 2. Asset types, main ports, and body influence"
+CL-0322,FW-0001,extracted_from,"FW-0001 Elite Dangerous Colonisation Strong and Weak Links Illustrated Reference / 2. Asset types, main ports, and body influence / 2. Asset types, main ports, and body influence"
+CL-0323,FW-0001,extracted_from,"FW-0001 Elite Dangerous Colonisation Strong and Weak Links Illustrated Reference / 2. Asset types, main ports, and body influence / 2. Asset types, main ports, and body influence"
+CL-0324,FW-0001,extracted_from,"FW-0001 Elite Dangerous Colonisation Strong and Weak Links Illustrated Reference / 2. Asset types, main ports, and body influence / 2. Asset types, main ports, and body influence"
+CL-0325,FW-0001,extracted_from,FW-0001 Elite Dangerous Colonisation Strong and Weak Links Illustrated Reference / 3. Strong links: how surface and orbital markets connect / 3. Strong links: how surface and orbital markets connect
+CL-0326,FW-0001,extracted_from,FW-0001 Elite Dangerous Colonisation Strong and Weak Links Illustrated Reference / 3. Strong links: how surface and orbital markets connect / 3. Strong links: how surface and orbital markets connect
+CL-0327,FW-0001,extracted_from,FW-0001 Elite Dangerous Colonisation Strong and Weak Links Illustrated Reference / 3. Strong links: how surface and orbital markets connect / 3. Strong links: how surface and orbital markets connect
+CL-0328,FW-0001,extracted_from,FW-0001 Elite Dangerous Colonisation Strong and Weak Links Illustrated Reference / 4. Weak links: cross-body support and its limits / 4. Weak links: cross-body support and its limits
+CL-0329,FW-0001,extracted_from,FW-0001 Elite Dangerous Colonisation Strong and Weak Links Illustrated Reference / 4. Weak links: cross-body support and its limits / 4. Weak links: cross-body support and its limits
+CL-0330,FW-0001,extracted_from,FW-0001 Elite Dangerous Colonisation Strong and Weak Links Illustrated Reference / 4. Weak links: cross-body support and its limits / 4. Weak links: cross-body support and its limits
+CL-0331,FW-0001,extracted_from,FW-0001 Elite Dangerous Colonisation Strong and Weak Links Illustrated Reference / 4. Weak links: cross-body support and its limits / 4. Weak links: cross-body support and its limits
+CL-0332,FW-0001,extracted_from,FW-0001 Elite Dangerous Colonisation Strong and Weak Links Illustrated Reference / 6. Adding up strong links / 6. Adding up strong links
+CL-0333,FW-0001,extracted_from,FW-0001 Elite Dangerous Colonisation Strong and Weak Links Illustrated Reference / 7. A safe in-game planning workflow / 7. A safe in-game planning workflow
+CL-0334,FW-0001,extracted_from,FW-0001 Elite Dangerous Colonisation Strong and Weak Links Illustrated Reference / 7. A safe in-game planning workflow / 7. A safe in-game planning workflow
+CL-0335,DD-0001,extracted_from,DD-0001 Colonisation Dependency Flowchart / dependency-flowchart-v0 / visual dependency edge
+CL-0336,DD-0001,extracted_from,DD-0001 Colonisation Dependency Flowchart / dependency-flowchart-v0 / visual dependency edge
+CL-0337,DD-0001,extracted_from,DD-0001 Colonisation Dependency Flowchart / dependency-flowchart-v0 / visual dependency edge
+CL-0338,DD-0001,extracted_from,DD-0001 Colonisation Dependency Flowchart / dependency-flowchart-v0 / visual dependency edge
+CL-0339,DD-0001,extracted_from,DD-0001 Colonisation Dependency Flowchart / dependency-flowchart-v0 / visual dependency edge
+CL-0340,DD-0001,extracted_from,DD-0001 Colonisation Dependency Flowchart / dependency-flowchart-v0 / visual dependency edge
+CL-0341,DD-0001,extracted_from,DD-0001 Colonisation Dependency Flowchart / dependency-flowchart-v0 / visual dependency edge
+CL-0342,DD-0001,extracted_from,DD-0001 Colonisation Dependency Flowchart / dependency-flowchart-v0 / visual dependency edge
+CL-0343,DD-0001,extracted_from,DD-0001 Colonisation Dependency Flowchart / dependency-flowchart-v0 / visual dependency edge
+CL-0344,DD-0001,extracted_from,DD-0001 Colonisation Dependency Flowchart / dependency-flowchart-v0 / visual dependency edge
+CL-0345,DD-0001,extracted_from,DD-0001 Colonisation Dependency Flowchart / dependency-flowchart-v0 / visual dependency edge

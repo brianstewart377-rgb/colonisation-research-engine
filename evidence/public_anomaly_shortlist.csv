@@ -1,0 +1,10 @@
+anomaly_id,system_or_scope,anomaly_type,public_source,observed_problem,handling_rule
+A-0001,"Col 285 Sector JD-G b25-8",architect_attribution,"https://inara.cz/elite/board-thread/1/489033/","Public page requires architect correction","Treat architect as a sourced claim, not unquestioned truth"
+A-0001,"Synuefe FZ-D D13-80",architect_attribution,"https://inara.cz/elite/board-thread/1/489033/","Incorrect architect attribution discussed publicly","Preserve correction history"
+A-0001,"Synuefe KF-E b45-3",architect_attribution,"https://inara.cz/elite/board-thread/1/489033/","Architect correction request discussed publicly","Do not trust single-page attribution alone"
+A-0002,"Trapezium Sector EB-W c2-10",state_visibility,"https://inara.cz/elite/board-thread/1/489033/","Ghost construction site visible after long-completed surface port","Separate public visible state from verified actual state"
+A-0003,"Synuefai KJ-S c20-4",source_completeness,"https://forums.frontier.co.uk/threads/raven-colonial.639577/","Partial public visibility for an under-colonised system","Public absence is weak evidence only"
+A-0003,"Synuefai LJ-S c20-10",source_completeness,"https://forums.frontier.co.uk/threads/raven-colonial.639577/","Public loading status highlighted as noteworthy","Avoid absence-equals-nonexistence assumptions"
+A-0004,"Wregoe Raven proposed build context",proposal_state,"evidence/EV-0002-wregoe-raven-proposed-build-review.md","Placeholder or proposal names can look like live facility names","Track proposal and completion state separately"
+A-0005,"A4 T3 station previews",preview_ambiguity,"evidence/EV-0003-a4-t3-station-selection-previews.md","Preview equality may hide post-build divergence","Treat preview equality as provisional"
+A-0006,"Official guide versus Steam mirror",source_drift,"evidence/colonisation_ai_data_sources_review.md","Mirrored wording differs from official wording","Prefer official wording and preserve drift record"

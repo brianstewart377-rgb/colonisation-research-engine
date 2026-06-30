@@ -1,0 +1,57 @@
+Structure,Max Pad,Dependencies,T2,T3,,Security,Tech Level,Wealth,Standard of Living,Development Level,Facility Economy,Economy Influence,Init. Pop. Inc.,Max Pop. Inc.,Total amount of Commodities,# Trips with 784 cargo space (L),# Trips with 400 cargo space (M)
+Orbital - Starport - Coriolis,L,,-3.0,1.0,,-2.0,1.0,2.0,3.0,2.0,Colony,,1.0,0.0,53723.0,69.0,135.0
+Orbital - Starport - Asteroid Base,L,,-3.0,1.0,,-1.0,3.0,5.0,-4.0,7.0,Extraction,,1.0,0.0,53723.0,69.0,135.0
+Orbital - Starport - Ocellus,L,,,-6.0,,-3.0,6.0,7.0,5.0,8.0,Colony,,5.0,1.0,209122.0,267.0,523.0
+Orbital - Starport - Orbis,L,,,-6.0,,-3.0,6.0,7.0,5.0,8.0,Colony,,5.0,1.0,209122.0,267.0,523.0
+Orbital - Outpost - Commercial,M,,1.0,,,-1.0,,2.0,5.0,,Colony,,0.0,0.0,18988.0,25.0,48.0
+Orbital - Outpost - Industrial,M,,1.0,,,,3.0,,,2.0,Industrial,,0.0,0.0,18987.0,25.0,48.0
+Orbital - Outpost - Criminal,M,,1.0,,,-2.0,,2.0,,,Colony,Contraband,0.0,0.0,18988.0,25.0,48.0
+Orbital - Outpost - Civilian,M,,1.0,,,-1.0,,1.0,1.0,1.0,Colony,,0.0,0.0,18988.0,25.0,48.0
+Orbital - Outpost - Scientific,M,,1.0,,,,3.0,,,,Hightech,,1.0,0.0,18988.0,25.0,48.0
+Orbital - Outpost - Military,M,,1.0,,,2.0,,,,,Military,,1.0,0.0,18988.0,25.0,48.0
+Orbital - Installation - Satellite,❌,❗ Eirene is a Scientific Installation ❗,1.0,,,,,1.0,1.0,1.0,,,,,6721.0,9.0,17.0
+Orbital - Installation - Comm Station,❌,,1.0,,,1.0,3.0,,,,,,,,6721.0,9.0,17.0
+Orbital - Installation - Space Farm,❌,,1.0,,,,,,5.0,1.0,*Agricultural,Agricultural,,,6722.0,9.0,17.0
+Orbital - Installation - Pirate Base,❌,,1.0,,,-4.0,,3.0,,,,Contraband,,,6721.0,9.0,17.0
+Orbital - Installation - Mining Outpost,❌,,1.0,,,,,3.0,-2.0,,*Extraction,Extraction,,,6723.0,9.0,17.0
+Orbital - Installation - Relay Station,❌,❗ Ichnaea is a Comms Installation ❗,1.0,,,1.0,,,,1.0,*Hightech,Hightech,,,6721.0,9.0,17.0
+Orbital - Installation - Military,❌,Settlement - Military,-1.0,1.0,,6.0,,,,,*Military,Military,,,10080.0,13.0,26.0
+Orbital - Installation - Security Station,❌,Installation - Relay Station,-1.0,1.0,,8.0,,,3.0,2.0,*Military,Military,,,10082.0,13.0,26.0
+Orbital - Installation - Government,❌,,-1.0,1.0,,2.0,,,6.0,2.0,,,,,10077.0,13.0,26.0
+Orbital - Installation - Medical,❌,,-1.0,1.0,,,3.0,,5.0,,*Hightech,Hightech,,,10081.0,13.0,26.0
+Orbital - Installation - Research Station,❌,Settlement - Research Bio,-1.0,1.0,,,8.0,,,2.0,*Hightech,Hightech,,,10083.0,13.0,26.0
+Orbital - Installation - Tourist,❌,Satellite ➔ Tourism Settlement S/M/L,-1.0,1.0,,-3.0,,6.0,,2.0,*Tourism,Tourism,,,10087.0,13.0,26.0
+Orbital - Installation - Space Bar,❌,,-1.0,1.0,,-2.0,,2.0,3.0,,*Tourism,Tourism,,,10076.0,13.0,26.0
+Surface - Planetary Port - Outpost Civilian,L,,1.0,,,-2.0,,,3.0,,Colony,,2.0,0.0,36829.0,47.0,93.0
+Surface - Planetary Port - Outpost Industrial,L,,1.0,,,-1.0,,2.0,,,Industrial,,1.0,0.0,36829.0,47.0,93.0
+Surface - Planetary Port - Outpost Scientific,L,,1.0,,,-1.0,5.0,,,1.0,Hightech,,1.0,0.0,36829.0,47.0,93.0
+Surface - Planetary Port - Port,L,,,-6.0,,-3.0,5.0,5.0,6.0,10.0,Colony,,10.0,10.0,215882.0,276.0,540.0
+Surface - Settlement - Agriculture T1 S,S,,1.0,,,,,,3.0,,Agricultural,Agricultural,0.0,0.0,2839.0,4.0,8.0
+Surface - Settlement - Agriculture T1 M,S/L,,1.0,,,,,,6.0,,Agricultural,Agricultural,0.0,0.0,5678.0,8.0,15.0
+Surface - Settlement - Agriculture T2 L,L,,-1.0,2.0,,,,,10.0,,Agricultural,Agricultural,0.0,0.0,8517.0,11.0,22.0
+Surface - Settlement - Extraction T1 S,S,,1.0,,,,,2.0,,,Extraction,Extraction,0.0,0.0,2845.0,4.0,8.0
+Surface - Settlement - Extraction T1 M,M/L,,1.0,,,,,5.0,,,Extraction,Extraction,0.0,0.0,5690.0,8.0,15.0
+Surface - Settlement - Extraction T2 L,L,,-1.0,2.0,,,1.0,7.0,-2.0,,Extraction,Extraction,0.0,0.0,8535.0,11.0,22.0
+Surface - Settlement - Industrial T1 S,S,,1.0,,,,,,,2.0,Industrial,Industrial,0.0,0.0,2845.0,4.0,8.0
+Surface - Settlement - Industrial T1 M,M/L,,1.0,,,,,,,5.0,Industrial,Industrial,0.0,0.0,5690.0,8.0,15.0
+Surface - Settlement - Industrial T2 L,L,,-1.0,2.0,,,,2.0,,8.0,Industrial,Industrial,0.0,0.0,8535.0,11.0,22.0
+Surface - Settlement - Military T1 S,M,,1.0,,,2.0,,,,,Military,Military,0.0,0.0,2842.0,4.0,8.0
+Surface - Settlement - Military T1 M,S/M,,1.0,,,4.0,,,,,Military,Military,0.0,0.0,5684.0,8.0,15.0
+Surface - Settlement - Military T2 L,L,,-1.0,2.0,,6.0,,,,2.0,Military,Military,0.0,0.0,8526.0,11.0,22.0
+Surface - Settlement - Research Bio T1 S,S,,-1.0,1.0,,,3.0,,,1.0,Hightech,Hightech,0.0,0.0,2841.0,4.0,8.0
+Surface - Settlement - Research Bio T1 M,S,,-1.0,1.0,,,6.0,,,1.0,Hightech,Hightech,0.0,0.0,5682.0,8.0,15.0
+Surface - Settlement - Research Bio T2 L,L,,-1.0,2.0,,,10.0,,,2.0,Hightech,Hightech,0.0,0.0,8523.0,11.0,22.0
+Surface - Settlement - Tourism T1 S,M,Installation - Satellite,-1.0,1.0,,-1.0,,1.0,,,Tourism,Tourism,0.0,0.0,2846.0,4.0,8.0
+Surface - Settlement - Tourism T1 M,L,Installation - Satellite,-1.0,1.0,,-1.0,,2.0,,,Tourism,Tourism,0.0,0.0,5692.0,8.0,15.0
+Surface - Settlement - Tourism T2 L,L,Installation - Satellite,-1.0,2.0,,-1.0,,5.0,,,Tourism,Tourism,0.0,0.0,8538.0,11.0,22.0
+Surface - Hub - Extraction,❌,Settlement - Extraction,-1.0,1.0,,,,10.0,-4.0,2.0,*Extraction,Extraction,,,9893.0,13.0,25.0
+Surface - Hub - Civilian,❌,Settlement - Agriculture,-1.0,1.0,,-3.0,,,3.0,2.0,,,,,9772.0,13.0,25.0
+Surface - Hub - Exploration,❌,Installation - Comm Station,-1.0,1.0,,-1.0,6.0,,,2.0,*Tourism,Tourism,,,9923.0,13.0,25.0
+Surface - Hub - Outpost,❌,Installation - Space Farm,-1.0,1.0,,-2.0,,,3.0,2.0,,,,,9198.0,12.0,23.0
+Surface - Hub - Scientific,❌,,-1.0,1.0,,,10.0,,,,*Hightech,Hightech,,,9924.0,13.0,25.0
+Surface - Hub - Military,❌,Mil. Settlement ➔ Mil. Installation,-1.0,1.0,,10.0,,,,,*Military,Military,,,9922.0,13.0,25.0
+Surface - Hub - Refinery,❌,,-1.0,1.0,,-1.0,3.0,5.0,-2.0,7.0,,Refinery,,,9919.0,13.0,25.0
+Surface - Hub - High Tech,❌,,-1.0,1.0,,-2.0,10.0,-2.0,,,*Hightech,Hightech,,,9921.0,13.0,25.0
+Surface - Hub - Industrial,❌,Installation - Mining Outpost,-1.0,1.0,,,3.0,5.0,-4.0,2.0,*Industrial,Industrial,,,9753.0,13.0,25.0
+Extra T3 station cost of -6,,,,-6.0
+Extra T2 station cost of -2,,,-2.0

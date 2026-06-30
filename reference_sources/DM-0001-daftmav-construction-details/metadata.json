@@ -1,0 +1,10 @@
+{
+  "source_id": "DM-0001",
+  "title": "Colonization Construction Details",
+  "version": "unknown",
+  "type": "spreadsheet_extract",
+  "author_or_origin": "DaftMav",
+  "source_tier": "Tier 2 - community spreadsheet/data reference",
+  "primary_file": "DaftMav_sheet_index.md",
+  "notes": "Uploaded XLSX converted into per-sheet CSV extracts for repository visibility."
+}

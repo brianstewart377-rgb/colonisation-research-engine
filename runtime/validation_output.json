@@ -1,0 +1,52 @@
+{
+  "errors": {},
+  "ok": true,
+  "stats": {
+    "broken_provenance": 0,
+    "claim_provenance_links": 370,
+    "duplicate_identities": 0,
+    "graph_edges": 294,
+    "invalid_foreign_keys": 0,
+    "missing_required_objects": 0,
+    "object_references": 1346,
+    "objects": 604,
+    "orphan_references": 1
+  },
+  "warnings": {
+    "orphan_references": [
+      {
+        "id": "G-0015",
+        "kinds": [
+          "graph_edge.target"
+        ]
+      }
+    ],
+    "provenance_warnings": [
+      {
+        "issue": "missing_source_ref",
+        "object_id": "D-0001",
+        "object_type": "decision"
+      },
+      {
+        "issue": "missing_source_ref",
+        "object_id": "D-0002",
+        "object_type": "decision"
+      },
+      {
+        "issue": "missing_source_ref",
+        "object_id": "D-0003",
+        "object_type": "decision"
+      },
+      {
+        "issue": "missing_source_ref",
+        "object_id": "D-0004",
+        "object_type": "decision"
+      },
+      {
+        "issue": "missing_source_ref",
+        "object_id": "D-0005",
+        "object_type": "decision"
+      }
+    ]
+  }
+}

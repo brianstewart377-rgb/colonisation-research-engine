@@ -1,0 +1,7 @@
+# CRE runtime is a generated, disposable artifact - never commit it.
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+build_report.json
+__pycache__/

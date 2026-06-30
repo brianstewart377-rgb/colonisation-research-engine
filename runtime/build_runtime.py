@@ -1,0 +1,261 @@
+#!/usr/bin/env python3
+"""build_runtime.py - CRE Runtime builder.
+
+Creates the generated, read-only SQLite runtime from the canonical repository
+exports. The runtime is disposable: deleting ``cre_runtime.db`` loses no
+knowledge because it is a pure deterministic projection of ``exports/*.csv``.
+
+Responsibilities:
+  * create database (from schema.sql)
+  * load exports (via the projection pipeline)
+  * validate identities and references
+  * preserve provenance and references
+  * report statistics
+  * deterministic output (stable content fingerprint across rebuilds)
+
+Usage:
+  python3 -m runtime.build_runtime                 # build with defaults
+  python3 -m runtime.build_runtime --validate-only # validate an existing db
+  python3 -m runtime.build_runtime --output /tmp/cre.db --report /tmp/report.json
+"""
+
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import sqlite3
+import sys
+from datetime import datetime, timezone
+from pathlib import Path
+
+from . import config
+from .config import DATA_TABLES, DEFAULT_EXPORTS_DIR, DEFAULT_OUTPUT_DB, SCHEMA_PATH, SCHEMA_VERSION, TABLE_SPECS
+from .projection import ProjectionResult, project
+from .validation import ValidationReport, validate
+
+
+def _create_schema(conn: sqlite3.Connection) -> None:
+    conn.executescript(SCHEMA_PATH.read_text(encoding="utf-8"))
+
+
+def _insert_objects(conn: sqlite3.Connection, result: ProjectionResult) -> None:
+    rows = sorted(result.objects.values(), key=lambda o: o.object_id)
+    conn.executemany(
+        "INSERT INTO objects (object_id, object_type, title, status, source_ref) VALUES (?,?,?,?,?)",
+        [(o.object_id, o.object_type, o.title, o.status, o.source_ref) for o in rows],
+    )
+
+
+def _insert_detail(conn: sqlite3.Connection, result: ProjectionResult) -> None:
+    # Typed exports.
+    for spec in TABLE_SPECS:
+        rows = result.detail.get(spec.table, [])
+        rows = sorted(rows, key=lambda r: r[spec.id_col] or "")
+        cols = spec.columns
+        placeholders = ",".join("?" for _ in cols)
+        conn.executemany(
+            f"INSERT INTO {spec.table} ({','.join(cols)}) VALUES ({placeholders})",
+            [tuple(r[c] for c in cols) for r in rows],
+        )
+    # Graph-derived detail tables.
+    for table, cols, key in (
+        ("evidence", ["evidence_id", "title", "status", "category", "source_ref"], "evidence_id"),
+        ("experiments", ["experiment_id", "title", "status", "category", "source_ref"], "experiment_id"),
+        ("sources", ["source_id", "title", "type", "version", "source_tier", "repo_path", "status"], "source_id"),
+    ):
+        rows = sorted(result.detail.get(table, []), key=lambda r: r[key] or "")
+        placeholders = ",".join("?" for _ in cols)
+        conn.executemany(
+            f"INSERT INTO {table} ({','.join(cols)}) VALUES ({placeholders})",
+            [tuple(r[c] for c in cols) for r in rows],
+        )
+
+
+def _insert_relationships(conn: sqlite3.Connection, result: ProjectionResult) -> None:
+    refs = sorted(result.references, key=lambda r: (r.from_id, r.relationship, r.to_id, r.origin))
+    conn.executemany(
+        "INSERT INTO object_references (id, from_id, to_id, relationship, origin) VALUES (?,?,?,?,?)",
+        [(i, r.from_id, r.to_id, r.relationship, r.origin) for i, r in enumerate(refs, 1)],
+    )
+
+    cpl = sorted(result.claim_provenance, key=lambda r: (r["claim_id"] or "", r["source_entity"] or "", r["relationship"] or ""))
+    conn.executemany(
+        "INSERT INTO claim_provenance_links (id, claim_id, source_entity, relationship, basis_note) VALUES (?,?,?,?,?)",
+        [(i, r["claim_id"], r["source_entity"], r["relationship"], r["basis_note"]) for i, r in enumerate(cpl, 1)],
+    )
+
+    et = sorted(result.evidence_traceability, key=lambda r: (r["evidence_id"] or "", r["mechanic_id"] or "", r["relationship"] or ""))
+    conn.executemany(
+        "INSERT INTO evidence_traceability (id, evidence_id, mechanic_id, relationship, strength, basis, notes) VALUES (?,?,?,?,?,?,?)",
+        [(i, r["evidence_id"], r["mechanic_id"], r["relationship"], r["strength"], r["basis"], r["notes"]) for i, r in enumerate(et, 1)],
+    )
+
+    ge = sorted(result.graph_edges, key=lambda r: (r["source_id"] or "", r["relationship"] or "", r["target_id"] or ""))
+    conn.executemany(
+        "INSERT INTO graph_edges (id, source_id, relationship, target_id, basis) VALUES (?,?,?,?,?)",
+        [(i, r["source_id"], r["relationship"], r["target_id"], r["basis"]) for i, r in enumerate(ge, 1)],
+    )
+
+
+def _insert_provenance(conn: sqlite3.Connection, result: ProjectionResult) -> None:
+    rows = sorted(result.provenance, key=lambda r: r["object_type"])
+    conn.executemany(
+        "INSERT INTO provenance (object_type, export_path, source_register, record_count) VALUES (?,?,?,?)",
+        [(r["object_type"], r["export_path"], r["source_register"], r["record_count"]) for r in rows],
+    )
+
+
+def content_fingerprint(conn: sqlite3.Connection) -> str:
+    """Deterministic hash of all data tables (order-independent, meta excluded)."""
+
+    h = hashlib.sha256()
+    for table in sorted(DATA_TABLES):
+        cur = conn.execute(f"SELECT * FROM {table}")
+        cols = [d[0] for d in cur.description]
+        serialised = sorted(
+            "\x1f".join("" if v is None else str(v) for v in row) for row in cur.fetchall()
+        )
+        h.update(table.encode())
+        h.update(b"\x1e")
+        h.update(str(cols).encode())
+        h.update(b"\x1e")
+        for line in serialised:
+            h.update(line.encode())
+            h.update(b"\x1d")
+    return h.hexdigest()
+
+
+def _insert_meta(conn: sqlite3.Connection, result: ProjectionResult, fingerprint: str) -> None:
+    meta = {
+        "schema_version": SCHEMA_VERSION,
+        "manifest_version": result.manifest.get("export_manifest_version", ""),
+        "manifest_generated_at": result.manifest.get("generated_at", ""),
+        "source_fingerprint": result.source_fingerprint,
+        "content_fingerprint": fingerprint,
+        "object_count": str(len(result.objects)),
+        "reference_count": str(len(result.references)),
+    }
+    conn.executemany(
+        "INSERT INTO runtime_meta (key, value) VALUES (?,?)",
+        sorted(meta.items()),
+    )
+
+
+def build(exports_dir: Path = DEFAULT_EXPORTS_DIR, output_path: Path = DEFAULT_OUTPUT_DB,
+          run_validation: bool = True, report_path: Path | None = None) -> dict:
+    exports_dir = Path(exports_dir)
+    output_path = Path(output_path)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    if output_path.exists():
+        output_path.unlink()
+
+    result = project(exports_dir)
+
+    conn = sqlite3.connect(str(output_path))
+    try:
+        conn.execute("PRAGMA page_size = 4096")
+        conn.execute("PRAGMA foreign_keys = ON")
+        _create_schema(conn)
+        _insert_objects(conn, result)
+        _insert_detail(conn, result)
+        _insert_relationships(conn, result)
+        _insert_provenance(conn, result)
+        fingerprint = content_fingerprint(conn)
+        _insert_meta(conn, result, fingerprint)
+        conn.commit()
+        conn.execute("VACUUM")
+        conn.commit()
+
+        validation: ValidationReport | None = None
+        if run_validation:
+            validation = validate(conn)
+    finally:
+        conn.close()
+
+    table_stats = {}
+    conn = sqlite3.connect(str(output_path))
+    try:
+        for table in DATA_TABLES:
+            table_stats[table] = conn.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0]
+    finally:
+        conn.close()
+
+    report = {
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "exports_dir": str(exports_dir),
+        "output_db": str(output_path),
+        "db_size_bytes": output_path.stat().st_size,
+        "schema_version": SCHEMA_VERSION,
+        "source_fingerprint": result.source_fingerprint,
+        "content_fingerprint": fingerprint,
+        "object_count": len(result.objects),
+        "reference_count": len(result.references),
+        "duplicate_identities_detected": result.duplicate_identities,
+        "table_stats": table_stats,
+        "validation": validation.as_dict() if validation else None,
+    }
+    if report_path:
+        Path(report_path).write_text(json.dumps(report, indent=2, sort_keys=True), encoding="utf-8")
+    return report
+
+
+def _print_report(report: dict) -> None:
+    print("=" * 64)
+    print("CRE Runtime build report")
+    print("=" * 64)
+    print(f"output db        : {report['output_db']}")
+    print(f"db size          : {report['db_size_bytes']:,} bytes")
+    print(f"schema version   : {report['schema_version']}")
+    print(f"source f/print   : {report['source_fingerprint'][:16]}…")
+    print(f"content f/print  : {report['content_fingerprint'][:16]}…")
+    print(f"objects          : {report['object_count']}")
+    print(f"references        : {report['reference_count']}")
+    print("-" * 64)
+    print("table statistics:")
+    for table, count in report["table_stats"].items():
+        print(f"  {table:<24} {count:>6}")
+    val = report["validation"]
+    if val is not None:
+        print("-" * 64)
+        print(f"validation       : {'PASS' if val['ok'] else 'FAIL'}")
+        for name, count in val["stats"].items():
+            if name.endswith(("references", "identities", "provenance", "objects", "keys", "links", "edges")):
+                print(f"  {name:<28} {count}")
+        if not val["ok"]:
+            print("  errors:")
+            for name, items in val["errors"].items():
+                print(f"    {name}: {len(items)}")
+    print("=" * 64)
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description="Build the CRE runtime SQLite database.")
+    parser.add_argument("--exports-dir", default=str(DEFAULT_EXPORTS_DIR), help="canonical exports directory")
+    parser.add_argument("--output", default=str(DEFAULT_OUTPUT_DB), help="runtime database output path")
+    parser.add_argument("--report", default=None, help="optional path to write a JSON build report")
+    parser.add_argument("--validate-only", action="store_true", help="validate an existing runtime db and exit")
+    args = parser.parse_args(argv)
+
+    if args.validate_only:
+        db_path = Path(args.output)
+        if not db_path.exists():
+            print(f"error: runtime db not found: {db_path}", file=sys.stderr)
+            return 2
+        conn = sqlite3.connect(str(db_path))
+        try:
+            report = validate(conn).as_dict()
+        finally:
+            conn.close()
+        print(json.dumps(report, indent=2, sort_keys=True))
+        return 0 if report["ok"] else 1
+
+    report = build(Path(args.exports_dir), Path(args.output), run_validation=True,
+                   report_path=Path(args.report) if args.report else None)
+    _print_report(report)
+    val = report["validation"]
+    return 0 if (val is None or val["ok"]) else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

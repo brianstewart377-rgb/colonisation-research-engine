@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cre.local/schemas/observation.schema.json",
+  "title": "CRE Observation",
+  "description": "Documentation-first draft schema for structured observations extracted from evidence.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "observation_id",
+    "observation_type",
+    "statement",
+    "confidence",
+    "source_refs"
+  ],
+  "properties": {
+    "observation_id": {
+      "type": "string"
+    },
+    "observation_type": {
+      "type": "string",
+      "description": "Examples: live_observation, preview_observation, facility_state, market_links, economy_state, planner_state, predicted_outcome."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "observed",
+        "historical",
+        "predicted",
+        "disputed",
+        "superseded"
+      ]
+    },
+    "statement": {
+      "type": "string"
+    },
+    "context": {
+      "type": "string"
+    },
+    "subject_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "System, body, facility, or other entity refs the observation is about."
+    },
+    "source_refs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "claim_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "related_mechanics": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "planner_relevance": {
+      "type": "string"
+    },
+    "patch_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "patch_family": {
+          "type": "string"
+        },
+        "patch_label": {
+          "type": "string"
+        },
+        "observation_timestamp": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "confidence": {
+      "$ref": "#/$defs/confidenceBand"
+    },
+    "review": {
+      "$ref": "#/$defs/review"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "$defs": {
+    "confidenceBand": {
+      "type": "string",
+      "enum": [
+        "High",
+        "Medium",
+        "Low",
+        "Unknown"
+      ]
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "review_status": {
+          "type": "string",
+          "enum": [
+            "unreviewed",
+            "analyst_reviewed",
+            "corroborated",
+            "disputed",
+            "superseded"
+          ]
+        },
+        "reviewer": {
+          "type": "string"
+        },
+        "reviewed_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}
