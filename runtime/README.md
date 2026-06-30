@@ -213,6 +213,42 @@ The runtime surfaces that boundary by returning:
 
 ---
 
+## Sprint 2B: Mechanic Explanation Slice
+
+Sprint 2B adds a second narrow, deterministic explanation capability focused on a
+single mechanic.
+
+- The runtime returns an auditable mechanic evidence bundle, not a recommendation
+  or a universal gameplay claim.
+- The runtime reads only the generated SQLite database.
+- Expansion stays one controlled hop from the named mechanic.
+- Trace nodes retain registry-status visibility so missing referenced endpoints
+  are explicit rather than silently invented.
+
+### API
+
+`Runtime.explain_mechanic(mechanic_id: str) -> dict | None`
+
+- Returns `None` if the mechanic id does not exist.
+- Returns a deterministically ordered bundle for known ids.
+
+### Example (M-0007, compact)
+
+`M-0007` returns:
+
+- `mechanic_statement` from canonical mechanic fields only
+- supporting claims linked to `M-0007`
+- direct evidence traceability rows for the mechanic
+- guardrails:
+  - contradictions such as `C-0002`
+  - unknowns such as `U-0001` and `U-0003`
+  - live verifications such as `LV-0001` and `LV-0002`
+- dependent planner rules such as `PR-0003`
+- related decisions such as `D-0002` and `D-0003`
+- related experiments where explicitly linked, such as `EXP-0001`
+
+---
+
 ## Statistics (current build)
 
 - Database size: **~840 KB** (`cre_runtime.db`)
