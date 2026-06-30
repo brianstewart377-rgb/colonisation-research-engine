@@ -1010,6 +1010,71 @@ class Runtime:
             },
         }
 
+    def decision_evidence_path(self, decision_id: str) -> dict | None:
+        decision_bundle = self.explain_decision(decision_id)
+        if decision_bundle is None:
+            return None
+
+        trace = decision_bundle["trace"]
+        nodes_by_id = {node["id"]: node for node in trace["nodes"]}
+        direct_edges = [
+            edge
+            for edge in trace["edges"]
+            if edge["from_id"] == decision_id
+            and edge["relationship"] in {"references_claim", "references_mechanic"}
+        ]
+
+        direct_claim_paths = sorted(
+            [
+                {
+                    "decision_reference": edge,
+                    "target": nodes_by_id[edge["to_id"]],
+                    "claim_explanation": (
+                        self.explain_claim(edge["to_id"])
+                        if nodes_by_id[edge["to_id"]]["registry_status"] == "registered"
+                        else None
+                    ),
+                }
+                for edge in direct_edges
+                if edge["relationship"] == "references_claim"
+            ],
+            key=lambda entry: (
+                entry["decision_reference"]["to_id"],
+                entry["decision_reference"]["relationship"],
+                entry["decision_reference"]["origin"],
+            ),
+        )
+
+        direct_mechanic_paths = sorted(
+            [
+                {
+                    "decision_reference": edge,
+                    "target": nodes_by_id[edge["to_id"]],
+                    "mechanic_explanation": (
+                        self.explain_mechanic(edge["to_id"])
+                        if nodes_by_id[edge["to_id"]]["registry_status"] == "registered"
+                        else None
+                    ),
+                }
+                for edge in direct_edges
+                if edge["relationship"] == "references_mechanic"
+            ],
+            key=lambda entry: (
+                entry["decision_reference"]["to_id"],
+                entry["decision_reference"]["relationship"],
+                entry["decision_reference"]["origin"],
+            ),
+        )
+
+        return {
+            "decision": decision_bundle["decision"],
+            "decision_boundary": decision_bundle["decision_boundary"],
+            "direct_claim_paths": direct_claim_paths,
+            "direct_mechanic_paths": direct_mechanic_paths,
+            "trace": decision_bundle["trace"],
+            "validation_context": decision_bundle["validation_context"],
+        }
+
     # ------------------------------------------------------------------ #
     # Success-criteria queries                                           #
     # ------------------------------------------------------------------ #

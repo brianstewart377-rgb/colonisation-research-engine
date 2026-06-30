@@ -285,6 +285,42 @@ single canonical claim.
 
 ---
 
+## Sprint 2D: Decision Evidence Path Integration Slice
+
+Sprint 2D adds a narrow composition method for direct decision references.
+
+- The runtime composes existing bounded explanation bundles for direct decision
+  references only.
+- It does not create a new graph traversal, ontology expansion layer, or
+  recommendation layer.
+- The method reuses `explain_decision`, `explain_claim`, and
+  `explain_mechanic` outputs rather than querying the runtime anew.
+- Missing direct references remain visible through the top-level trace and path
+  target nodes without invented metadata.
+
+### API
+
+`Runtime.decision_evidence_path(decision_id: str) -> dict | None`
+
+- Returns `None` if the decision id does not exist.
+- Returns deterministically ordered direct claim and direct mechanic paths for
+  known ids.
+
+### Example (D-0003, compact)
+
+`D-0003` returns:
+
+- the original `decision`, `decision_boundary`, `trace`, and
+  `validation_context` from `explain_decision`
+- `direct_claim_paths` for direct `D-0003 -> CL-*` references such as
+  `CL-0009` and `CL-0010`
+- `direct_mechanic_paths` for direct `D-0003 -> M-*` references such as
+  `M-0005` and `M-0007`
+- nested claim and mechanic bundles exactly as returned by their existing
+  explainers
+
+---
+
 ## Statistics (current build)
 
 - Database size: **~840 KB** (`cre_runtime.db`)
