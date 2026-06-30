@@ -394,9 +394,9 @@ A machine-readable copy is written to `validation_output.json`.
 
 ## Test results
 
-```
-python3 -m pytest runtime/tests -q
-40 passed
+``` 
+pytest runtime/tests -q
+102 passed
 ```
 
 Coverage: projection (identity extraction, counts, determinism), schema
