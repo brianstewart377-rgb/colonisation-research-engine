@@ -810,6 +810,207 @@ class Runtime:
             },
         }
 
+    def explain_claim(self, claim_id: str) -> dict | None:
+        claim = self.get_claim(claim_id)
+        if claim is None:
+            return None
+
+        provenance = self._all(
+            """
+            SELECT claim_id, source_entity, relationship, basis_note
+            FROM claim_provenance_links
+            WHERE claim_id = ?
+            ORDER BY relationship, source_entity, basis_note
+            """,
+            (claim_id,),
+        )
+
+        direct_edges = [
+            _Edge(
+                from_id=r["from_id"],
+                to_id=r["to_id"],
+                relationship=r["relationship"],
+                origin=r["origin"],
+            )
+            for r in self._all(
+                """
+                SELECT from_id, to_id, relationship, origin
+                FROM object_references
+                WHERE from_id = ?
+                  AND relationship IN (
+                      'supports_mechanic',
+                      'relates_unknown',
+                      'relates_contradiction',
+                      'derived_from'
+                  )
+                ORDER BY to_id, relationship, origin
+                """,
+                (claim_id,),
+            )
+        ]
+        decision_edges = [
+            _Edge(
+                from_id=r["from_id"],
+                to_id=r["to_id"],
+                relationship=r["relationship"],
+                origin=r["origin"],
+            )
+            for r in self._all(
+                """
+                SELECT from_id, to_id, relationship, origin
+                FROM object_references
+                WHERE to_id = ?
+                  AND relationship = 'references_claim'
+                ORDER BY from_id, relationship, origin
+                """,
+                (claim_id,),
+            )
+        ]
+
+        linked_mechanics = _sort_dicts(
+            [
+                self.get_mechanic(e.to_id) or {"mechanic_id": e.to_id}
+                for e in direct_edges
+                if e.relationship == "supports_mechanic"
+            ],
+            "mechanic_id",
+        )
+        linked_unknowns = _sort_dicts(
+            [
+                self.get_unknown(e.to_id) or {"unknown_id": e.to_id}
+                for e in direct_edges
+                if e.relationship == "relates_unknown"
+            ],
+            "unknown_id",
+        )
+        linked_contradictions = _sort_dicts(
+            [
+                self.get_contradiction(e.to_id) or {"contradiction_id": e.to_id}
+                for e in direct_edges
+                if e.relationship == "relates_contradiction"
+            ],
+            "contradiction_id",
+        )
+
+        provenance_edges: list[_Edge] = []
+        evidence_provenance: dict[str, list[dict]] = {}
+        experiment_ids: set[str] = set()
+        for row in provenance:
+            source_entity = row.get("source_entity")
+            rel = row.get("relationship")
+            if source_entity and rel:
+                provenance_edges.append(
+                    _Edge(
+                        from_id=claim_id,
+                        to_id=source_entity,
+                        relationship=rel,
+                        origin="claim_provenance_links",
+                    )
+                )
+                if self.get_evidence(source_entity) is not None:
+                    evidence_provenance.setdefault(source_entity, []).append(dict(row))
+                if self.get_experiment(source_entity) is not None:
+                    experiment_ids.add(source_entity)
+
+        supporting_evidence = sorted(
+            [
+                {
+                    "evidence": self.get_evidence(evidence_id) or {"evidence_id": evidence_id},
+                    "provenance_relationships": sorted(
+                        evidence_provenance.get(evidence_id, []),
+                        key=lambda r: (
+                            r.get("relationship") or "",
+                            r.get("source_entity") or "",
+                            r.get("basis_note") or "",
+                        ),
+                    ),
+                }
+                for evidence_id in sorted(evidence_provenance)
+            ],
+            key=lambda r: (r["evidence"].get("evidence_id") or ""),
+        )
+        related_experiments = _sort_dicts(
+            [self.get_experiment(i) or {"experiment_id": i} for i in sorted(experiment_ids)],
+            "experiment_id",
+        )
+        related_decisions = _sort_dicts(
+            [
+                self.get_decision(e.from_id) or {"decision_id": e.from_id}
+                for e in decision_edges
+                if self.get_decision(e.from_id) is not None
+            ],
+            "decision_id",
+        )
+
+        trace_edges = sorted(
+            direct_edges + decision_edges + provenance_edges,
+            key=lambda x: (x.from_id, x.relationship, x.to_id, x.origin),
+        )
+        node_ids: set[str] = {claim_id}
+        for edge in trace_edges:
+            node_ids.add(edge.from_id)
+            node_ids.add(edge.to_id)
+
+        nodes = []
+        for oid in sorted(node_ids):
+            nodes.append(_trace_node_from_object(oid, self.get_object(oid)))
+
+        edges = [
+            {
+                "from_id": e.from_id,
+                "to_id": e.to_id,
+                "relationship": e.relationship,
+                "origin": e.origin,
+            }
+            for e in trace_edges
+        ]
+
+        raw_conn = self._raw_conn()
+        try:
+            val = validate(raw_conn).as_dict()
+        finally:
+            raw_conn.close()
+
+        affecting = []
+        other_count = 0
+        for cat, items in (val.get("warnings") or {}).items():
+            for item in items:
+                iid = item.get("id") or item.get("object_id") or item.get("claim_id")
+                if iid and iid in node_ids:
+                    affecting.append({"category": cat, "item": item})
+                else:
+                    other_count += 1
+        affecting = sorted(
+            affecting,
+            key=lambda x: ((x["category"] or ""), (x["item"].get("id") or x["item"].get("object_id") or "")),
+        )
+
+        return {
+            "claim": claim,
+            "claim_statement": {
+                "claim_text": claim.get("claim_text"),
+                "status": claim.get("status"),
+                "confidence": claim.get("confidence"),
+                "claim_type": claim.get("claim_type"),
+                "category": claim.get("category"),
+                "planner_implication": claim.get("planner_implication"),
+                "needs_live_verification": claim.get("needs_live_verification"),
+            },
+            "provenance": provenance,
+            "linked_mechanics": linked_mechanics,
+            "linked_unknowns": linked_unknowns,
+            "linked_contradictions": linked_contradictions,
+            "supporting_evidence": supporting_evidence,
+            "related_experiments": related_experiments,
+            "related_decisions": related_decisions,
+            "trace": {"nodes": nodes, "edges": edges},
+            "validation_context": {
+                "ok": bool(val.get("ok")),
+                "warnings_affecting_explanation": affecting,
+                "other_runtime_warnings_count": other_count,
+            },
+        }
+
     # ------------------------------------------------------------------ #
     # Success-criteria queries                                           #
     # ------------------------------------------------------------------ #

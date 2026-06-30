@@ -249,6 +249,42 @@ single mechanic.
 
 ---
 
+## Sprint 2C: Claim Explanation Slice
+
+Sprint 2C adds a third narrow, deterministic explanation capability focused on a
+single canonical claim.
+
+- The runtime returns an auditable assertion-and-provenance bundle, not a
+  recommendation generator.
+- The runtime reads only the generated SQLite database.
+- Expansion stays limited to direct provenance, direct linked mechanics,
+  direct unknowns, direct contradictions, provenance-backed evidence or
+  experiments, and explicit decision references.
+- Evidence and experiments remain distinct ontology types in the returned
+  bundle.
+
+### API
+
+`Runtime.explain_claim(claim_id: str) -> dict | None`
+
+- Returns `None` if the claim id does not exist.
+- Returns a deterministically ordered bundle for known ids.
+
+### Example (CL-0010, compact)
+
+`CL-0010` returns:
+
+- `claim_statement` from canonical claim fields only
+- direct provenance rows such as `EV-0003`, `OBS-0011`, and `C-0002`
+- linked mechanics including `M-0005` and `M-0007`
+- linked unknowns including `U-0003` and `U-0004`
+- linked contradictions including `C-0002`
+- supporting evidence derived only from provenance entities that resolve in the
+  `evidence` table
+- related decisions such as `D-0003`
+
+---
+
 ## Statistics (current build)
 
 - Database size: **~840 KB** (`cre_runtime.db`)
