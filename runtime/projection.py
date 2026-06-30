@@ -1,9 +1,12 @@
-"""Projection pipeline: read canonical exports -> normalised in-memory records.
+"""Projection pipeline: read canonical inputs -> normalised in-memory records.
 
-This stage is pure (no database writes). It reads ``exports/*.csv`` plus the
-reference source register and produces ``ProjectionResult`` dataclasses that the
+This stage is pure (no database writes). It reads the release export bundle
+(``exports/*.csv`` + ``export_manifest.json``) plus the separately versioned
+reference-source register, and produces ``ProjectionResult`` dataclasses that the
 builder serialises into SQLite. Keeping projection pure makes it trivially
-testable and guarantees the runtime is a deterministic function of the exports.
+testable and guarantees the runtime is a deterministic function of its
+explicitly declared canonical inputs: the release export bundle plus the
+separately versioned source register.
 """
 
 from __future__ import annotations
@@ -63,6 +66,7 @@ class ProjectionResult:
     provenance: list[dict] = field(default_factory=list)
     manifest: dict = field(default_factory=dict)
     source_fingerprint: str = ""
+    source_register_path: Path | None = None
 
     def reference_endpoints(self) -> set[str]:
         ids: set[str] = set()
@@ -231,9 +235,11 @@ def _fingerprint_inputs(paths: list[Path]) -> str:
     return h.hexdigest()
 
 
-def project(exports_dir: Path) -> ProjectionResult:
+def project(exports_dir: Path, source_register_path: Path | None = None) -> ProjectionResult:
     exports_dir = Path(exports_dir)
+    source_register_path = Path(source_register_path) if source_register_path else config.SOURCE_REGISTER
     result = ProjectionResult()
+    result.source_register_path = source_register_path
     input_paths: list[Path] = []
 
     # Typed detail tables.
@@ -247,10 +253,15 @@ def project(exports_dir: Path) -> ProjectionResult:
     input_paths.append(nodes_path)
     _project_graph_nodes(result, _read_csv(nodes_path))
 
-    # Reference source register (canonical input, lives outside exports/).
-    if config.SOURCE_REGISTER.exists():
-        input_paths.append(config.SOURCE_REGISTER)
-        _project_sources(result, _read_csv(config.SOURCE_REGISTER))
+    # Reference source register: a REQUIRED, separately versioned runtime input
+    # (it is not part of the export bundle). It must never be silently skipped -
+    # doing so would produce a different/incomplete runtime that still looks valid.
+    if not source_register_path.is_file():
+        raise FileNotFoundError(
+            f"Required runtime input (source register) is missing or unreadable: {source_register_path}"
+        )
+    input_paths.append(source_register_path)
+    _project_sources(result, _read_csv(source_register_path))
 
     # Verbatim relationship exports.
     for raw in _read_csv(exports_dir / config.CLAIM_PROVENANCE_EXPORT):

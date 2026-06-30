@@ -46,6 +46,12 @@ contradictions affecting a recommendation (C-0002 for M-0005).
 - P2: provenance keyed by export_path; graph_node_conflicts table records graph-vs-typed metadata drift (3 status drifts) surfaced as warnings; fingerprints use repo-relative paths; `mechanics_blocked_by_live_verification` renamed to `mechanics_pending_live_verification` (alias kept).
 - Tests: 40 passed. Validation PASS. Byte-identical rebuild verified (sha 636cdb67…). Remaining warnings: G-0015 orphan (canonical gap) + 3 graph status drifts (ER-0009/ER-0010/CR-0008).
 
+## Sprint 1 Input-Contract Fix (DONE 2026-06-30)
+- Source register is now a REQUIRED runtime input: `project(exports_dir, source_register_path=None)` and `build(..., source_register_path=None)` default to canonical path; missing/unreadable raises FileNotFoundError; CLI `--source-register PATH`; CLI exits rc=2 with clear message. No silent skip.
+- runtime_meta keeps declared source_register_path (repo-relative) + fingerprint; source_fingerprint includes the exact declared input.
+- Docstrings in projection.py/build_runtime.py corrected: "deterministic function of explicitly declared canonical inputs: release export bundle + separately versioned source register".
+- Tests: 46 passed (added test_source_register_input.py: default builds, missing fails, CLI rc=2, changed register changes fingerprint, 4 source records present, byte-identical rebuild with explicit path). Validation PASS unchanged. Byte-identical rebuild sha 636cdb67… preserved.
+
 ## Backlog / next (future sprints — NOT in scope)
 - P1: Promote `G-0015` glossary node in canonical `graph_nodes.csv` (source-side fix).
 - P1: Richer query module (transitive evidence chains, reverse dependency graphs).

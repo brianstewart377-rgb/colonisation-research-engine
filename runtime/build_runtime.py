@@ -2,12 +2,14 @@
 """build_runtime.py - CRE Runtime builder.
 
 Creates the generated, read-only SQLite runtime from the canonical repository
-exports. The runtime is disposable: deleting ``cre_runtime.db`` loses no
-knowledge because it is a pure deterministic projection of ``exports/*.csv``.
+inputs. The runtime is disposable: deleting ``cre_runtime.db`` loses no
+knowledge because it is a deterministic function of its explicitly declared
+canonical inputs: the release export bundle plus the separately versioned source
+register.
 
 Responsibilities:
   * create database (from schema.sql)
-  * load exports (via the projection pipeline)
+  * load the declared canonical inputs (via the projection pipeline)
   * validate identities and references
   * preserve provenance and references
   * report statistics
@@ -16,12 +18,14 @@ Responsibilities:
 Usage:
   python3 -m runtime.build_runtime                 # build with defaults
   python3 -m runtime.build_runtime --validate-only # validate an existing db
+  python3 -m runtime.build_runtime --source-register PATH
   python3 -m runtime.build_runtime --output /tmp/cre.db --report /tmp/report.json
 """
 
 from __future__ import annotations
 
 import argparse
+import csv
 import hashlib
 import json
 import sqlite3
@@ -135,9 +139,14 @@ def content_fingerprint(conn: sqlite3.Connection) -> str:
 
 
 def _insert_meta(conn: sqlite3.Connection, result: ProjectionResult, fingerprint: str) -> None:
-    source_register_fp = ""
-    if config.SOURCE_REGISTER.exists():
-        source_register_fp = hashlib.sha256(config.SOURCE_REGISTER.read_bytes()).hexdigest()
+    # Record the exact declared source-register input: stable repo-relative path
+    # plus content fingerprint.
+    sr_path = result.source_register_path or config.SOURCE_REGISTER
+    try:
+        sr_rel = Path(sr_path).resolve().relative_to(config.REPO_ROOT).as_posix()
+    except ValueError:
+        sr_rel = str(sr_path)
+    source_register_fp = hashlib.sha256(Path(sr_path).read_bytes()).hexdigest()
     meta = {
         "schema_version": SCHEMA_VERSION,
         "manifest_version": result.manifest.get("export_manifest_version", ""),
@@ -146,8 +155,8 @@ def _insert_meta(conn: sqlite3.Connection, result: ProjectionResult, fingerprint
         "content_fingerprint": fingerprint,
         "object_count": str(len(result.objects)),
         "reference_count": str(len(result.references)),
-        # Explicitly-declared auxiliary runtime input (not part of the export bundle).
-        "source_register_path": config.SOURCE_REGISTER_REL,
+        # Explicitly-declared, required auxiliary runtime input (not in the export bundle).
+        "source_register_path": sr_rel,
         "source_register_fingerprint": source_register_fp,
     }
     conn.executemany(
@@ -157,14 +166,15 @@ def _insert_meta(conn: sqlite3.Connection, result: ProjectionResult, fingerprint
 
 
 def build(exports_dir: Path = DEFAULT_EXPORTS_DIR, output_path: Path = DEFAULT_OUTPUT_DB,
-          run_validation: bool = True, report_path: Path | None = None) -> dict:
+          run_validation: bool = True, report_path: Path | None = None,
+          source_register_path: Path | None = None) -> dict:
     exports_dir = Path(exports_dir)
     output_path = Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     if output_path.exists():
         output_path.unlink()
 
-    result = project(exports_dir)
+    result = project(exports_dir, source_register_path)
 
     conn = sqlite3.connect(str(output_path))
     try:
@@ -246,6 +256,8 @@ def _print_report(report: dict) -> None:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Build the CRE runtime SQLite database.")
     parser.add_argument("--exports-dir", default=str(DEFAULT_EXPORTS_DIR), help="canonical exports directory")
+    parser.add_argument("--source-register", default=str(config.SOURCE_REGISTER),
+                        help="required reference-source register input (separately versioned canonical input)")
     parser.add_argument("--output", default=str(DEFAULT_OUTPUT_DB), help="runtime database output path")
     parser.add_argument("--report", default=None, help="optional path to write a JSON build report")
     parser.add_argument("--validate-only", action="store_true", help="validate an existing runtime db and exit")
@@ -264,8 +276,13 @@ def main(argv: list[str] | None = None) -> int:
         print(json.dumps(report, indent=2, sort_keys=True))
         return 0 if report["ok"] else 1
 
-    report = build(Path(args.exports_dir), Path(args.output), run_validation=True,
-                   report_path=Path(args.report) if args.report else None)
+    try:
+        report = build(Path(args.exports_dir), Path(args.output), run_validation=True,
+                       report_path=Path(args.report) if args.report else None,
+                       source_register_path=Path(args.source_register))
+    except (FileNotFoundError, OSError, csv.Error) as exc:
+        print(f"error: runtime build failed - {exc}", file=sys.stderr)
+        return 2
     _print_report(report)
     val = report["validation"]
     return 0 if (val is None or val["ok"]) else 1
