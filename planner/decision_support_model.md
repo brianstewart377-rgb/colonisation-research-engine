@@ -138,6 +138,13 @@ Examples:
 
 A role describes what a body, facility group, station, or system is intended to contribute to the wider colony.
 
+A role is not:
+
+- a station type
+- a facility identity
+- a final inherited economy state
+- a universal mechanic
+
 Examples:
 
 - Primary Metals Producer

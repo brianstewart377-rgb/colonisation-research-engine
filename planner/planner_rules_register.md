@@ -32,8 +32,8 @@ This register extracts planner-operational rules from the repository's mechanics
 - Status: Confirmed
 - Source: `planner/planner_safety.md`, `mechanics/M-0002-station-economy-is-inherited.md`, `mechanics/M-0007-colony-port-economy-inheritance.md`
 - Related mechanics: `M-0002`, `M-0007`
-- Rule: Do not tell the user to set a colony-type station to a chosen economy.
-- Planner implication: Express economy shaping as an indirect projected outcome.
+- Rule: Do not tell the user to set a colony-type facility or port instance to a chosen final economy as if economy were a direct manual selector.
+- Planner implication: Express economy shaping as an indirect projected outcome and keep station type separate from final inherited economy.
 - Testing status: Supported by repository live evidence
 - Contradictions: None currently recorded
 - Unknowns: Final percentage-to-commodity mapping remains open

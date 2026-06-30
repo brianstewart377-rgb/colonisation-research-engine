@@ -84,6 +84,12 @@ Each body includes:
 
 This matches the repository's view that body type strongly constrains valid planning.
 
+Semantic note:
+
+- A `Body` is a physical context.
+- An `Orbital` is usually a placement or capacity class on or above a body.
+- A `slot` is capacity, not proof of a built facility.
+
 ### Facilities
 
 Each facility includes:
@@ -97,6 +103,13 @@ Each facility includes:
 
 This explicitly prevents the repository from confusing preview state, proposal state, and finished state.
 
+Semantic notes:
+
+- `facility_type` describes the facility class or family.
+- `station_type` is a subtype or taxonomy label such as Orbis or Dodec when relevant.
+- `station_type` is not the same thing as final inherited economy state.
+- `economy_refs` should be interpreted as observed or projected economy state references, not as economy-role labels.
+
 ### Market links
 
 `market_links` captures:
@@ -109,6 +122,10 @@ This explicitly prevents the repository from confusing preview state, proposal s
 
 This is intentionally compatible with current unresolved routing questions.
 
+Semantic note:
+
+- A market link is a relationship object, not a facility attribute and not an economy by itself.
+
 ### Economy snapshots
 
 `economy_snapshots` stores observed, preview, or predicted economy values by system, body, or facility.
@@ -120,6 +137,11 @@ This makes it possible to preserve:
 - analyst predictions
 
 without flattening them into one truth state.
+
+Semantic note:
+
+- Economy snapshots record state or hypothesis about economy exposure.
+- They do not directly encode planner roles such as `Industrial Anchor` or `High Tech Support`.
 
 ### Commodity observations
 

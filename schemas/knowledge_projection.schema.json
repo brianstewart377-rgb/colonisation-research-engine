@@ -20,7 +20,7 @@
     },
     "projection_type": {
       "type": "string",
-      "description": "Examples: body_feasibility_projection, economy_projection, recommendation_constraint, strategy_projection, service_projection."
+      "description": "Examples: body_feasibility_projection, economy_projection, recommendation_constraint, strategy_projection, service_projection. Projection type describes a published runtime-safe view, not a raw evidence class or user-data object."
     },
     "status": {
       "type": "string",
@@ -49,7 +49,8 @@
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "description": "References to canonical facility objects. These are facility identities, not station-type taxonomy values."
         },
         "objective_refs": {
           "type": "array",
@@ -61,7 +62,8 @@
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "description": "Planning-role references. Roles are contextual planning assignments, not observed economy states."
         }
       }
     },

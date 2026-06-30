@@ -24,6 +24,7 @@ This register turns the repository's asset vocabulary into explicit planner-faci
 - Status: Confirmed
 - Source: `ontology/roles_assets_strategies.md`, `planner/decision_support_model.md`
 - Definition: An economy type that matters because it influences commodities, missions, services, or system identity.
+- Semantic note: An economy asset is observed or projected colony/economy state. It is not the same thing as an economy role such as `Industrial Anchor` or `High Tech Support`.
 - Examples:
   - Industrial
   - Extraction
@@ -39,7 +40,7 @@ This register turns the repository's asset vocabulary into explicit planner-faci
 
 - Status: Confirmed
 - Source: `ontology/roles_assets_strategies.md`, `planner/decision_support_model.md`
-- Definition: A player-facing service provided by stations or facilities.
+- Definition: A player-facing service exposed by a facility or facility group.
 - Examples:
   - Shipyard
   - Outfitting
@@ -82,9 +83,10 @@ This register turns the repository's asset vocabulary into explicit planner-faci
 - Status: Confirmed
 - Source: `ontology/roles_assets_strategies.md`
 - Definition: A structural enabling asset that affects what the colony can build or support next.
+- Semantic note: Infrastructure assets include capacity, access, and hierarchy signals. They are not automatically built facilities.
 - Examples:
   - Construction-point generation
   - body slot availability
   - orbital versus surface access
   - main-port structure
-- Planner use: Unlock logic, sequencing, and architecture feasibility.
+- Planner use: Unlock logic, sequencing, architecture feasibility, and safe separation between empty capacity and realized infrastructure.

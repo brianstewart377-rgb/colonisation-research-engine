@@ -4,6 +4,12 @@
 
 Colony-type ports should be modeled as inheriting economy outcomes from local body context and market-link effects rather than from a direct player-selected final economy.
 
+Semantic guardrail:
+
+- `station type` or `port class` constrains behavior, but it is not the same thing as final inherited economy state.
+- `economy outcome` is not the same thing as `economy role`.
+- `market output` is downstream from inherited economy behavior and should not be treated as a synonym for preview labels.
+
 ## Status
 
 Likely

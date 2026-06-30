@@ -196,7 +196,8 @@
           "type": "boolean"
         },
         "slot_summary": {
-          "$ref": "#/$defs/slotSummary"
+          "$ref": "#/$defs/slotSummary",
+          "description": "Body-level placement capacity summary. Slot counts represent capacity or predicted occupancy context, not built facility identity."
         },
         "base_economy_hypotheses": {
           "type": "array",
@@ -291,10 +292,12 @@
           "type": "string"
         },
         "facility_type": {
-          "type": "string"
+          "type": "string",
+          "description": "Facility class or family label for the facility instance."
         },
         "station_type": {
-          "type": "string"
+          "type": "string",
+          "description": "Optional station-type taxonomy such as Orbis or Dodec. This is not equivalent to final inherited economy state."
         },
         "body_ref": {
           "type": "string"
@@ -333,7 +336,8 @@
           "type": "array",
           "items": {
             "$ref": "#/$defs/refString"
-          }
+          },
+          "description": "Observed, preview, or predicted economy-state references associated with the facility. These are not planning-role labels."
         },
         "confidence": {
           "$ref": "#/$defs/confidenceBand"
@@ -362,7 +366,8 @@
           "type": "string"
         },
         "link_economy": {
-          "type": "string"
+          "type": "string",
+          "description": "The economy dimension or economy-state label associated with the market-link interpretation, not an economy-role label."
         },
         "link_strength": {
           "type": "string",
@@ -413,7 +418,8 @@
           ]
         },
         "economy_name": {
-          "type": "string"
+          "type": "string",
+          "description": "Economy state label recorded for the subject. This is not the same thing as a contextual role such as Industrial Anchor."
         },
         "rank": {
           "type": "integer",

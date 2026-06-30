@@ -19,7 +19,7 @@ This directory defines how future planning tools must consume knowledge safely.
 - `planner_risk_register.md`
   Canonical planner failure modes and required mitigations.
 - `role_register.md`
-  Canonical role concepts for bodies, stations, and facility groups.
+  Canonical role concepts for bodies, facilities, and facility groups.
 - `architecture_pattern_register.md`
   Reusable architecture patterns and their prerequisites.
 - `recommendation_schema_register.md`

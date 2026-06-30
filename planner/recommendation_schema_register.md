@@ -38,8 +38,9 @@ Every planner recommendation should include the following fields.
 
 - Status: Confirmed
 - Source: `planner/decision_support_model.md`, `planner/role_register.md`
-- Requirement: State the intended role of the body, station, or facility group.
+- Requirement: State the intended role of the body, facility, or facility group.
 - Why it matters: Roles sit above individual facilities and explain purpose.
+- Semantic note: A role is not the same thing as a facility type, station type, or final inherited economy state.
 
 ## RS-0006 - Recommended architecture
 
@@ -54,6 +55,7 @@ Every planner recommendation should include the following fields.
 - Source: `planner/decision_support_model.md`
 - Requirement: List the actual facility options only after objective, constraints, coverage, role, and architecture are clear.
 - Why it matters: Facilities are implementation details, not the reasoning start-point.
+- Semantic note: Candidate facilities should keep facility class, station type, and projected state separate rather than collapsing them into one label.
 
 ## RS-0008 - Expected gains
 
@@ -82,6 +84,7 @@ Every planner recommendation should include the following fields.
 - Source: `planner/decision_support_model.md`, `evidence/evidence_mechanic_traceability.csv`
 - Requirement: Cite the evidence records or observations supporting the recommendation.
 - Why it matters: Makes provenance inspectable.
+- Semantic note: Evidence records are not the same thing as claims or mechanics; recommendation provenance should preserve the distinction.
 
 ## RS-0012 - Confidence band
 

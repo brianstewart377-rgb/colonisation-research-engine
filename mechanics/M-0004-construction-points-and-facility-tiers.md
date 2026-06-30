@@ -4,6 +4,12 @@
 
 Colonisation facilities appear to be grouped into tiered construction-point relationships rather than behaving as flat build options. Tier requirements and tier generation must be modeled separately from raw material cost.
 
+Semantic guardrail:
+
+- construction points are not commodities
+- construction materials are not construction points
+- slot capacity is not the same thing as realized facility state
+
 ## Status
 
 Likely

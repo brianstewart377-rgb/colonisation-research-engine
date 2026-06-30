@@ -2,6 +2,12 @@
 
 This register captures market-behavior, commodity-location, and overlap rules extracted from the recovered colonisation sources.
 
+Semantic rule:
+
+- `market` means the exposure surface for commodities, services, and demand or supply behavior.
+- `economy` influences market behavior but is not identical to market outcome.
+- `construction material` is a planner-relevant commodity subset, not a separate non-commodity resource family like construction points.
+
 ## MR-0001 - Top-two economies protect their own supply
 
 - Status: Extracted

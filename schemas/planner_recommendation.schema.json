@@ -161,13 +161,16 @@
       ],
       "properties": {
         "target_ref": {
-          "type": "string"
+          "type": "string",
+          "description": "The target system, body, or facility context the candidate build applies to."
         },
         "candidate_facility_type": {
-          "type": "string"
+          "type": "string",
+          "description": "The candidate facility class or facility-family label. This is not the same thing as a concrete facility instance or a station-type taxonomy label."
         },
         "candidate_station_type": {
-          "type": "string"
+          "type": "string",
+          "description": "Optional station-type taxonomy such as Orbis or Dodec. This should remain separate from facility class and from final inherited economy outcome."
         },
         "state_assumption": {
           "type": "string",

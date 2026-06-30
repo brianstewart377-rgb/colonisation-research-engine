@@ -4,6 +4,12 @@
 
 Ports do not appear to belong to a single shared behavior class. The repository evidence distinguishes colony-type ports from specialised ports, with different economy-baseline behavior and different planner assumptions.
 
+Semantic guardrail:
+
+- `port` here describes a facility subtype or facility-class behavior.
+- `station type` is a taxonomy for a facility instance.
+- neither one is equivalent to the final inherited or exposed economy outcome.
+
 ## Status
 
 Likely
@@ -26,7 +32,7 @@ This mechanic is directly supported by the committed canonical source pack, espe
 - Facility types:
   - colony-type examples: Civilian space outpost, Commercial space outpost, Coriolis, Orbis, Ocellus, Civilian planetary outpost, Tier 3 Planetary Port
   - specialised ports: any non-colony-type port with inherent economy behavior
-- Economy types: colony, inherited economy mixes, inherent port economies
+- Economy types: preview economy labels, inherited economy mixes, and inherent port economy baselines
 - Patch/version: canonical repository source state derived from `MG-0001`
 - Known exclusions: post-build live market output is still more authoritative than preview labels
 
@@ -40,6 +46,7 @@ This mechanic is directly supported by the committed canonical source pack, espe
   - visible `Facility Economy: Colony` does not mean the player can choose the final market economy manually
 - Blocked outputs:
   - do not assume station class alone determines final economy outcome
+  - do not collapse facility subtype, station type, and final market behavior into one concept
 - When to suggest an experiment instead:
   - when comparing Orbis, Ocellus, Dodec, or layout variants for final market/service differences
 

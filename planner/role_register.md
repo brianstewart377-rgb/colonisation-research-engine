@@ -5,6 +5,13 @@ This register extracts canonical planner roles from the repository's ontology an
 Roles are contextual.
 They are not universal prescriptions.
 
+Semantic rule:
+
+- A role is a planning assignment.
+- A role is not a facility identity.
+- A role is not a station type.
+- A role is not the same thing as final inherited economy state.
+
 ## RL-0001 - Primary Metals Producer
 
 - Status: Confirmed role concept

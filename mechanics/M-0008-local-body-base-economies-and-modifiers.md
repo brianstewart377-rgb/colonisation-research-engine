@@ -4,6 +4,12 @@
 
 Local body type appears to establish baseline inheritable economy tendencies for colony-type ports, and body features then apply a limited set of modifiers that should be modeled explicitly rather than guessed from station class.
 
+Semantic guardrail:
+
+- body type is not the same thing as facility class
+- body modifiers are not direct guarantees of final market outcome
+- inherited economy hypotheses are not the same thing as planner role assignment
+
 ## Status
 
 Likely
