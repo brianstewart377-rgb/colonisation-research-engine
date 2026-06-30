@@ -55,6 +55,7 @@ contradictions affecting a recommendation (C-0002 for M-0005).
 ## Backlog / next (future sprints — NOT in scope)
 - P1: Promote `G-0015` glossary node in canonical `graph_nodes.csv` (source-side fix).
 - P1: Richer query module (transitive evidence chains, reverse dependency graphs).
+- P2: Operational/scouting staging-proximity profile. Record the nearest known colonised system separately from the nearest usable staging location, including system/port name, straight-line distance in ly, large-pad and core-service availability, market/material usefulness, source, freshness, and confidence. Keep this in the mutable operational-data lane; do not promote it to canonical mechanics data or impose universal “good distance” thresholds before the player workflow defines them.
 - P2: CLI query tool / export of query results.
 - P2: Incremental/streaming projection for large export growth (optimisation).
 - Out of scope by design: planner, API, UI, Digital Twin, accounts.
